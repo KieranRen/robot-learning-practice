@@ -1,0 +1,24 @@
+# Python caches and generated reports
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local environments and configuration
+.venv/
+venv/
+.conda/
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+
+# Generated and large local outputs
+outputs/
+runs/
+artifacts/
+*.log
+.DS_Store
+Thumbs.db

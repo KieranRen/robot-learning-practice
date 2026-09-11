@@ -1,0 +1,7 @@
+name: robot_manipulation_learning
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy>=1.26,<3
+  - pytest>=8,<9
