@@ -272,9 +272,9 @@ v = np.array([3.0, 4.0])
 
 the Euclidean length is
 
-\[
-\|v\| = \sqrt{3^2 + 4^2} = 5.
-\]
+$$
+\|v\| = \sqrt{3^2 + 4^2} = 5
+$$
 
 The expanded calculation is:
 
@@ -300,9 +300,9 @@ v @ v
 
 computes the dot product of the vector with itself:
 
-\[
-v \cdot v = \|v\|^2.
-\]
+$$
+v \cdot v = \|v\|^2
+$$
 
 ---
 
@@ -347,15 +347,15 @@ gives:
 
 because:
 
-\[
+$$
 1(3) + 2(4) = 11
-\]
+$$
 
 and
 
-\[
-0(3) + 1(4) = 4.
-\]
+$$
+0(3) + 1(4) = 4
+$$
 
 Elementwise multiplication:
 
@@ -444,11 +444,11 @@ np.testing.assert_allclose(actual, expected)
 
 The approximate comparison follows:
 
-\[
+$$
 |actual - expected|
 \le
-atol + rtol \cdot |expected|.
-\]
+atol + rtol \cdot |expected|
+$$
 
 `atol` is the absolute tolerance.
 
