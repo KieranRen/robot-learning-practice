@@ -1,5 +1,7 @@
 # Robot Learning Practice
 
+[English](README.md) | [中文](README_zh.md)
+
 A structured and reproducible record of my robotics learning, implementations, experiments, and technical development.
 
 ## About
