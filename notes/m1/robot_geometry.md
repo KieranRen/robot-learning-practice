@@ -96,19 +96,19 @@ output = A
 
 The three columns of $R_{ab}$ are the three unit axes of frame B expressed in frame A.
 
-If:
+A compact way to write this is:
 
 $$
 R_{ab}
 =
-\begin{bmatrix}
-| & | & |\\
-r_1 & r_2 & r_3\\
-| & | & |
-\end{bmatrix}
+\left[
+\begin{array}{ccc}
+r_1 & r_2 & r_3
+\end{array}
+\right]
 $$
 
-then:
+where:
 
 - $r_1$ is the $+x$ axis of B expressed in A
 - $r_2$ is the $+y$ axis of B expressed in A
@@ -129,13 +129,15 @@ means:
 
 > 2 units along the B-frame x axis, plus 1 unit along the B-frame y axis.
 
-Then:
+Therefore:
 
 $$
 R_{ab}p_b
+=
+2r_1+r_2
 $$
 
-expresses the same geometric displacement using frame A.
+This expresses the same geometric displacement using the axes of frame A.
 
 ---
 
@@ -389,9 +391,10 @@ The additional coordinate is a mathematical tool. It does not mean physical spac
 
 ## 12. Points and Direction Vectors
 
-A point uses:
+A point uses the homogeneous form:
 
 $$
+\tilde p=
 \begin{bmatrix}
 x\\
 y\\
@@ -403,6 +406,7 @@ $$
 A pure direction vector uses:
 
 $$
+\tilde v=
 \begin{bmatrix}
 v_x\\
 v_y\\
@@ -411,25 +415,34 @@ v_z\\
 \end{bmatrix}
 $$
 
+For a direction vector, applying a rigid transform gives:
+
+$$
+\tilde v_a
+=
+T_{ab}\tilde v_b
+$$
+
+and therefore:
+
+$$
+\tilde v_a
+=
+\begin{bmatrix}
+R_{ab}v_b\\
+0
+\end{bmatrix}
+$$
+
+The translation does not contribute because the final homogeneous coordinate of a direction vector is zero.
+
 Therefore:
 
 $$
-\begin{bmatrix}
-R&t\\
-0&1
-\end{bmatrix}
-\begin{bmatrix}
-v\\
-0
-\end{bmatrix}
-=
-\begin{bmatrix}
-Rv\\
-0
-\end{bmatrix}
+v_a=R_{ab}v_b
 $$
 
-Translation does not affect a pure direction vector.
+Translation affects points, but it does not affect pure directions.
 
 ---
 
@@ -499,21 +512,33 @@ $$
 
 ## 15. Rotation and Translation Composition
 
-The rotation part is:
+For the transform chain
 
 $$
-\boxed{
+T_{wb}=T_{wa}T_{ab}
+$$
+
+the combined rotation is:
+
+$$
 R_{wb}=R_{wa}R_{ab}
-}
 $$
 
-The translation part is:
+The combined translation is:
 
 $$
-\boxed{
 t_{wb}=R_{wa}t_{ab}+t_{wa}
-}
 $$
+
+The term $t_{ab}$ is originally expressed in frame A.
+
+Therefore it must first be converted into frame W using:
+
+$$
+R_{wa}t_{ab}
+$$
+
+before it can be added to $t_{wa}$.
 
 ---
 
@@ -639,62 +664,56 @@ $$
 p_a=R_{ab}p_b+t_{ab}
 $$
 
-subtract translation:
+subtract the translation:
 
 $$
 p_a-t_{ab}=R_{ab}p_b
 $$
 
-Then:
+Then multiply by the inverse rotation:
 
 $$
 p_b=R_{ab}^{-1}(p_a-t_{ab})
 $$
 
-Since:
+For a valid rotation matrix:
 
 $$
-R^{-1}=R^T
+R_{ab}^{-1}=R_{ab}^T
 $$
 
-we obtain:
+Therefore:
 
 $$
-\boxed{
 p_b=R_{ab}^T(p_a-t_{ab})
-}
 $$
 
 The inverse rotation is:
 
 $$
-\boxed{
 R_{ba}=R_{ab}^T
-}
 $$
 
 The inverse translation is:
 
 $$
-\boxed{
 t_{ba}=-R_{ab}^Tt_{ab}
-}
 $$
 
-Thus:
+Therefore the inverse homogeneous transform is:
 
 $$
-\boxed{
 T_{ba}
 =
 T_{ab}^{-1}
 =
 \begin{bmatrix}
-R_{ab}^T&-R_{ab}^Tt_{ab}\\
-0&1
+R_{ab}^T & -R_{ab}^Tt_{ab}\\
+0 & 1
 \end{bmatrix}
-}
 $$
+
+The inverse translation is generally not simply $-t_{ab}$, because it must be expressed in the new output coordinate frame.
 
 ---
 
