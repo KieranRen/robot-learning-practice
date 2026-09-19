@@ -177,4 +177,18 @@ Planned areas include:
 
 As the repository grows, selected learning modules may be developed into more complete standalone projects with their own documentation, tests, and examples.
 
-"Born in a lab. Built for the future."
+## A Note to Myself
+
+I am still at the beginning of this journey.
+
+There will be concepts I do not understand, code that does not work, experiments that fail, and problems that take far longer than expected. That is part of learning robotics, not evidence that I should stop.
+
+My goal is not to appear advanced. My goal is to become capable.
+
+I do not need to be defined by who I was before. Past hesitation, mistakes, missed opportunities, or slower beginnings do not decide what I can become. What matters is what I choose to do now, what I build now, and whether I keep moving forward from here.
+
+So I will keep learning the mathematics, writing the code, testing my assumptions, asking better questions, and building things one step at a time.
+
+Small progress, repeated consistently, becomes real ability.
+
+And one day, the things that feel difficult now will become the foundations for much harder and more interesting problems.
