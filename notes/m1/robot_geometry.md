@@ -96,17 +96,15 @@ output = A
 
 The three columns of $R_{ab}$ are the three unit axes of frame B expressed in frame A.
 
-A compact way to write this is:
+A compact representation is:
 
-$$
+```math
 R_{ab}
 =
-\left[
-\begin{array}{ccc}
+\begin{bmatrix}
 r_1 & r_2 & r_3
-\end{array}
-\right]
-$$
+\end{bmatrix}
+```
 
 where:
 
@@ -116,28 +114,28 @@ where:
 
 For example:
 
-$$
+```math
 p_b=
 \begin{bmatrix}
 2\\
 1\\
 0
 \end{bmatrix}
-$$
+```
 
 means:
 
 > 2 units along the B-frame x axis, plus 1 unit along the B-frame y axis.
 
-Therefore:
+Matrix multiplication forms a linear combination of the columns:
 
-$$
+```math
 R_{ab}p_b
 =
 2r_1+r_2
-$$
+```
 
-This expresses the same geometric displacement using the axes of frame A.
+Therefore, $R_{ab}p_b$ expresses the same geometric displacement using the axes of frame A.
 
 ---
 
@@ -339,15 +337,17 @@ $$
 
 ## 11. Homogeneous Coordinates
 
-The rigid transform equation is:
+The rigid-body transformation equation is:
 
-$$
+```math
 p_a=R_{ab}p_b+t_{ab}
-$$
+```
 
-A 3D point can be extended to:
+This equation contains both a matrix multiplication and an addition.
 
-$$
+To represent rotation and translation using one matrix multiplication, a 3D point is extended with an additional coordinate:
+
+```math
 \tilde p=
 \begin{bmatrix}
 x\\
@@ -355,23 +355,35 @@ y\\
 z\\
 1
 \end{bmatrix}
-$$
+```
 
 The homogeneous transformation matrix is:
 
-$$
+```math
 T_{ab}
 =
 \begin{bmatrix}
-R_{ab}&t_{ab}\\
-0&1
+R_{ab} & t_{ab}\\
+0 & 1
 \end{bmatrix}
-$$
+```
 
-Therefore:
+More explicitly:
 
-$$
-\boxed{
+```math
+T_{ab}
+=
+\begin{bmatrix}
+r_{11} & r_{12} & r_{13} & t_x\\
+r_{21} & r_{22} & r_{23} & t_y\\
+r_{31} & r_{32} & r_{33} & t_z\\
+0 & 0 & 0 & 1
+\end{bmatrix}
+```
+
+The coordinate transformation can then be written as:
+
+```math
 \begin{bmatrix}
 p_a\\
 1
@@ -382,18 +394,19 @@ T_{ab}
 p_b\\
 1
 \end{bmatrix}
-}
-$$
+```
 
-The additional coordinate is a mathematical tool. It does not mean physical space has become four-dimensional.
+The additional coordinate does not mean that physical space has become four-dimensional.
+
+It is a mathematical device that allows translation to be included inside matrix multiplication.
 
 ---
 
 ## 12. Points and Direction Vectors
 
-A point uses the homogeneous form:
+A point uses the homogeneous representation:
 
-$$
+```math
 \tilde p=
 \begin{bmatrix}
 x\\
@@ -401,11 +414,11 @@ y\\
 z\\
 1
 \end{bmatrix}
-$$
+```
 
 A pure direction vector uses:
 
-$$
+```math
 \tilde v=
 \begin{bmatrix}
 v_x\\
@@ -413,36 +426,38 @@ v_y\\
 v_z\\
 0
 \end{bmatrix}
-$$
+```
 
-For a direction vector, applying a rigid transform gives:
+Applying a rigid transform to a direction vector gives:
 
-$$
+```math
 \tilde v_a
 =
 T_{ab}\tilde v_b
-$$
+```
 
-and therefore:
+which becomes:
 
-$$
+```math
 \tilde v_a
 =
 \begin{bmatrix}
 R_{ab}v_b\\
 0
 \end{bmatrix}
-$$
-
-The translation does not contribute because the final homogeneous coordinate of a direction vector is zero.
+```
 
 Therefore:
 
-$$
+```math
 v_a=R_{ab}v_b
-$$
+```
 
-Translation affects points, but it does not affect pure directions.
+The translation term disappears because the final homogeneous coordinate of a direction vector is zero.
+
+This matches the geometric meaning:
+
+> Translation changes the position of a point, but does not change a pure direction.
 
 ---
 
@@ -544,76 +559,85 @@ before it can be added to $t_{wa}$.
 
 ## 16. Three-Frame Example
 
-Suppose:
+Suppose the origin of frame A expressed in frame W is:
 
-$$
-t_{wa}=
+```math
+t_{wa}
+=
 \begin{bmatrix}
 1\\
 0\\
 0
 \end{bmatrix}
-$$
+```
 
-A is rotated $+90^\circ$ about z relative to W.
+Frame A is rotated $+90^\circ$ about the z axis relative to W.
 
-Also:
+The origin of frame B expressed in frame A is:
 
-$$
-t_{ab}=
+```math
+t_{ab}
+=
 \begin{bmatrix}
 1\\
 0\\
 0
 \end{bmatrix}
-$$
+```
 
-B is rotated $-90^\circ$ about z relative to A.
+Frame B is rotated $-90^\circ$ about the z axis relative to A.
 
-The point in B is:
+The point P expressed in frame B is:
 
-$$
-p_b=
+```math
+p_b
+=
 \begin{bmatrix}
 1\\
 0\\
 0
 \end{bmatrix}
-$$
+```
 
-The rotation matrices are:
+The rotation from A to W is:
 
-$$
+```math
 R_{wa}
 =
 \begin{bmatrix}
-0&-1&0\\
-1&0&0\\
-0&0&1
+0 & -1 & 0\\
+1 & 0 & 0\\
+0 & 0 & 1
 \end{bmatrix}
-$$
+```
 
-and:
+The rotation from B to A is:
 
-$$
+```math
 R_{ab}
 =
 \begin{bmatrix}
-0&1&0\\
--1&0&0\\
-0&0&1
+0 & 1 & 0\\
+-1 & 0 & 0\\
+0 & 0 & 1
 \end{bmatrix}
-$$
+```
 
-Therefore:
+The combined rotation is:
 
-$$
-R_{wb}=R_{wa}R_{ab}=I
-$$
+```math
+R_{wb}
+=
+R_{wa}R_{ab}
+=
+I
+```
 
-For translation:
+Now calculate the translation from B to W.
 
-$$
+First convert $t_{ab}$ from frame A into frame W:
+
+```math
 R_{wa}t_{ab}
 =
 \begin{bmatrix}
@@ -621,99 +645,159 @@ R_{wa}t_{ab}
 1\\
 0
 \end{bmatrix}
-$$
+```
+
+Then:
+
+```math
+t_{wb}
+=
+R_{wa}t_{ab}+t_{wa}
+```
 
 so:
 
-$$
+```math
 t_{wb}
+=
+\begin{bmatrix}
+0\\
+1\\
+0
+\end{bmatrix}
++
+\begin{bmatrix}
+1\\
+0\\
+0
+\end{bmatrix}
 =
 \begin{bmatrix}
 1\\
 1\\
 0
 \end{bmatrix}
-$$
+```
 
 Finally:
 
-$$
-p_w=R_{wb}p_b+t_{wb}
-$$
+```math
+p_w
+=
+R_{wb}p_b+t_{wb}
+```
 
-giving:
+Since $R_{wb}=I$:
 
-$$
-\boxed{
+```math
+p_w
+=
+\begin{bmatrix}
+1\\
+0\\
+0
+\end{bmatrix}
++
+\begin{bmatrix}
+1\\
+1\\
+0
+\end{bmatrix}
+=
+\begin{bmatrix}
+2\\
+1\\
+0
+\end{bmatrix}
+```
+
+Therefore:
+
+```math
 p_w=
 \begin{bmatrix}
 2\\
 1\\
 0
 \end{bmatrix}
-}
-$$
+```
 
 ---
 
 ## 17. Inverse Transform
 
-Starting from:
+Start from the forward transformation:
 
-$$
-p_a=R_{ab}p_b+t_{ab}
-$$
+```math
+p_a
+=
+R_{ab}p_b+t_{ab}
+```
 
-subtract the translation:
+First remove the translation:
 
-$$
-p_a-t_{ab}=R_{ab}p_b
-$$
+```math
+p_a-t_{ab}
+=
+R_{ab}p_b
+```
 
 Then multiply by the inverse rotation:
 
-$$
-p_b=R_{ab}^{-1}(p_a-t_{ab})
-$$
+```math
+p_b
+=
+R_{ab}^{-1}(p_a-t_{ab})
+```
 
 For a valid rotation matrix:
 
-$$
-R_{ab}^{-1}=R_{ab}^T
-$$
+```math
+R_{ab}^{-1}
+=
+R_{ab}^{T}
+```
 
 Therefore:
 
-$$
-p_b=R_{ab}^T(p_a-t_{ab})
-$$
+```math
+p_b
+=
+R_{ab}^{T}(p_a-t_{ab})
+```
 
 The inverse rotation is:
 
-$$
-R_{ba}=R_{ab}^T
-$$
+```math
+R_{ba}
+=
+R_{ab}^{T}
+```
 
 The inverse translation is:
 
-$$
-t_{ba}=-R_{ab}^Tt_{ab}
-$$
+```math
+t_{ba}
+=
+-R_{ab}^{T}t_{ab}
+```
 
 Therefore the inverse homogeneous transform is:
 
-$$
+```math
 T_{ba}
 =
 T_{ab}^{-1}
 =
 \begin{bmatrix}
-R_{ab}^T & -R_{ab}^Tt_{ab}\\
+R_{ab}^{T} & -R_{ab}^{T}t_{ab}\\
 0 & 1
 \end{bmatrix}
-$$
+```
 
-The inverse translation is generally not simply $-t_{ab}$, because it must be expressed in the new output coordinate frame.
+The inverse translation is generally not simply $-t_{ab}$.
+
+It must also be expressed in the new output coordinate frame.
 
 ---
 

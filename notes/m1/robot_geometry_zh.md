@@ -98,15 +98,13 @@ $R_{ab}$ 的三列分别表示 B 坐标系的三根单位轴在 A 坐标系中�
 
 可以简写为：
 
-$$
+```math
 R_{ab}
 =
-\left[
-\begin{array}{ccc}
+\begin{bmatrix}
 r_1 & r_2 & r_3
-\end{array}
-\right]
-$$
+\end{bmatrix}
+```
 
 其中：
 
@@ -116,28 +114,29 @@ $$
 
 例如：
 
-$$
-p_b=
+```math
+p_b
+=
 \begin{bmatrix}
 2\\
 1\\
 0
 \end{bmatrix}
-$$
+```
 
 表示：
 
 > 沿 B 的 x 轴走 2 个单位，再沿 B 的 y 轴走 1 个单位。
 
-因此：
+矩阵乘法实际上是在对旋转矩阵的列进行线性组合：
 
-$$
+```math
 R_{ab}p_b
 =
 2r_1+r_2
-$$
+```
 
-也就是把同一段几何位移重新使用 A 坐标系的轴进行表达。
+因此，$R_{ab}p_b$ 表示把同一段几何位移重新使用 A 坐标系的轴进行表达。
 
 ---
 
@@ -354,41 +353,56 @@ $$
 
 ## 11. 齐次坐标
 
-原来的刚体变换：
+刚体变换公式为：
 
-$$
-p_a=R_{ab}p_b+t_{ab}
-$$
+```math
+p_a
+=
+R_{ab}p_b+t_{ab}
+```
 
-同时包含乘法和加法。
+这个公式同时包含矩阵乘法和平移加法。
 
-为了统一成一次矩阵乘法，把三维点写成：
+为了把旋转和平移统一成一次矩阵乘法，可以给三维点增加一个额外坐标：
 
-$$
-\tilde p=
+```math
+\tilde p
+=
 \begin{bmatrix}
 x\\
 y\\
 z\\
 1
 \end{bmatrix}
-$$
+```
 
-构造：
+然后构造齐次变换矩阵：
 
-$$
+```math
 T_{ab}
 =
 \begin{bmatrix}
-R_{ab}&t_{ab}\\
-0&1
+R_{ab} & t_{ab}\\
+0 & 1
 \end{bmatrix}
-$$
+```
 
-于是：
+完整展开为：
 
-$$
-\boxed{
+```math
+T_{ab}
+=
+\begin{bmatrix}
+r_{11} & r_{12} & r_{13} & t_x\\
+r_{21} & r_{22} & r_{23} & t_y\\
+r_{31} & r_{32} & r_{33} & t_z\\
+0 & 0 & 0 & 1
+\end{bmatrix}
+```
+
+这样坐标变换可以统一写成：
+
+```math
 \begin{bmatrix}
 p_a\\
 1
@@ -399,71 +413,74 @@ T_{ab}
 p_b\\
 1
 \end{bmatrix}
-}
-$$
+```
 
-这里不是物理空间真的变成四维。
+最后增加的这一维并不表示现实物理空间真的变成了四维。
 
-最后增加的 1 是一个数学表示技巧。
+它只是一个数学表示技巧，用于把平移也包含进矩阵乘法。
 
 ---
 
 ## 12. 点和方向向量为什么不同
 
-一个点的齐次形式写成：
+一个点的齐次表示为：
 
-$$
-\tilde p=
+```math
+\tilde p
+=
 \begin{bmatrix}
 x\\
 y\\
 z\\
 1
 \end{bmatrix}
-$$
+```
 
-而纯方向向量写成：
+而一个纯方向向量表示为：
 
-$$
-\tilde v=
+```math
+\tilde v
+=
 \begin{bmatrix}
 v_x\\
 v_y\\
 v_z\\
 0
 \end{bmatrix}
-$$
+```
 
-对于一个方向向量，进行刚体变换：
+对方向向量应用刚体变换：
 
-$$
+```math
 \tilde v_a
 =
 T_{ab}\tilde v_b
-$$
+```
 
 结果为：
 
-$$
+```math
 \tilde v_a
 =
 \begin{bmatrix}
 R_{ab}v_b\\
 0
 \end{bmatrix}
-$$
+```
 
-由于方向向量最后一个齐次坐标是 0，因此平移项不会参与计算。
+因此：
 
-所以：
+```math
+v_a
+=
+R_{ab}v_b
+```
 
-$$
-v_a=R_{ab}v_b
-$$
+由于方向向量最后一个齐次坐标是 0，所以平移项不会参与计算。
 
-也就是说：
+这符合几何意义：
 
-> 平移会改变点的位置，但不会改变一个纯方向向量。
+> 平移会改变点的位置，但不会改变一个纯方向。
 
 ---
 
@@ -570,74 +587,85 @@ $$
 
 ## 16. 三坐标系例题
 
-已知：
+已知 A 原点在 W 中的位置：
 
-$$
-t_{wa}=
+```math
+t_{wa}
+=
 \begin{bmatrix}
 1\\
 0\\
 0
 \end{bmatrix}
-$$
+```
 
-A 相对 W 绕 z 轴 $+90^\circ$。
+A 相对 W 绕 z 轴旋转 $+90^\circ$。
 
-又有：
+B 原点在 A 中的位置：
 
-$$
-t_{ab}=
+```math
+t_{ab}
+=
 \begin{bmatrix}
 1\\
 0\\
 0
 \end{bmatrix}
-$$
+```
 
-B 相对 A 绕 z 轴 $-90^\circ$。
+B 相对 A 绕 z 轴旋转 $-90^\circ$。
 
-点：
+点 P 在 B 中的坐标：
 
-$$
-p_b=
+```math
+p_b
+=
 \begin{bmatrix}
 1\\
 0\\
 0
 \end{bmatrix}
-$$
+```
 
-旋转矩阵：
+A 到 W 的旋转矩阵：
 
-$$
+```math
 R_{wa}
 =
 \begin{bmatrix}
-0&-1&0\\
-1&0&0\\
-0&0&1
+0 & -1 & 0\\
+1 & 0 & 0\\
+0 & 0 & 1
 \end{bmatrix}
-$$
+```
 
-$$
+B 到 A 的旋转矩阵：
+
+```math
 R_{ab}
 =
 \begin{bmatrix}
-0&1&0\\
--1&0&0\\
-0&0&1
+0 & 1 & 0\\
+-1 & 0 & 0\\
+0 & 0 & 1
 \end{bmatrix}
-$$
+```
 
-总旋转：
+总旋转为：
 
-$$
-R_{wb}=R_{wa}R_{ab}=I
-$$
+```math
+R_{wb}
+=
+R_{wa}R_{ab}
+=
+I
+```
 
-计算平移：
+接下来计算 B 原点在 W 中的位置。
 
-$$
+首先把 $t_{ab}$ 从 A 坐标系转换到 W 坐标系：
+
+```math
 R_{wa}t_{ab}
 =
 \begin{bmatrix}
@@ -645,38 +673,83 @@ R_{wa}t_{ab}
 1\\
 0
 \end{bmatrix}
-$$
+```
+
+然后：
+
+```math
+t_{wb}
+=
+R_{wa}t_{ab}+t_{wa}
+```
 
 因此：
 
-$$
+```math
 t_{wb}
+=
+\begin{bmatrix}
+0\\
+1\\
+0
+\end{bmatrix}
++
+\begin{bmatrix}
+1\\
+0\\
+0
+\end{bmatrix}
 =
 \begin{bmatrix}
 1\\
 1\\
 0
 \end{bmatrix}
-$$
+```
 
-最后：
+最后计算 P 在 W 中的位置：
 
-$$
-p_w=R_{wb}p_b+t_{wb}
-$$
+```math
+p_w
+=
+R_{wb}p_b+t_{wb}
+```
 
-得到：
+因为 $R_{wb}=I$：
 
-$$
-\boxed{
-p_w=
+```math
+p_w
+=
+\begin{bmatrix}
+1\\
+0\\
+0
+\end{bmatrix}
++
+\begin{bmatrix}
+1\\
+1\\
+0
+\end{bmatrix}
+=
 \begin{bmatrix}
 2\\
 1\\
 0
 \end{bmatrix}
-}
-$$
+```
+
+因此：
+
+```math
+p_w
+=
+\begin{bmatrix}
+2\\
+1\\
+0
+\end{bmatrix}
+```
 
 ---
 
@@ -684,64 +757,78 @@ $$
 
 从正向变换开始：
 
-$$
-p_a=R_{ab}p_b+t_{ab}
-$$
+```math
+p_a
+=
+R_{ab}p_b+t_{ab}
+```
 
-首先减去平移：
+首先去掉平移：
 
-$$
-p_a-t_{ab}=R_{ab}p_b
-$$
+```math
+p_a-t_{ab}
+=
+R_{ab}p_b
+```
 
 然后乘旋转矩阵的逆：
 
-$$
-p_b=R_{ab}^{-1}(p_a-t_{ab})
-$$
+```math
+p_b
+=
+R_{ab}^{-1}(p_a-t_{ab})
+```
 
 对于合法旋转矩阵：
 
-$$
-R_{ab}^{-1}=R_{ab}^T
-$$
+```math
+R_{ab}^{-1}
+=
+R_{ab}^{T}
+```
 
 所以：
 
-$$
-p_b=R_{ab}^T(p_a-t_{ab})
-$$
+```math
+p_b
+=
+R_{ab}^{T}(p_a-t_{ab})
+```
 
 逆旋转为：
 
-$$
-R_{ba}=R_{ab}^T
-$$
+```math
+R_{ba}
+=
+R_{ab}^{T}
+```
 
 逆平移为：
 
-$$
-t_{ba}=-R_{ab}^Tt_{ab}
-$$
+```math
+t_{ba}
+=
+-R_{ab}^{T}t_{ab}
+```
 
-因此完整的逆齐次变换为：
+因此完整逆齐次变换为：
 
-$$
+```math
 T_{ba}
 =
 T_{ab}^{-1}
 =
 \begin{bmatrix}
-R_{ab}^T & -R_{ab}^Tt_{ab}\\
+R_{ab}^{T} & -R_{ab}^{T}t_{ab}\\
 0 & 1
 \end{bmatrix}
-$$
+```
 
 需要特别注意：
 
 > 逆变换中的平移通常不是简单的 $-t_{ab}$。
 
-因为这个平移还必须使用新的输出坐标系进行表达。
+因为它还必须使用新的输出坐标系进行表达。
 
 ---
 
