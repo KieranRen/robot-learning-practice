@@ -40,10 +40,70 @@
 
 ## 当前进度
 
-| 模块 | 内容 | 状态 |
-| --- | --- | --- |
-| M0 | 开发环境与 Git 工作流 | 已完成 |
-| M1 | Python、NumPy、坐标系、旋转与刚体变换 | 进行中 |
+| 模块 | 内容 | 状态 | 学习笔记 | 实验证据 |
+| --- | --- | --- | --- | --- |
+| M0 | 开发环境与 Git 工作流 | 已完成 | — | [环境报告](experiments/environment_reports/) |
+| M1 | Python、NumPy、坐标系、旋转与刚体变换 | 进行中 | [M1 学习笔记](notes/m1/) | [M1 实验记录](experiments/m1/) |
+
+### M1 当前成果
+
+M1 目前已经完成两个主要学习部分。
+
+#### Python 与 NumPy 基础
+
+包括：
+
+- 数组 shape、维度与数据类型
+- 索引与切片
+- view 与 copy
+- broadcasting
+- 向量与矩阵运算
+- 浮点误差检查
+- 使用 `pytest` 进行自动测试
+
+学习笔记：
+
+- [English](notes/m1/python_numpy.md)
+- [中文](notes/m1/python_numpy_zh.md)
+
+实验证据：
+
+- [English](experiments/m1/numeric_basics_report.md)
+- [中文](experiments/m1/numeric_basics_report_zh.md)
+
+#### 机器人几何与刚体变换
+
+包括：
+
+- 坐标系
+- 旋转矩阵
+- 刚体变换
+- 齐次坐标
+- 多级变换组合
+- 逆变换
+- 往返验证
+- 坐标系可视化
+
+学习笔记：
+
+- [English](notes/m1/robot_geometry.md)
+- [中文](notes/m1/robot_geometry_zh.md)
+
+实验证据：
+
+- [English](experiments/m1/robot_geometry_report.md)
+- [中文](experiments/m1/robot_geometry_report_zh.md)
+
+生成的可视化：
+
+- [`outputs/m1/frames.svg`](outputs/m1/frames.svg)
+
+当前自动化验证结果：
+
+```text
+Python / NumPy：    22 项测试通过
+Robot Geometry：    54 项测试通过
+```
 
 ## 仓库结构
 
