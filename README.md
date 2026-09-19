@@ -40,10 +40,66 @@ When a specific learning task depends on a particular upstream version, the corr
 
 ## Current Progress
 
-| Module | Topic | Status |
-| --- | --- | --- |
-| M0 | Development environment and Git workflow | Completed |
-| M1 | Python, NumPy, coordinate frames, rotations, and rigid-body transformations | In Progress |
+| Module | Topic | Status | Learning Notes | Experiment Evidence |
+| --- | --- | --- | --- | --- |
+| M0 | Development environment and Git workflow | Completed | — | [Environment Reports](experiments/environment_reports/) |
+| M1 | Python, NumPy, coordinate frames, rotations, and rigid-body transformations | In Progress | [M1 Notes](notes/m1/) | [M1 Experiments](experiments/m1/) |
+
+### M1 Highlights
+
+M1 currently includes two completed learning blocks:
+
+#### Python and NumPy Foundations
+
+- array shape, dimensions, and data types
+- indexing and slicing
+- views and copies
+- broadcasting
+- vector and matrix operations
+- floating-point numerical checks
+- automated testing with `pytest`
+
+Learning notes:
+
+- [English](notes/m1/python_numpy.md)
+- [中文](notes/m1/python_numpy_zh.md)
+
+Experiment evidence:
+
+- [English](experiments/m1/numeric_basics_report.md)
+- [中文](experiments/m1/numeric_basics_report_zh.md)
+
+#### Robot Geometry and Rigid Transforms
+
+- coordinate frames
+- rotation matrices
+- rigid-body transformations
+- homogeneous coordinates
+- transform composition
+- inverse transforms
+- round-trip validation
+- coordinate-frame visualization
+
+Learning notes:
+
+- [English](notes/m1/robot_geometry.md)
+- [中文](notes/m1/robot_geometry_zh.md)
+
+Experiment evidence:
+
+- [English](experiments/m1/robot_geometry_report.md)
+- [中文](experiments/m1/robot_geometry_report_zh.md)
+
+Generated visualization:
+
+- [`outputs/m1/frames.svg`](outputs/m1/frames.svg)
+
+Current automated verification:
+
+```text
+Python / NumPy:    22 tests passed
+Robot Geometry:    54 tests passed
+```
 
 ## Repository Structure
 
