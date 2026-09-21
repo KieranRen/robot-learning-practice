@@ -283,6 +283,38 @@ p_a=R_{ab}p_b+t_{ab}
 - 逆平移通常不是简单的 `-t`
 - 往返验证、手算、测试和可视化需要结合使用
 
+### M1.3 几何实现 — 已完成
+
+完成了 M1 中与实现相关的部分，将前面学习的刚体变换数学对应到可复用的 NumPy 程序接口。
+
+已学习内容：
+
+- `rotation_z`
+- `make_transform`
+- `inverse_transform`
+- `transform_points`
+- 有限数值输入检查
+- 严格的数组 shape 检查
+- proper rotation matrix 合法性验证
+- 浮点数容差
+- `translate_points`
+- 数值示例的程序结构
+- 坐标系示例的程序结构
+- 坐标变换组合顺序
+- 逆变换一致性
+- 往返验证
+
+学习笔记：
+
+- [Geometry Implementation](notes/m1/geometry_implementation.md)
+- [几何实现](notes/m1/geometry_implementation_zh.md)
+
+相关实现与示例：
+
+- `algorithms/geometry/`
+- `examples/numeric_basics.py`
+- `examples/coordinate_frames.py`
+
 ---
 
 # M1 当前成果汇总
@@ -290,11 +322,14 @@ p_a=R_{ab}p_b+t_{ab}
 ## 学习笔记
 
 ```text
+```text
 notes/m1/
 ├── python_numpy.md
 ├── python_numpy_zh.md
 ├── robot_geometry.md
-└── robot_geometry_zh.md
+├── robot_geometry_zh.md
+├── geometry_implementation.md
+└── geometry_implementation_zh.md
 ```
 
 ## 实验记录
@@ -406,15 +441,11 @@ progress.md
 
 # 下一步
 
+1. 学习 M1 的测试说明与测试代码，理解每一类测试验证的内容与原因。
+2. 完成 M1 指定教材阅读，并在实际阅读后整理真实的阅读记录。
+3. 完成剩余内容后，统一更新 README、进度记录与学习导航。
+4. 最终将 M1 从“进行中”更新为“已完成”。
 当前 M1 的 Python / NumPy 和 Robot Geometry 两个学习部分已经完成。
-
-下一步应继续按照 M1 项目路线推进后续任务，优先完成：
-
-- 剩余 M1 项目内容
-- 对应代码实现
-- 自动测试
-- 实验记录
-- Notes 更新
 
 在进入下一模块之前，需要保证：
 

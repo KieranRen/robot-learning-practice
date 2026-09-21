@@ -43,6 +43,26 @@ Topics include:
 - inverse transforms
 - numerical and geometric validation
 
+### Geometry Implementation
+
+- [English](m1/geometry_implementation.md)
+- [中文](m1/geometry_implementation_zh.md)
+
+Topics include:
+
+- `rotation_z`
+- `make_transform`
+- `inverse_transform`
+- `transform_points`
+- finite numeric input validation
+- strict array shape validation
+- proper rotation matrix checks
+- floating-point tolerance
+- `translate_points`
+- coordinate-frame example structure
+- transform composition order
+- round-trip verification
+
 ## Purpose
 
 These notes serve three goals:
