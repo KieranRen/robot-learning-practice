@@ -43,7 +43,7 @@
 | 模块 | 内容 | 状态 | 学习笔记 | 实验证据 |
 | --- | --- | --- | --- | --- |
 | M0 | 开发环境与 Git 工作流 | 已完成 | — | [环境报告](experiments/environment_reports/) |
-| M1 | Python、NumPy、坐标系、旋转与刚体变换 | 进行中 | [M1 学习笔记](notes/m1/) | [M1 实验记录](experiments/m1/) |
+| M1 | Python、NumPy、坐标系、刚体变换与几何实现 | 进行中 | [M1 笔记](notes/m1/) | [M1 实验](experiments/m1/) |
 
 ### M1 当前成果
 
@@ -97,6 +97,29 @@ M1 目前已经完成两个主要学习部分。
 生成的可视化：
 
 - [`outputs/m1/frames.svg`](outputs/m1/frames.svg)
+
+### 几何实现
+
+前面的数学概念已经进一步对应到可复用的 NumPy 实现，并通过明确的输入约定和验证逻辑提高可靠性。
+
+已学习内容：
+
+- `rotation_z`
+- `make_transform`
+- `inverse_transform`
+- `transform_points`
+- 有限数值输入检查
+- 严格的数组 shape 检查
+- proper rotation matrix 合法性验证
+- 浮点数容差
+- 坐标变换组合顺序
+- 往返一致性检查
+- 数值示例与坐标系示例的程序结构
+
+学习笔记：
+
+- [English](notes/m1/geometry_implementation.md)
+- [中文](notes/m1/geometry_implementation_zh.md)
 
 当前自动化验证结果：
 
@@ -185,7 +208,7 @@ python -m pytest
 
 ## 写给自己的话
 
-我现在仍然只是刚刚走上这条路。
+我现在仍然只是刚刚开启对机器人的探索之路。
 
 以后一定还会遇到看不懂的概念、跑不通的代码、失败的实验，以及花很久都解决不了的问题。这些都不是我应该停下来的理由，而本来就是学习机器人这件事的一部分。
 
@@ -197,5 +220,5 @@ python -m pytest
 
 持续重复的小进步，最终会变成真正的能力。
 
-而今天觉得困难的东西，终有一天会成为我解决更困难、更有意思问题时最普通的基础。
+而今天觉得困难的东西，终有一天会成为我解决更高级，更复杂问题时最普通的基础。
 

@@ -43,7 +43,7 @@ When a specific learning task depends on a particular upstream version, the corr
 | Module | Topic | Status | Learning Notes | Experiment Evidence |
 | --- | --- | --- | --- | --- |
 | M0 | Development environment and Git workflow | Completed | — | [Environment Reports](experiments/environment_reports/) |
-| M1 | Python, NumPy, coordinate frames, rotations, and rigid-body transformations | In Progress | [M1 Notes](notes/m1/) | [M1 Experiments](experiments/m1/) |
+| M1 | Python, NumPy, coordinate frames, rigid-body transformations, and geometry implementation | In Progress | [M1 Notes](notes/m1/) | [M1 Experiments](experiments/m1/) |
 
 ### M1 Highlights
 
@@ -93,6 +93,29 @@ Experiment evidence:
 Generated visualization:
 
 - [`outputs/m1/frames.svg`](outputs/m1/frames.svg)
+
+### Geometry Implementation
+
+The mathematical ideas above are connected to reusable NumPy implementations with explicit validation and clear interface contracts.
+
+Topics covered:
+
+- `rotation_z`
+- `make_transform`
+- `inverse_transform`
+- `transform_points`
+- finite numeric input validation
+- strict array shape validation
+- proper rotation matrix validation
+- floating-point tolerance
+- transform composition order
+- round-trip consistency checks
+- structure of the numerical and coordinate-frame examples
+
+Learning notes:
+
+- [English](notes/m1/geometry_implementation.md)
+- [中文](notes/m1/geometry_implementation_zh.md)
 
 Current automated verification:
 
