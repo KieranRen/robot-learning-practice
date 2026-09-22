@@ -34,6 +34,25 @@ Evidence includes:
 - automated tests
 - generated SVG visualization
 
+### M1 Capability Tasks
+
+- [English](capability_tasks_report.md)
+- [中文](capability_tasks_report_zh.md)
+
+Covers:
+
+- PYNUM-T01
+- PYNUM-T02
+- GEOM-T01
+- GEOM-T02
+- GEOM-T03
+- GEOM-T04
+- independent implementation
+- automated tests
+- hand-computed baselines
+- controlled failure analysis
+- modified-scene verification
+
 ## Purpose
 
 These reports complement the conceptual notes in `notes/m1/`.

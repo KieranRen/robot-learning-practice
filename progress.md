@@ -315,6 +315,19 @@ p_a=R_{ab}p_b+t_{ab}
 - `examples/numeric_basics.py`
 - `examples/coordinate_frames.py`
 
+### M1.4 测试与能力任务 — 已完成
+
+已完成 M1 测试说明、测试代码阅读以及六项能力任务。
+
+任务状态：
+
+```text
+PYNUM-T01  Completed
+PYNUM-T02  Completed
+GEOM-T01   Completed
+GEOM-T02   Completed
+GEOM-T03   Completed
+GEOM-T04   Completed
 ---
 
 # M1 当前成果汇总
@@ -340,7 +353,9 @@ experiments/m1/
 ├── numeric_basics_report.md
 ├── numeric_basics_report_zh.md
 ├── robot_geometry_report.md
-└── robot_geometry_report_zh.md
+├── robot_geometry_report_zh.md
+├── capability_tasks_report.md
+└── capability_tasks_report_zh.md
 ```
 
 ## 实现与测试
@@ -349,9 +364,11 @@ experiments/m1/
 algorithms/geometry/
 examples/numeric_basics.py
 examples/coordinate_frames.py
+examples/m1_solution.py
 tests/test_numeric_basics.py
 tests/test_rigid_transform.py
 tests/test_coordinate_frames.py
+tests/test_m1_solution.py
 ```
 
 ## 自动化验证
@@ -359,6 +376,7 @@ tests/test_coordinate_frames.py
 ```text
 Python / NumPy: 22 tests passed
 Robot Geometry: 54 tests passed
+Full repository: 107 tests passed
 ```
 
 目前累计：
@@ -441,11 +459,10 @@ progress.md
 
 # 下一步
 
-1. 学习 M1 的测试说明与测试代码，理解每一类测试验证的内容与原因。
-2. 完成 M1 指定教材阅读，并在实际阅读后整理真实的阅读记录。
-3. 完成剩余内容后，统一更新 README、进度记录与学习导航。
-4. 最终将 M1 从“进行中”更新为“已完成”。
-当前 M1 的 Python / NumPy 和 Robot Geometry 两个学习部分已经完成。
+- 完成 M1 指定教材阅读。
+- 根据实际阅读内容整理教材阅读记录。
+- 完成最终 M1 验收。
+- 将 M1 状态从“进行中”更新为“已完成”。
 
 在进入下一模块之前，需要保证：
 

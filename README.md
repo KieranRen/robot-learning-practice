@@ -43,11 +43,11 @@ When a specific learning task depends on a particular upstream version, the corr
 | Module | Topic | Status | Learning Notes | Experiment Evidence |
 | --- | --- | --- | --- | --- |
 | M0 | Development environment and Git workflow | Completed | — | [Environment Reports](experiments/environment_reports/) |
-| M1 | Python, NumPy, coordinate frames, rigid-body transformations, and geometry implementation | In Progress | [M1 Notes](notes/m1/) | [M1 Experiments](experiments/m1/) |
+| M1 | Python, NumPy, coordinate frames, rigid-body transformations, geometry implementation, testing, and capability tasks | In Progress | [M1 Notes](notes/m1/) | [M1 Experiments](experiments/m1/) |
 
 ### M1 Highlights
 
-M1 currently includes two completed learning blocks:
+M1 currently includes three completed learning blocks:
 
 #### Python and NumPy Foundations
 
@@ -122,6 +122,7 @@ Current automated verification:
 ```text
 Python / NumPy:    22 tests passed
 Robot Geometry:    54 tests passed
+Full repository:   107 tests passed
 ```
 
 ## Repository Structure
@@ -174,16 +175,8 @@ Where relevant, experiment outputs and environment verification records are stor
 
 I am currently working through M1, with emphasis on:
 
-- Python and NumPy foundations
-- array shape, indexing, slicing, and broadcasting
-- vector and matrix operations
-- numerical precision and floating-point checks
-- coordinate frames
-- rotation matrices
-- rigid-body transformations
-- transform composition
-- inverse transforms
-- automated testing with `pytest`
+- M1 capability-task validation
+- final textbook reading before M1 completion
 
 ## Future Directions
 
