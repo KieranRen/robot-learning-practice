@@ -390,7 +390,11 @@ R_z(\pi/2)
 矩阵：
 
 ```math
-\operatorname{diag}(1,1,-1)
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & -1
+\end{bmatrix}
 ```
 
 满足：

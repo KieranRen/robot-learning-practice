@@ -347,7 +347,11 @@ so length is preserved.
 The matrix:
 
 ```math
-\operatorname{diag}(1,1,-1)
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & -1
+\end{bmatrix}
 ```
 
 satisfies:
