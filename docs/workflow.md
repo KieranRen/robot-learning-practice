@@ -1,41 +1,336 @@
-# 我的机器人学习实践
+# Detailed Workflow
 
-这个仓库保存个人练习、笔记、进度与可复现证据。默认教材参考副本放在相邻的 `knowledge/`，公共贡献使用单独的 `contribution/`。需要同时使用不同教材版本时，分别保留固定版本的参考副本，在 `progress.md` 中记录每项任务的实际来源和相对副本目录。
+This document records the working process used in this repository.
 
-## 教材来源
+The purpose of the workflow is to keep learning, implementation, testing, documentation, and Git history organized and reproducible.
 
-首次复制后核对以下默认来源和标签，填写实际完整 commit，作为初始复制记录。若使用其他版本，按实际来源修改，不能沿用未经核对的默认值。教材更新时保留旧记录，在 `progress.md` 追加新版本；同时学习多个目标时，各任务记录自己的教材版本与运行条件。
+## 1. Start a Work Session
 
-| 项目 | 记录 |
-| --- | --- |
-| 上游仓库或共享来源 | [noBug01/Robot_knowledge_study](https://github.com/noBug01/Robot_knowledge_study)，私有教材来源，复制后核对 |
-| 教材 tag | 首版默认 v0.1.0，使用 git -C ../knowledge describe --tags --exact-match 核对；明确使用未打标签的修订时写无 tag |
-| 教材完整 commit | 待填写，可用 git -C ../knowledge rev-parse HEAD 查询 |
-| 复制内容 | examples/hello_robot.py、tests/test_hello_robot.py、environment.yml、实验报告模板和工作区模板 |
-| 许可证 | 从教材保留的 LICENSE |
-
-## 开始工作
-
-命令在本仓库根目录运行。环境不存在时先创建，已有环境按学习流程确认用途和版本。
+Open Git Bash and enter the practice repository:
 
 ```bash
-conda env create -f environment.yml
+cd ~/robot-learning/practice
+```
+
+Activate the Conda environment:
+
+```bash
 conda activate robot_manipulation_learning
-python examples/hello_robot.py
+```
+
+Check the current repository state:
+
+```bash
+git status
+```
+
+Before starting new work, make sure the working tree is in the expected state.
+
+---
+
+## 2. Create a Branch for Substantial Changes
+
+For a meaningful new task, create a dedicated branch from the latest `main`.
+
+First update `main`:
+
+```bash
+git switch main
+git pull
+```
+
+Then create a new branch:
+
+```bash
+git switch -c <branch-name>
+```
+
+Example:
+
+```bash
+git switch -c docs/m1-final-completion
+```
+
+Small corrections may occasionally be made directly on `main`, but feature branches are preferred for substantial work.
+
+---
+
+## 3. Learn the Concept First
+
+Before implementing a robotics concept:
+
+1. understand the mathematical or programming idea
+2. work through a small example
+3. identify input and output shapes
+4. understand the coordinate-frame meaning where relevant
+5. connect the formula with the corresponding NumPy operation
+
+For robotics mathematics, special attention should be paid to frame conventions and matrix multiplication order.
+
+---
+
+## 4. Implement a Small, Testable Unit
+
+Implementation should be divided into small functions whenever possible.
+
+Typical locations include:
+
+```text
+algorithms/
+examples/
+```
+
+Before writing a large amount of code, first make sure the smallest meaningful function works correctly.
+
+Important checks may include:
+
+- expected input shape
+- expected output shape
+- finite numeric values
+- correct matrix dimensions
+- correct coordinate-frame semantics
+- no unexpected input mutation
+
+---
+
+## 5. Add Tests
+
+Tests are stored under:
+
+```text
+tests/
+```
+
+Testing should cover more than only the normal example.
+
+Where appropriate, include:
+
+- expected numerical results
+- shape checks
+- invalid input checks
+- non-finite values
+- empty inputs
+- round-trip checks
+- mathematical invariants
+
+Examples of useful robotics checks include:
+
+```text
+R.T @ R ≈ I
+det(R) ≈ 1
+```
+
+and:
+
+```text
+T_inv @ T ≈ I
+```
+
+---
+
+## 6. Run Tests During Development
+
+For a specific test file:
+
+```bash
+python -m pytest tests/<test_file>.py
+```
+
+For the full repository:
+
+```bash
 python -m pytest
 ```
 
-上述命令对应初始 M0 工作区。其他任务按其实际说明使用环境和运行入口。如果使用不同的环境名，在 `progress.md` 和环境报告中记录实际名称。不得通过更新同名环境意外改变另一项正在进行的任务，顶部环境摘要也不能替代逐任务记录。
+A task should not be considered complete only because the example code runs once.
 
-## 个人记录
+The relevant tests should also pass.
 
-- `progress.md` 保存可并行的目标，以及逐任务 ID、教材来源与参考副本、版本、运行条件、状态、证据、评审和下一步
-- `experiments/environment_reports/` 保存环境报告和复现说明
-- `examples/` 与 `tests/` 保存个人实现及对应测试
-- `AGENTS.md` 规定 AI 在这个个人仓库中的工作范围
+---
 
-从教材复制文件后保留来源、原有版权声明和适用许可证。个人结果经过整理与 Review，具有公共复用价值时，可从当前上游 `main` 建立贡献分支并提议 PR。
+## 7. Record Learning Notes
 
-本工作区含从私有教材复制的内容。需要个人 GitHub 远程时创建私有仓库，保持教材授权的访问范围；独立仓库不会自动继承上游权限。对外分享前确认相关内容可以公开。向知识库贡献时，按实际权限选择已授权协作分支或允许的私有 Fork。
+Concept notes are stored under:
 
-旧版模板中已经填写的内容和验收继续保留，需要新字段时追加表格或说明。不要用新模板覆盖个人记录，也不要把当前环境补写成未经核实的历史环境。同一参考副本在一个时点只对应一个当前提交，切换前确认仍在进行的任务是否依赖它。
+```text
+notes/
+```
+
+Notes should explain the ideas in a way that can be reviewed later.
+
+Where useful, notes may include:
+
+- definitions
+- formulas
+- intuitive explanations
+- small numerical examples
+- NumPy representations
+- common mistakes
+- links between mathematics and implementation
+
+English and Chinese notes may both be maintained when useful.
+
+---
+
+## 8. Record Experiments
+
+Experiment records are stored under:
+
+```text
+experiments/
+```
+
+An experiment record should describe, when relevant:
+
+- purpose
+- environment
+- implementation
+- test result
+- observed behavior
+- debugging process
+- conclusion
+- limitations
+
+The goal is to preserve not only successful results, but also useful reasoning and debugging evidence.
+
+---
+
+## 9. Update Progress Records
+
+After completing a meaningful learning stage, update:
+
+```text
+progress.md
+```
+
+and the relevant README files.
+
+The documentation should reflect the actual repository state.
+
+A module should only be marked as completed after its required learning, implementation, testing, experiments, and documentation have been finished.
+
+---
+
+## 10. Review Changes Before Committing
+
+Check the repository:
+
+```bash
+git status
+```
+
+Inspect changes:
+
+```bash
+git diff
+```
+
+After staging:
+
+```bash
+git diff --staged
+```
+
+Make sure unrelated files are not accidentally included.
+
+---
+
+## 11. Stage and Commit
+
+Stage the intended files:
+
+```bash
+git add <files>
+```
+
+Create a clear commit:
+
+```bash
+git commit -m "<commit message>"
+```
+
+Commit messages should briefly describe the purpose of the change.
+
+Examples:
+
+```text
+docs: complete M1 robot math foundations
+feat: add rigid transform utilities
+test: expand transform validation coverage
+```
+
+---
+
+## 12. Push and Open a Pull Request
+
+Push the branch:
+
+```bash
+git push -u origin <branch-name>
+```
+
+Then create a pull request on GitHub.
+
+Before merging, verify:
+
+- the intended files are included
+- the documentation renders correctly
+- the test suite passes
+- no unrelated changes are present
+
+After review, merge the pull request into `main`.
+
+---
+
+## 13. Synchronize Local Main
+
+After the pull request has been merged:
+
+```bash
+git switch main
+git pull
+git status
+```
+
+The final expected state is:
+
+```text
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+```
+
+---
+
+## Workflow Summary
+
+The general workflow is:
+
+```text
+Learn
+  ↓
+Understand
+  ↓
+Implement
+  ↓
+Test
+  ↓
+Experiment
+  ↓
+Document
+  ↓
+Review
+  ↓
+Commit
+  ↓
+Pull Request
+  ↓
+Merge
+  ↓
+Synchronize
+```
+
+This workflow may evolve as the repository grows, but the main principle remains the same:
+
+> Learn carefully, implement in small steps, verify with tests, and keep the repository history clear and reproducible.

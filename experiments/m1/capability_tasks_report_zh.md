@@ -938,7 +938,7 @@ Section 3.3.1 — Homogeneous Transformation Matrices
 
 # 14. 当前结论
 
-除指定教材阅读外，M1 的以下内容已经完成：
+M1 的内容已经完成：
 
 ```text
 Python / NumPy Foundations
