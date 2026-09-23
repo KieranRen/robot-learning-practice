@@ -36,6 +36,8 @@
 
 上游仓库作为主要参考资料，本仓库则作为个人学习、实践、记录与开发空间。
 
+由衷感谢上游仓库作者无私地分享这些学习资料。仓库中的结构设计、示例和参考实现为我的学习过程提供了非常宝贵的指导。如果没有这些内容的帮助，我的个人学习仓库也不会以现在这样的方式逐步建立起来。
+
 当某项学习任务依赖特定教材版本时，会在对应的进度记录或实验报告中记录具体版本或 commit。
 
 ## 当前进度
@@ -43,7 +45,7 @@
 | 模块 | 内容 | 状态 | 学习笔记 | 实验证据 |
 | --- | --- | --- | --- | --- |
 | M0 | 开发环境与 Git 工作流 | 已完成 | — | [环境报告](experiments/environment_reports/) |
-| M1 | Python、NumPy、坐标系、刚体变换、几何实现、测试与能力任务 | 进行中 | [M1 笔记](notes/m1/) | [M1 实验](experiments/m1/) |
+| M1 | Python、NumPy、坐标系、刚体变换、几何实现、测试与能力任务、对应教材阅读 | 已完成 | [M1 笔记](notes/m1/) | [M1 实验](experiments/m1/) |
 
 ### M1 当前成果
 
@@ -121,6 +123,26 @@ M1 目前已经完成三个主要学习部分。
 - [English](notes/m1/geometry_implementation.md)
 - [中文](notes/m1/geometry_implementation_zh.md)
 
+### 教材阅读
+
+已完成 M1 指定范围的 *Modern Robotics: Mechanics, Planning, and Control* 阅读：
+
+- Section 3.2.1 — Rotation Matrices
+- Section 3.3.1 — Homogeneous Transformation Matrices
+
+主要核对并补充：
+
+- `SO(3)` 与 proper rotation
+- `SE(3)` 齐次刚体变换
+- 坐标系下标消去规则
+- 变换组合与逆变换
+- fixed-frame 与 body-frame 的左乘 / 右乘更新
+
+阅读笔记：
+
+- [English](notes/m1/modern_robotics_reading.md)
+- [中文](notes/m1/modern_robotics_reading_zh.md)
+
 当前自动化验证结果：
 
 ```text
@@ -177,12 +199,18 @@ python -m pytest
 - [详细工作流](docs/workflow.md)
 - [学习进度记录](progress.md)
 
-## 当前学习重点
+## 当前重点
 
-目前正在进行 M1，主要包括：
+M1 — Robot Math Foundations 已完成。
 
-- M1 能力任务综合验证
-- 完成教材阅读后进行 M1 最终验收
+下一阶段将根据实际机器人项目需求选择后续模块，可能包括：
+
+- 机器人运动学
+- 仿真
+- 控制
+- 感知
+- ROS 2
+- SLAM
 
 ## 后续方向
 

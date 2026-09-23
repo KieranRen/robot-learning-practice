@@ -63,6 +63,21 @@ Topics include:
 - transform composition order
 - round-trip verification
 
+### Modern Robotics Reading
+
+- [English](m1/modern_robotics_reading.md)
+- [中文](m1/modern_robotics_reading_zh.md)
+
+Topics include:
+
+- `SO(3)` and proper rotations
+- rotation-matrix properties
+- frame-subscript conventions
+- `SE(3)` and homogeneous transformations
+- rigid-transform inverse
+- transform composition
+- fixed-frame versus body-frame updates
+
 ## Purpose
 
 These notes serve three goals:

@@ -64,7 +64,7 @@
 
 ## M1 — Robot Math Foundations
 
-**状态：进行中**
+**状态：已完成**
 
 M1 当前已经完成两个主要学习部分：
 
@@ -330,6 +330,18 @@ GEOM-T03   Completed
 GEOM-T04   Completed
 ---
 
+### M1.5 Modern Robotics 教材阅读 — 已完成
+
+实际阅读教材：
+
+Kevin M. Lynch, Frank C. Park, *Modern Robotics: Mechanics, Planning, and Control*, Cambridge University Press, 2017.
+
+本次 M1 阅读范围：
+
+```text
+Section 3.2.1 — Rotation Matrices
+Section 3.3.1 — Homogeneous Transformation Matrices
+
 # M1 当前成果汇总
 
 ## 学习笔记
@@ -342,7 +354,9 @@ notes/m1/
 ├── robot_geometry.md
 ├── robot_geometry_zh.md
 ├── geometry_implementation.md
-└── geometry_implementation_zh.md
+├── geometry_implementation_zh.md
+├── modern_robotics_reading.md
+└── modern_robotics_reading_zh.md
 ```
 
 ## 实验记录
@@ -457,12 +471,20 @@ progress.md
 
 ---
 
-# 下一步
+## 下一步
 
-- 完成 M1 指定教材阅读。
-- 根据实际阅读内容整理教材阅读记录。
-- 完成最终 M1 验收。
-- 将 M1 状态从“进行中”更新为“已完成”。
+M1 — Robot Math Foundations 已完成。
+
+下一阶段根据实际项目目标选择后续机器人模块，并检查对应前置知识。候选方向包括：
+
+- robot kinematics
+- simulation
+- control systems
+- ROS 2
+- perception
+- SLAM
+
+微分、概率、优化、动力学等数学与工程知识将在后续模块需要时继续补充。
 
 在进入下一模块之前，需要保证：
 

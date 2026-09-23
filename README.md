@@ -36,6 +36,8 @@ This repository does not aim to duplicate the upstream material. Instead, it rec
 
 The upstream repository is treated as the reference source, while this repository serves as my personal practice, documentation, and development workspace.
 
+I am sincerely grateful to the author of the upstream repository for making these learning materials available and for sharing them so generously. The structure, examples, and reference implementations have provided valuable guidance throughout my study, and this repository would not have developed in the same way without that contribution.
+
 When a specific learning task depends on a particular upstream version, the corresponding source version or commit is recorded in the relevant progress or experiment documentation.
 
 ## Current Progress
@@ -43,7 +45,7 @@ When a specific learning task depends on a particular upstream version, the corr
 | Module | Topic | Status | Learning Notes | Experiment Evidence |
 | --- | --- | --- | --- | --- |
 | M0 | Development environment and Git workflow | Completed | — | [Environment Reports](experiments/environment_reports/) |
-| M1 | Python, NumPy, coordinate frames, rigid-body transformations, geometry implementation, testing, and capability tasks | In Progress | [M1 Notes](notes/m1/) | [M1 Experiments](experiments/m1/) |
+| M1 | Python, NumPy, robot geometry, rigid transformations, testing, capability tasks, and textbook reading | Completed | [M1 Notes](notes/m1/) | [M1 Experiments](experiments/m1/) |
 
 ### M1 Highlights
 
@@ -117,6 +119,26 @@ Learning notes:
 - [English](notes/m1/geometry_implementation.md)
 - [中文](notes/m1/geometry_implementation_zh.md)
 
+### Textbook Reading
+
+Completed the scoped M1 reading from *Modern Robotics: Mechanics, Planning, and Control*:
+
+- Section 3.2.1 — Rotation Matrices
+- Section 3.3.1 — Homogeneous Transformation Matrices
+
+Key reinforcement and new material included:
+
+- `SO(3)` and proper rotations
+- `SE(3)` rigid transformations
+- frame-subscript cancellation
+- transform composition and inversion
+- fixed-frame versus body-frame transform updates
+
+Reading notes:
+
+- [English](notes/m1/modern_robotics_reading.md)
+- [中文](notes/m1/modern_robotics_reading_zh.md)
+
 Current automated verification:
 
 ```text
@@ -173,10 +195,16 @@ Where relevant, experiment outputs and environment verification records are stor
 
 ## Current Focus
 
-I am currently working through M1, with emphasis on:
+M1 — Robot Math Foundations is complete.
 
-- M1 capability-task validation
-- final textbook reading before M1 completion
+The next stage is to choose the next robotics module based on project requirements, with likely directions including:
+
+- robot kinematics
+- simulation
+- control
+- perception
+- ROS 2
+- SLAM
 
 ## Future Directions
 
