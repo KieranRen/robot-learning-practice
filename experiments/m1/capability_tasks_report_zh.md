@@ -10,7 +10,7 @@
 
 截至本报告完成时，M1 的代码、测试、数值基础、机器人几何、刚体变换和综合能力任务均已完成。
 
-M1 当前仅剩指定教材阅读尚未完成，因此整个 M1 仍保持 **进行中** 状态。
+M1 指定教材阅读现已完成，因此整个 M1 状态更新为 **已完成**。
 
 ---
 
@@ -924,21 +924,17 @@ NumPy 不会自动理解：
 - motion planning
 - sensor fusion
 
-此外，M1 的指定教材阅读将在下一阶段完成。
+## 最终状态
 
-因此当前 M1 总状态仍为：
-
-```text
-In Progress
-```
-
-仅剩：
+M1 指定教材阅读现已完成：
 
 ```text
-Textbook Reading
-```
+Modern Robotics
+Section 3.2.1 — Rotation Matrices
+Section 3.3.1 — Homogeneous Transformation Matrices
 
 ---
+```
 
 # 14. 当前结论
 
@@ -955,6 +951,7 @@ GEOM-T01
 GEOM-T02
 GEOM-T03
 GEOM-T04
+Textbook Reading
 ```
 
 个人代码、测试、手算、失败分析和综合变体场景均已形成可复核证据。

@@ -10,7 +10,7 @@ Only material that has actually been studied, implemented, and tested is recorde
 
 At the time of this report, the numerical foundations, robot geometry, rigid-transform implementation, testing, and all six capability tasks have been completed.
 
-The assigned textbook reading remains outstanding, so M1 is still **In Progress**.
+The assigned M1 textbook reading has now been completed, so M1 is **Completed**.
 
 ---
 
@@ -829,21 +829,17 @@ This M1 work does not claim support for:
 - motion planning
 - sensor fusion
 
-The assigned M1 textbook reading is also still outstanding.
+```markdown
 
-Therefore the overall M1 status remains:
+### Textbook Reading
 
-```text
-In Progress
-```
+- [English](../../notes/m1/modern_robotics_reading.md)
+- [中文](../../notes/m1/modern_robotics_reading_zh.md)
 
-with only:
+Scoped reading completed:
 
-```text
-Textbook Reading
-```
-
-remaining.
+- Modern Robotics 3.2.1 — Rotation Matrices
+- Modern Robotics 3.3.1 — Homogeneous Transformation Matrices
 
 ---
 
@@ -862,6 +858,7 @@ GEOM-T01
 GEOM-T02
 GEOM-T03
 GEOM-T04
+Textbook Reading
 ```
 
 The personal implementation, automated tests, hand calculations, controlled failure analysis, and modified-scene verification now provide reproducible evidence.
