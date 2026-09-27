@@ -1,0 +1,112 @@
+<mujoco model="Review Model">
+
+    <option timestep="0.002"  
+            gravity="0 0 -9.81"
+            integrator="implicitfast"/>
+
+<!-- 时间分辨率/重力加速度/采用的计算方法 -->
+
+    <visual>
+        <global realtime="1"/>
+        <quality shadowsize="4096"/>
+        <headlight diffuse="1 1 1"
+                   specular="0.5 0.5 0.5"
+                   active="1"/>
+    </visual>
+
+<!-- 可视化：真实模拟时间与世界时间保持一致/阴影/头灯 -->
+
+    <asset>
+<!-- 资源库：这里都是我们自己定义的 -->
+        <texture name="sky"
+                 type="skybox"
+                 builtin="gradient"
+                 rgb1="0.4 0.6 0.9"
+                 rgb2="0.9 0.9 0.9"
+                 width="512"
+                 height="512"/>
+
+        <texture name="floor_tex"
+                 type="2d"
+                 builtin="checker"
+                 rgb1="0.2 0.2 0.2"
+                 rgb2="0.8 0.8 0.8"
+                 width="512"
+                 height="512"/>
+
+        <material name="floor_mat"
+                  texture="floor_tex"
+                  texrepeat="5 5"
+                  reflectance="0.2"/>
+
+    </asset>
+
+    <worldbody>
+
+    <!-- 地面 -->
+    <geom name="floor"
+          type="plane"
+          size="5 5 0.1"
+          material="floor_mat"
+          friction="1 0.005 0.0001"/>
+
+    <!-- 一个固定的方块 -->
+    <geom name="box"
+      type="box"
+      pos="-1 0 0.25"
+      size="0.3 0.3 0.25"
+      rgba="0.2 0.8 0.2 1"
+      mass="2"/>
+
+    <!-- 一个固定的胶囊体 -->
+    <geom name="capsule"
+      type="capsule"
+      pos="0 -1 0.6"
+      size="0.15 0.4"
+      rgba="0.7 0.3 0.9 1"
+      mass="1"/> 
+
+      
+    <!-- 第一个刚体：支架 -->
+    <body name="support" pos="0 0 1">
+
+        <geom type="cylinder"
+              size="0.15 0.5"
+              mass="2"
+              rgba="0.2 0.2 0.8 1"/>
+
+     <!-- 子刚体：motor -->
+      <body name="motor" pos="0 0 0.6">
+
+        <geom type="sphere"
+              size="0.18"
+              mass="1"
+              rgba="0.8 0.2 0.2 1"/>
+
+    <!-- 标记 motor 顶部位置 -->
+      <site name="motor_top"
+        pos="0 0 0.25"
+        size="0.05"
+        rgba="0 1 0 1"/>
+
+      </body>
+    
+    </body>
+
+
+    <!-- 自由下落的小球 -->
+    <body name="falling_ball" pos="1 0 2">
+
+    <freejoint/>
+
+    <geom type="sphere"
+          size="0.2"
+          mass="1"
+          friction="0.8 0.005 0.0001"
+          rgba="1 0.5 0 1"/>
+
+    </body>
+
+    </worldbody>
+
+</mujoco>
