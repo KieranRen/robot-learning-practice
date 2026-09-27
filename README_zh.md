@@ -19,33 +19,60 @@
 
 目标不仅是完成教程，而是持续记录我真正理解、实现、验证和改进了什么。
 
-## 学习资料来源
+## 学习来源
 
-本仓库当前主要学习资料来自以下上游仓库：
+本仓库使用的主要学习资料来自多个不同的上游仓库。
 
-- [noBug01/Robot_knowledge_study](https://github.com/noBug01/Robot_knowledge_study)
+### M1 - 机器人数学与几何基础
 
-本仓库并不以复制上游教材内容为目标，而是记录我自己的学习过程，包括：
+M1 的学习内容主要基于：
 
-- 个人笔记与总结
-- 独立代码实现
-- 测试与数值验证
-- 实验记录
-- 错误、修正与反思
-- 基于所学内容进一步完成的小项目与扩展
+- [Robot Knowledge Study](https://github.com/real-stanford/robot_knowledge_study)
 
-上游仓库作为主要参考资料，本仓库则作为个人学习、实践、记录与开发空间。
+这个上游仓库主要作为以下内容的参考来源：
 
-由衷感谢上游仓库作者无私地分享这些学习资料。仓库中的结构设计、示例和参考实现为我的学习过程提供了非常宝贵的指导。如果没有这些内容的帮助，我的个人学习仓库也不会以现在这样的方式逐步建立起来。
+- Python 与 NumPy 基础
+- 机器人几何
+- 刚体变换
+- 几何实现
+- Modern Robotics 阅读
+- 相关机器人数学基础
 
-当某项学习任务依赖特定教材版本时，会在对应的进度记录或实验报告中记录具体版本或 commit。
+### M2 - MuJoCo 仿真
+
+M2 中的 MuJoCo 学习内容主要基于：
+
+- [MuJoCo Learning](https://github.com/Albusgive/mujoco_learning.git)
+
+这个上游仓库主要作为以下内容的参考来源：
+
+- MuJoCo XML / MJCF 结构
+- 仿真环境配置
+- 视觉设置
+- Asset 与 Material
+- Geom 几何体
+- Body 层级结构
+- Site 标记点
+- 基础仿真实验
+
+本仓库并不是对这些上游仓库内容的直接复制，而是用于记录我自己的学习过程，包括：
+
+- 个人学习笔记与总结
+- 独立实现
+- 仿真实验
+- 自动化测试
+- 实验报告与验证
+- 错误修正与持续完善
+
+当某个具体学习任务依赖特定上游版本时，对应的来源或 commit 信息会记录在相关进度或实验文档中。
 
 ## 当前进度
 
-| 模块 | 内容 | 状态 | 学习笔记 | 实验证据 |
-| --- | --- | --- | --- | --- |
-| M0 | 开发环境与 Git 工作流 | 已完成 | — | [环境报告](experiments/environment_reports/) |
-| M1 | Python、NumPy、坐标系、刚体变换、几何实现、测试与能力任务、对应教材阅读 | 已完成 | [M1 笔记](notes/m1/) | [M1 实验](experiments/m1/) |
+| 模块 | 主题 | 状态 | 学习笔记 | 实验证明 |
+|---|---|---|---|---|
+| M0 | 环境配置与 Git 工作流 | 已完成 | - | [环境报告](experiments/environment_reports/) |
+| M1 | Python、NumPy、机器人几何、刚体变换、测试、能力任务与 Modern Robotics 阅读 | 已完成 | [M1 笔记](notes/M1/) | [M1 实验](experiments/M1/) |
+| M2 | MuJoCo 仿真与 MJCF 建模 | 进行中 | [M2 MuJoCo 笔记](notes/M2/MuJoCo/) | [M2 MuJoCo 实验](experiments/M2/MuJoCo/) |
 
 ### M1 当前成果
 
@@ -151,19 +178,93 @@ Robot Geometry：    54 项测试通过
 Full repository:    107 项测试通过
 ```
 
+### M2 MuJoCo 仿真
+
+M2 主要用于建立 MuJoCo 和 MJCF 的实际机器人仿真能力。
+
+目前学习内容包括：
+
+- MuJoCo XML / MJCF 结构
+- 仿真参数配置
+- `timestep`、重力、积分器和求解器
+- 视觉设置
+- Asset、Texture、Material、Mesh 与 Skybox
+- 使用 `geom` 定义几何体
+- `body` 层级结构与相对坐标系
+- `site` 标记点
+- 基础接触与摩擦概念
+- 简单 MuJoCo 仿真实验
+
+学习笔记：
+
+- [环境配置与资源](notes/M2/MuJoCo/01_environment_and_assets_zh.md)
+- [English - Environment and Assets](notes/M2/MuJoCo/01_environment_and_assets.md)
+- [Geom、Body 与 Site](notes/M2/MuJoCo/02_geom_body_site_zh.md)
+- [English - Geom, Body and Site](notes/M2/MuJoCo/02_geom_body_site.md)
+
+实验证明：
+
+- [MuJoCo 实验总览](experiments/M2/MuJoCo/README.md)
+- [Review Model](experiments/M2/MuJoCo/review_model.xml)
+- [Review Model 中文报告](experiments/M2/MuJoCo/review_model_report_zh.md)
+- [Review Model English Report](experiments/M2/MuJoCo/review_model_report.md)
+
 ## 仓库结构
 
 ```text
 robot-learning-practice/
-├── notes/          # 个人学习笔记与总结
-├── examples/       # 可运行示例与独立实现
-├── tests/          # 自动化测试
-├── experiments/    # 实验报告与可复现记录
-├── docs/           # 路线图、工作流和项目文档
-├── progress.md     # 持续更新的学习进度
-├── environment.yml # 可复现 Python 环境
-└── README.md
+├── notes/
+│   ├── M1/
+│   │   ├── python_numpy.md
+│   │   ├── python_numpy_zh.md
+│   │   ├── robot_geometry.md
+│   │   ├── robot_geometry_zh.md
+│   │   ├── geometry_implementation.md
+│   │   ├── geometry_implementation_zh.md
+│   │   ├── modern_robotics_reading.md
+│   │   └── modern_robotics_reading_zh.md
+│   │
+│   └── M2/
+│       └── MuJoCo/
+│           ├── README.md
+│           ├── 01_environment_and_assets.md
+│           ├── 01_environment_and_assets_zh.md
+│           ├── 02_geom_body_site.md
+│           └── 02_geom_body_site_zh.md
+│
+├── experiments/
+│   ├── M1/
+│   │   ├── capability_tasks_report.md
+│   │   ├── capability_tasks_report_zh.md
+│   │   ├── numeric_basics_report.md
+│   │   ├── numeric_basics_report_zh.md
+│   │   ├── robot_geometry_report.md
+│   │   └── robot_geometry_report_zh.md
+│   │
+│   └── M2/
+│       └── MuJoCo/
+│           ├── README.md
+│           ├── review_model.xml
+│           ├── review_model_report.md
+│           └── review_model_report_zh.md
+│
+├── tests/
+├── examples/
+├── docs/
+├── progress/
+├── environment.yml
+├── README.md
+└── README_zh.md
 ```
+
+仓库整体按照“学习笔记”和“实验验证”分开组织，同时保持两者之间的对应关系。
+
+- `notes/`：存放结构化学习笔记与知识总结
+- `experiments/`：存放实际实现、仿真文件与实验报告
+- `tests/`：存放自动化测试与验证
+- `examples/`：存放可运行示例
+- `docs/`：存放工作流与项目文档
+- `progress/`：记录阶段进度与学习里程碑
 
 ## 学习方式
 
@@ -201,16 +302,37 @@ python -m pytest
 
 ## 当前重点
 
-M1 — Robot Math Foundations 已完成。
+目前的学习重点是 M2：MuJoCo 仿真。
 
-下一阶段将根据实际机器人项目需求选择后续模块，可能包括：
+这一阶段正在进行的内容包括：
 
-- 机器人运动学
-- 仿真
-- 控制
-- 感知
-- ROS 2
-- SLAM
+- 理解 MuJoCo XML / MJCF 的基本结构
+- 搭建简单的仿真环境
+- 理解 `worldbody`、`body`、`geom` 与 `site` 之间的关系
+- 理解父子 body 的层级关系与相对坐标
+- 练习基础几何体、材质、重力、接触与摩擦
+- 从零开始创建简单的 MuJoCo 仿真实验
+- 将仿真知识逐步与机器人学中的运动学、动力学、关节、执行器、传感器和控制联系起来
+
+目前已经完成的 M2 内容包括：
+
+- 环境配置与 Asset 资源相关笔记
+- Geom、Body 与 Site 相关笔记
+- 一个基础综合复习仿真模型
+- Notes 与 Experiments 的中英文双语文档
+
+M2 仍在进行中。
+
+后续会随着 MuJoCo 和机器人学内容的深入，继续加入：
+
+- Joint
+- Actuator
+- Sensor
+- Contact
+- Robot kinematics
+- Robot dynamics
+- Control
+- More advanced simulation experiments
 
 ## 后续方向
 

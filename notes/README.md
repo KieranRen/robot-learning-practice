@@ -78,6 +78,36 @@ Topics include:
 - transform composition
 - fixed-frame versus body-frame updates
 
+## M2 - MuJoCo Simulation
+
+M2 focuses on robot simulation with MuJoCo and MJCF.
+
+Current MuJoCo notes include:
+
+- [Environment and Assets](M2/MuJoCo/01_environment_and_assets.md)
+- [中文 - 环境配置与资源](M2/MuJoCo/01_environment_and_assets_zh.md)
+- [Geom, Body and Site](M2/MuJoCo/02_geom_body_site.md)
+- [中文 - Geom、Body 与 Site](M2/MuJoCo/02_geom_body_site_zh.md)
+
+Main topics covered so far:
+
+- MuJoCo XML / MJCF structure
+- Simulation configuration
+- Visual settings
+- Assets, textures, materials, meshes, and skyboxes
+- Geometries
+- Mass, density, friction, and contact-related properties
+- Body hierarchy
+- Parent-child coordinate relationships
+- Site markers
+- Basic MuJoCo model construction
+
+Source repository:
+
+https://github.com/Albusgive/mujoco_learning.git
+
+M2 is currently in progress and will continue to expand with topics such as joints, actuators, sensors, kinematics, dynamics, and control.
+
 ## Purpose
 
 These notes serve three goals:

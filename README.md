@@ -21,31 +21,57 @@ The goal is not only to complete tutorials, but to build a clear record of what 
 
 ## Learning Source
 
-The primary learning material for this repository is maintained in the following upstream repository:
+The primary learning materials used in this repository come from multiple upstream repositories.
 
-- [noBug01/Robot_knowledge_study](https://github.com/noBug01/Robot_knowledge_study)
+### M1 - Robot Math and Geometry
 
-This repository does not aim to duplicate the upstream material. Instead, it records my own learning process, including:
+M1 learning materials are mainly based on:
 
-- personal notes and summaries
-- independent implementations
-- tests and numerical verification
-- experiment records
-- mistakes, corrections, and reflections
-- selected extensions and small projects built on top of the learned concepts
+- [Robot Knowledge Study](https://github.com/real-stanford/robot_knowledge_study)
 
-The upstream repository is treated as the reference source, while this repository serves as my personal practice, documentation, and development workspace.
+This upstream repository is treated as the reference source for topics such as:
 
-I am sincerely grateful to the author of the upstream repository for making these learning materials available and for sharing them so generously. The structure, examples, and reference implementations have provided valuable guidance throughout my study, and this repository would not have developed in the same way without that contribution.
+- Python and NumPy foundations
+- Robot geometry
+- Rigid transformations
+- Geometry implementation
+- Modern Robotics reading and related mathematical foundations
 
-When a specific learning task depends on a particular upstream version, the corresponding source version or commit is recorded in the relevant progress or experiment documentation.
+### M2 - MuJoCo Simulation
+
+M2 MuJoCo learning materials are based on:
+
+- [MuJoCo Learning](https://github.com/Albusgive/mujoco_learning.git)
+
+This upstream repository is used as the reference source for topics such as:
+
+- MuJoCo XML / MJCF structure
+- Simulation configuration
+- Visual settings
+- Assets and materials
+- Geometries
+- Body hierarchy
+- Sites
+- Basic simulation experiments
+
+This repository does not aim to duplicate either upstream source. Instead, it records my own learning process, including:
+
+- Personal notes and summaries
+- Independent implementations
+- Simulation experiments
+- Automated tests
+- Reports and validation
+- Corrections and refinements
+
+Whenever a specific learning task depends on a particular upstream version, the corresponding source or commit may be recorded in the relevant progress or experiment documentation.
 
 ## Current Progress
 
 | Module | Topic | Status | Learning Notes | Experiment Evidence |
-| --- | --- | --- | --- | --- |
-| M0 | Development environment and Git workflow | Completed | — | [Environment Reports](experiments/environment_reports/) |
-| M1 | Python, NumPy, robot geometry, rigid transformations, testing, capability tasks, and textbook reading | Completed | [M1 Notes](notes/m1/) | [M1 Experiments](experiments/m1/) |
+|---|---|---|---|---|
+| M0 | Environment setup and Git workflow | Completed | - | [Environment Reports](experiments/environment_reports/) |
+| M1 | Python, NumPy, robot geometry, rigid transformations, testing, capability tasks, and Modern Robotics reading | Completed | [M1 Notes](notes/M1/) | [M1 Experiments](experiments/M1/) |
+| M2 | MuJoCo simulation and MJCF modeling | In Progress | [M2 MuJoCo Notes](notes/M2/MuJoCo/) | [M2 MuJoCo Experiments](experiments/M2/MuJoCo/) |
 
 ### M1 Highlights
 
@@ -147,18 +173,93 @@ Robot Geometry:    54 tests passed
 Full repository:   107 tests passed
 ```
 
+### M2 MuJoCo Simulation
+
+M2 focuses on building practical robot simulation experience with MuJoCo and MJCF.
+
+Current learning includes:
+
+- MuJoCo XML / MJCF structure
+- Simulation configuration
+- `timestep`, gravity, integrators, and solvers
+- Visual settings
+- Assets, textures, materials, meshes, and skyboxes
+- Geometry definitions with `geom`
+- `body` hierarchy and relative coordinate frames
+- `site` markers
+- Basic contact and friction concepts
+- Simple MuJoCo simulation experiments
+
+Learning notes:
+
+- [Environment and Assets](notes/M2/MuJoCo/01_environment_and_assets.md)
+- [中文 - 环境配置与资源](notes/M2/MuJoCo/01_environment_and_assets_zh.md)
+- [Geom, Body and Site](notes/M2/MuJoCo/02_geom_body_site.md)
+- [中文 - Geom、Body 与 Site](notes/M2/MuJoCo/02_geom_body_site_zh.md)
+
+Experiment evidence:
+
+- [MuJoCo Experiments Overview](experiments/M2/MuJoCo/README.md)
+- [Review Model](experiments/M2/MuJoCo/review_model.xml)
+- [Review Model Report](experiments/M2/MuJoCo/review_model_report.md)
+- [中文 - Review Model Report](experiments/M2/MuJoCo/review_model_report_zh.md)
+
 ## Repository Structure
 
 ```text
 robot-learning-practice/
-├── notes/          # Personal learning notes and summaries
-├── examples/       # Small runnable examples and implementations
-├── tests/          # Automated tests
-├── experiments/    # Experiment reports and reproducibility evidence
-├── docs/           # Roadmap, workflow, and project documentation
-├── progress.md     # Ongoing learning progress
-├── environment.yml # Reproducible Python environment
-└── README.md
+├── notes/
+│   ├── M1/
+│   │   ├── python_numpy.md
+│   │   ├── python_numpy_zh.md
+│   │   ├── robot_geometry.md
+│   │   ├── robot_geometry_zh.md
+│   │   ├── geometry_implementation.md
+│   │   ├── geometry_implementation_zh.md
+│   │   ├── modern_robotics_reading.md
+│   │   └── modern_robotics_reading_zh.md
+│   │
+│   └── M2/
+│       └── MuJoCo/
+│           ├── README.md
+│           ├── 01_environment_and_assets.md
+│           ├── 01_environment_and_assets_zh.md
+│           ├── 02_geom_body_site.md
+│           └── 02_geom_body_site_zh.md
+│
+├── experiments/
+│   ├── M1/
+│   │   ├── capability_tasks_report.md
+│   │   ├── capability_tasks_report_zh.md
+│   │   ├── numeric_basics_report.md
+│   │   ├── numeric_basics_report_zh.md
+│   │   ├── robot_geometry_report.md
+│   │   └── robot_geometry_report_zh.md
+│   │
+│   └── M2/
+│       └── MuJoCo/
+│           ├── README.md
+│           ├── review_model.xml
+│           ├── review_model_report.md
+│           └── review_model_report_zh.md
+│
+├── tests/
+├── examples/
+├── docs/
+├── progress/
+├── environment.yml
+├── README.md
+└── README_zh.md
+```
+
+The repository is organized so that learning notes and experiment evidence are separated but connected.
+
+- `notes/` contains structured learning summaries and explanations.
+- `experiments/` contains practical implementations, simulation files, and experiment reports.
+- `tests/` contains automated validation.
+- `examples/` contains runnable examples and demonstrations.
+- `docs/` contains workflow and project documentation.
+- `progress/` records milestone and learning progress.
 
 ## Learning Approach
 
@@ -195,16 +296,26 @@ Where relevant, experiment outputs and environment verification records are stor
 
 ## Current Focus
 
-M1 — Robot Math Foundations is complete.
+The current focus is M2: MuJoCo simulation.
 
-The next stage is to choose the next robotics module based on project requirements, with likely directions including:
+At this stage, I am working on:
 
-- robot kinematics
-- simulation
-- control
-- perception
-- ROS 2
-- SLAM
+- Understanding MuJoCo XML / MJCF structure
+- Building simple simulation environments
+- Learning how `worldbody`, `body`, `geom`, and `site` work together
+- Understanding parent-child body relationships and relative coordinates
+- Practicing basic geometry, materials, gravity, contact, and friction
+- Creating simple MuJoCo experiments from scratch
+- Connecting simulation concepts with robotics foundations such as kinematics, dynamics, joints, actuators, sensors, and control
+
+Completed M2 work so far includes:
+
+- Environment and asset configuration notes
+- Geom, body, and site notes
+- A basic review simulation model
+- English and Chinese documentation for both notes and experiments
+
+M2 is still in progress and will continue to expand as more MuJoCo and robotics concepts are introduced.
 
 ## Future Directions
 
