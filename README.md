@@ -27,7 +27,7 @@ The primary learning materials used in this repository come from multiple upstre
 
 M1 learning materials are mainly based on:
 
-- [Robot Knowledge Study](https://github.com/real-stanford/robot_knowledge_study)
+- [Robot Knowledge Study](https://github.com/noBug01/Robot_knowledge_study.git)
 
 This upstream repository is treated as the reference source for topics such as:
 
@@ -64,6 +64,12 @@ This repository does not aim to duplicate either upstream source. Instead, it re
 - Corrections and refinements
 
 Whenever a specific learning task depends on a particular upstream version, the corresponding source or commit may be recorded in the relevant progress or experiment documentation.
+
+I am sincerely grateful to the authors and contributors of the upstream repositories for generously sharing their knowledge, code, and learning materials with me.
+
+Their contributions have been extremely helpful throughout my learning process and have given me a valuable foundation for studying robotics in a structured and practical way.
+
+Without their sharing, this repository cannot be built in this currrent way.
 
 ## Current Progress
 
@@ -187,6 +193,9 @@ Current learning includes:
 - Geometry definitions with `geom`
 - `body` hierarchy and relative coordinate frames
 - `site` markers
+- Joint types and constrained body motion
+- `hinge`, `slide`, `ball`, and `free` joints
+- Joint position, axis, range, damping, stiffness, friction loss, and armature
 - Basic contact and friction concepts
 - Simple MuJoCo simulation experiments
 
@@ -196,6 +205,8 @@ Learning notes:
 - [中文 - 环境配置与资源](notes/M2/MuJoCo/01_environment_and_assets_zh.md)
 - [Geom, Body and Site](notes/M2/MuJoCo/02_geom_body_site.md)
 - [中文 - Geom、Body 与 Site](notes/M2/MuJoCo/02_geom_body_site_zh.md)
+- [Joint](notes/M2/MuJoCo/03_joint.md)
+- [中文 - Joint 关节](notes/M2/MuJoCo/03_joint_zh.md)
 
 Experiment evidence:
 
@@ -203,6 +214,9 @@ Experiment evidence:
 - [Review Model](experiments/M2/MuJoCo/review_model.xml)
 - [Review Model Report](experiments/M2/MuJoCo/review_model_report.md)
 - [中文 - Review Model Report](experiments/M2/MuJoCo/review_model_report_zh.md)
+- [Pendulum](experiments/M2/MuJoCo/pendulum.xml)
+- [Pendulum Report](experiments/M2/MuJoCo/pendulum_report.md)
+- [中文 - Pendulum Report](experiments/M2/MuJoCo/pendulum_report_zh.md)
 
 ## Repository Structure
 
@@ -225,7 +239,9 @@ robot-learning-practice/
 │           ├── 01_environment_and_assets.md
 │           ├── 01_environment_and_assets_zh.md
 │           ├── 02_geom_body_site.md
-│           └── 02_geom_body_site_zh.md
+│           ├── 02_geom_body_site_zh.md
+│           ├── 03_joint.md
+│           └── 03_joint_zh.md
 │
 ├── experiments/
 │   ├── M1/
@@ -241,7 +257,10 @@ robot-learning-practice/
 │           ├── README.md
 │           ├── review_model.xml
 │           ├── review_model_report.md
-│           └── review_model_report_zh.md
+│           ├── review_model_report_zh.md
+│           ├── pendulum.xml
+│           ├── pendulum_report.md
+│           └── pendulum_report_zh.md
 │
 ├── tests/
 ├── examples/
@@ -312,8 +331,10 @@ Completed M2 work so far includes:
 
 - Environment and asset configuration notes
 - Geom, body, and site notes
+- Joint notes
 - A basic review simulation model
-- English and Chinese documentation for both notes and experiments
+- A hinge-joint pendulum experiment
+- English and Chinese documentation for notes and experiments
 
 M2 is still in progress and will continue to expand as more MuJoCo and robotics concepts are introduced.
 
