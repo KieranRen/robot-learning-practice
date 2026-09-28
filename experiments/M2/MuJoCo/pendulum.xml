@@ -1,0 +1,35 @@
+<mujoco model="Simple Pendulum">
+
+    <compiler angle="degree" autolimits="true"/>
+
+    <option timestep="0.002"
+            gravity="0 0 -9.81"/>
+
+    <worldbody>
+
+        <geom type="plane"
+              size="5 5 0.1"
+              rgba="0.8 0.8 0.8 1"/>
+
+        <body name="pendulum"
+              pos="0 0 2"
+              euler="0 45 0">
+
+            <joint name="pivot"
+                   type="hinge"
+                   pos="0 0 0"
+                   axis="0 1 0"
+                   range="-90 90"
+                   damping="0.05"/>
+
+            <geom type="capsule"
+                  fromto="0 0 0  0 0 -1"
+                  size="0.08"
+                  mass="1"
+                  rgba="0.8 0.2 0.2 1"/>
+
+        </body>
+
+    </worldbody>
+
+</mujoco>

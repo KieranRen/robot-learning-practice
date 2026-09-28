@@ -82,31 +82,158 @@ Topics include:
 
 M2 focuses on robot simulation with MuJoCo and MJCF.
 
-Current MuJoCo notes include:
+The goal of this stage is to gradually connect simulation with core robotics concepts such as rigid-body modeling, joints, contact, friction, actuators, sensors, kinematics, dynamics, and control.
 
-- [Environment and Assets](M2/MuJoCo/01_environment_and_assets.md)
-- [中文 - 环境配置与资源](M2/MuJoCo/01_environment_and_assets_zh.md)
-- [Geom, Body and Site](M2/MuJoCo/02_geom_body_site.md)
-- [中文 - Geom、Body 与 Site](M2/MuJoCo/02_geom_body_site_zh.md)
+### Environment and Assets
 
-Main topics covered so far:
+- [English](M2/MuJoCo/01_environment_and_assets.md)
+- [中文](M2/MuJoCo/01_environment_and_assets_zh.md)
 
-- MuJoCo XML / MJCF structure
-- Simulation configuration
-- Visual settings
-- Assets, textures, materials, meshes, and skyboxes
-- Geometries
-- Mass, density, friction, and contact-related properties
-- Body hierarchy
-- Parent-child coordinate relationships
-- Site markers
-- Basic MuJoCo model construction
+Topics include:
 
-Source repository:
+- MuJoCo XML / MJCF root structure
+- compiler settings
+- simulation timestep
+- gravity
+- numerical integrators
+- constraint solvers
+- solver iterations and tolerance
+- visual configuration
+- lighting and RGBA colors
+- `asset`
+- textures
+- materials
+- meshes
+- height fields
+- skyboxes
+- built-in and external resources
+
+### Geom, Body and Site
+
+- [English](M2/MuJoCo/02_geom_body_site.md)
+- [中文](M2/MuJoCo/02_geom_body_site_zh.md)
+
+Topics include:
+
+- `geom`
+- geometry types
+- `size`
+- `pos`
+- `rgba`
+- materials
+- mass and density
+- friction
+- `condim`
+- collision filtering with `contype` and `conaffinity`
+- `fromto`
+- `worldbody`
+- rigid-body hierarchy
+- parent-child coordinate relationships
+- relative coordinate frames
+- multiple geoms inside one body
+- `site` markers
+
+### Joint
+
+- [English](M2/MuJoCo/03_joint.md)
+- [中文](M2/MuJoCo/03_joint_zh.md)
+
+Topics include:
+
+- role of joints in MuJoCo
+- relationship between parent body, joint, and child body
+- `free`, `ball`, `slide`, and `hinge` joints
+- joint position
+- joint axis
+- joint range
+- joint limits
+- damping
+- stiffness
+- joint friction loss
+- armature
+- reference position
+- hinge-joint pendulum example
+- torque caused by gravity
+- relationship between joint motion and rigid-body mechanics
+
+### Current M2 Understanding
+
+The main MuJoCo structure studied so far can be summarized as:
+
+```text
+<mujoco>
+│
+├── compiler
+│   └── how MuJoCo interprets model settings
+│
+├── option
+│   └── how the physics simulation runs
+│
+├── visual
+│   └── how the simulation is rendered
+│
+├── asset
+│   └── reusable simulation resources
+│
+└── worldbody
+    └── physical simulation world
+        │
+        └── body
+            ├── joint
+            ├── geom
+            ├── site
+            └── child body
+```
+
+A useful conceptual relationship is:
+
+```text
+body
+→ rigid body + local coordinate frame
+
+joint
+→ defines how a body can move relative to its parent
+
+geom
+→ defines physical geometry and contact shape
+
+site
+→ defines an auxiliary reference marker
+```
+
+M2 has also started connecting MuJoCo configuration with physical concepts such as:
+
+- gravity
+- mass
+- friction
+- damping
+- rigid-body hierarchy
+- relative coordinate frames
+- torque
+- constrained motion
+
+### Source Repository
+
+The MuJoCo learning materials in M2 are based on:
 
 https://github.com/Albusgive/mujoco_learning.git
 
-M2 is currently in progress and will continue to expand with topics such as joints, actuators, sensors, kinematics, dynamics, and control.
+The original repository and teaching materials belong to their respective author(s).
+
+These notes record my own summaries, explanations, experiments, and understanding based on the learning process.
+
+M2 is currently in progress.
+
+Future topics will include:
+
+- friction
+- more detailed contact modeling
+- actuators
+- sensors
+- robot kinematics
+- robot dynamics
+- control
+- more advanced MuJoCo simulation
 
 ## Purpose
 

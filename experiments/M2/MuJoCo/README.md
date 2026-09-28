@@ -48,6 +48,35 @@ Main concepts reviewed:
 - Basic collision behavior
 - Sphere, box, cylinder, and capsule geometries
 
+### 2. Pendulum
+
+The second MuJoCo experiment focuses on joint behavior using a simple pendulum.
+
+Files:
+
+- [`pendulum.xml`](pendulum.xml)
+- [`pendulum_report.md`](pendulum_report.md)
+- [`pendulum_report_zh.md`](pendulum_report_zh.md)
+
+Main concepts reviewed:
+
+- `body`
+- `joint`
+- `geom`
+- `hinge`
+- joint position
+- joint axis
+- joint range
+- damping
+- initial orientation
+- gravity
+- center of mass
+- torque
+- oscillation
+- constrained rotational motion
+
+The experiment demonstrates how a hinge joint restricts a body to one rotational degree of freedom and how gravity produces torque when the pendulum starts away from its equilibrium position.
+
 ---
 
 ## Experiment Structure
@@ -59,7 +88,10 @@ MuJoCo/
 ├── README.md
 ├── review_model.xml
 ├── review_model_report.md
-└── review_model_report_zh.md
+├── review_model_report_zh.md
+├── pendulum.xml
+├── pendulum_report.md
+└── pendulum_report_zh.md
 ```
 
 As new MuJoCo experiments are completed, they will be added to this directory and documented here.
@@ -70,9 +102,6 @@ As new MuJoCo experiments are completed, they will be added to this directory an
 
 Future experiments may include topics such as:
 
-- Joint behavior
-- Revolute joints
-- Slide joints
 - Actuators
 - Sensors
 - Contact and friction

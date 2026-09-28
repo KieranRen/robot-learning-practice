@@ -27,7 +27,7 @@
 
 M1 的学习内容主要基于：
 
-- [Robot Knowledge Study](https://github.com/real-stanford/robot_knowledge_study)
+- [Robot Knowledge Study](https://github.com/noBug01/Robot_knowledge_study.git)
 
 这个上游仓库主要作为以下内容的参考来源：
 
@@ -65,6 +65,12 @@ M2 中的 MuJoCo 学习内容主要基于：
 - 错误修正与持续完善
 
 当某个具体学习任务依赖特定上游版本时，对应的来源或 commit 信息会记录在相关进度或实验文档中。
+
+非常感谢这些上游仓库的作者和贡献者愿意公开分享他们的知识、代码与学习资料。
+
+这些内容在我的学习过程中提供了非常有价值的帮助，也为我以更加系统、更加实践性的方式学习机器人相关内容打下了重要基础。
+
+如果没有他们的无私分享，本仓库也不会以当前这种方式建立起来。
 
 ## 当前进度
 
@@ -192,6 +198,9 @@ M2 主要用于建立 MuJoCo 和 MJCF 的实际机器人仿真能力。
 - 使用 `geom` 定义几何体
 - `body` 层级结构与相对坐标系
 - `site` 标记点
+- Joint 类型与受约束的刚体运动
+- `hinge`、`slide`、`ball` 与 `free` joint
+- Joint 的位置、轴、范围、阻尼、刚度、摩擦损失与 armature
 - 基础接触与摩擦概念
 - 简单 MuJoCo 仿真实验
 
@@ -201,6 +210,8 @@ M2 主要用于建立 MuJoCo 和 MJCF 的实际机器人仿真能力。
 - [English - Environment and Assets](notes/M2/MuJoCo/01_environment_and_assets.md)
 - [Geom、Body 与 Site](notes/M2/MuJoCo/02_geom_body_site_zh.md)
 - [English - Geom, Body and Site](notes/M2/MuJoCo/02_geom_body_site.md)
+- [Joint 关节](notes/M2/MuJoCo/03_joint_zh.md)
+- [English - Joint](notes/M2/MuJoCo/03_joint.md)
 
 实验证明：
 
@@ -208,6 +219,9 @@ M2 主要用于建立 MuJoCo 和 MJCF 的实际机器人仿真能力。
 - [Review Model](experiments/M2/MuJoCo/review_model.xml)
 - [Review Model 中文报告](experiments/M2/MuJoCo/review_model_report_zh.md)
 - [Review Model English Report](experiments/M2/MuJoCo/review_model_report.md)
+- [Pendulum](experiments/M2/MuJoCo/pendulum.xml)
+- [Pendulum 中文报告](experiments/M2/MuJoCo/pendulum_report_zh.md)
+- [Pendulum English Report](experiments/M2/MuJoCo/pendulum_report.md)
 
 ## 仓库结构
 
@@ -230,7 +244,9 @@ robot-learning-practice/
 │           ├── 01_environment_and_assets.md
 │           ├── 01_environment_and_assets_zh.md
 │           ├── 02_geom_body_site.md
-│           └── 02_geom_body_site_zh.md
+│           ├── 02_geom_body_site_zh.md
+│           ├── 03_joint.md
+│           └── 03_joint_zh.md
 │
 ├── experiments/
 │   ├── M1/
@@ -246,7 +262,10 @@ robot-learning-practice/
 │           ├── README.md
 │           ├── review_model.xml
 │           ├── review_model_report.md
-│           └── review_model_report_zh.md
+│           ├── review_model_report_zh.md
+│           ├── pendulum.xml
+│           ├── pendulum_report.md
+│           └── pendulum_report_zh.md
 │
 ├── tests/
 ├── examples/
@@ -318,14 +337,15 @@ python -m pytest
 
 - 环境配置与 Asset 资源相关笔记
 - Geom、Body 与 Site 相关笔记
+- Joint 关节相关笔记
 - 一个基础综合复习仿真模型
+- 一个基于 hinge joint 的单摆实验
 - Notes 与 Experiments 的中英文双语文档
 
 M2 仍在进行中。
 
 后续会随着 MuJoCo 和机器人学内容的深入，继续加入：
 
-- Joint
 - Actuator
 - Sensor
 - Contact
