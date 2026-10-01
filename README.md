@@ -79,7 +79,7 @@ Without their sharing, this repository cannot be built in this currrent way.
 | M1 | Python, NumPy, robot geometry, rigid transformations, testing, capability tasks, and Modern Robotics reading | Completed | [M1 Notes](notes/M1/) | [M1 Experiments](experiments/M1/) |
 | M2 | MuJoCo simulation and MJCF modeling | In Progress | [M2 MuJoCo Notes](notes/M2/MuJoCo/) | [M2 MuJoCo Experiments](experiments/M2/MuJoCo/) |
 
-### M1 Highlights
+### M1 Robot Math and Geometry
 
 M1 currently includes three completed learning blocks:
 
@@ -179,27 +179,42 @@ Robot Geometry:    54 tests passed
 Full repository:   107 tests passed
 ```
 
-### M2 MuJoCo Simulation
+### M2 - MuJoCo Simulation
 
-M2 focuses on building practical robot simulation experience with MuJoCo and MJCF.
+M2 contains MuJoCo learning from two different upstream sources.
 
-Current learning includes:
+The two learning streams are kept separate because they focus on different parts of the learning process and are progressing independently.
+
+#### Source A - Albusgive MuJoCo Learning
+
+Source repository:
+
+https://github.com/Albusgive/mujoco_learning.git
+
+This learning stream focuses mainly on MJCF modeling fundamentals.
+
+Completed topics so far include:
 
 - MuJoCo XML / MJCF structure
-- Simulation configuration
-- `timestep`, gravity, integrators, and solvers
-- Visual settings
-- Assets, textures, materials, meshes, and skyboxes
-- Geometry definitions with `geom`
-- `body` hierarchy and relative coordinate frames
-- `site` markers
-- Joint types and constrained body motion
-- `hinge`, `slide`, `ball`, and `free` joints
-- Joint position, axis, range, damping, stiffness, friction loss, and armature
-- Basic contact and friction concepts
-- Simple MuJoCo simulation experiments
+- simulation configuration
+- environment and assets
+- textures, materials, meshes, and skyboxes
+- `geom`
+- `body`
+- `site`
+- body hierarchy
+- relative coordinate frames
+- friction and collision settings
+- joint types
+- hinge joints
+- joint axis and range
+- damping
+- stiffness
+- friction loss
+- armature
+- simple pendulum simulation
 
-Learning notes:
+Notes:
 
 - [Environment and Assets](notes/M2/MuJoCo/01_environment_and_assets.md)
 - [中文 - 环境配置与资源](notes/M2/MuJoCo/01_environment_and_assets_zh.md)
@@ -208,15 +223,116 @@ Learning notes:
 - [Joint](notes/M2/MuJoCo/03_joint.md)
 - [中文 - Joint 关节](notes/M2/MuJoCo/03_joint_zh.md)
 
-Experiment evidence:
+Experiments:
 
 - [MuJoCo Experiments Overview](experiments/M2/MuJoCo/README.md)
-- [Review Model](experiments/M2/MuJoCo/review_model.xml)
 - [Review Model Report](experiments/M2/MuJoCo/review_model_report.md)
 - [中文 - Review Model Report](experiments/M2/MuJoCo/review_model_report_zh.md)
-- [Pendulum](experiments/M2/MuJoCo/pendulum.xml)
 - [Pendulum Report](experiments/M2/MuJoCo/pendulum_report.md)
 - [中文 - Pendulum Report](experiments/M2/MuJoCo/pendulum_report_zh.md)
+
+This learning stream is still in progress.
+
+---
+
+#### Source B - Robot Knowledge Study
+
+Source repository:
+
+https://github.com/noBug01/Robot_knowledge_study
+
+Version used:
+
+```text
+v0.3.0
+```
+
+This learning stream extends MuJoCo study from XML modeling into Python-driven simulation, state observation, actuator control, and sensor feedback.
+
+Completed topics include:
+
+- SIM-T01 table and falling cube
+- loading MJCF with Python
+- `MjModel`
+- `MjData`
+- `mj_step`
+- `mj_forward`
+- `qpos`
+- `qvel`
+- contact observation
+- `data.ncon`
+- CSV output
+- numerical prediction and verification
+- automated testing with `pytest`
+- MuJoCo Viewer
+- SIM-T02 arm joint targets
+- parent-child robot body hierarchy
+- default classes
+- mesh assets
+- position actuators
+- `data.ctrl`
+- target vs actual joint state
+- waypoint interpolation
+- joint sensors
+- end-effector position
+- end-effector orientation
+- Python-controlled Viewer simulation
+
+Notes:
+
+- [SIM-T01 - Table and Falling Cube](notes/M2/RobotKnowledgeStudy_MuJoCo/01_table_cube.md)
+- [中文 - SIM-T01 桌面与自由下落方块](notes/M2/RobotKnowledgeStudy_MuJoCo/01_table_cube_zh.md)
+- [SIM-T02 - Arm Joint Targets](notes/M2/RobotKnowledgeStudy_MuJoCo/02_arm_joint_targets.md)
+- [中文 - SIM-T02 机械臂关节角目标控制](notes/M2/RobotKnowledgeStudy_MuJoCo/02_arm_joint_targets_zh.md)
+
+Experiments:
+
+- [Robot Knowledge Study MuJoCo Experiments](experiments/M2/RobotKnowledgeStudy_MuJoCo/README.md)
+- [SIM-T01 Experiment Report](experiments/M2/RobotKnowledgeStudy_MuJoCo/sim_t01_table_cube_report.md)
+- [中文 - SIM-T01 实验报告](experiments/M2/RobotKnowledgeStudy_MuJoCo/sim_t01_table_cube_report_zh.md)
+- [SIM-T02 Experiment Report](experiments/M2/RobotKnowledgeStudy_MuJoCo/sim_t02_arm_joint_targets_report.md)
+- [中文 - SIM-T02 实验报告](experiments/M2/RobotKnowledgeStudy_MuJoCo/sim_t02_arm_joint_targets_report_zh.md)
+
+The currently available M2 material from this source has been completed.
+
+---
+
+#### M2 Learning Progression
+
+The two source streams currently form the following progression:
+
+```text
+MJCF modeling
+↓
+geom / body / site
+↓
+joint modeling
+↓
+basic physical simulation
+↓
+Python-driven simulation
+↓
+state observation
+↓
+actuator control
+↓
+sensor feedback
+↓
+end-effector observation
+```
+
+Current status:
+
+```text
+Robot Knowledge Study
+→ completed
+
+Albusgive MuJoCo Learning
+→ in progress
+
+Overall M2
+→ in progress
+```
 
 ## Repository Structure
 
@@ -234,14 +350,19 @@ robot-learning-practice/
 │   │   └── modern_robotics_reading_zh.md
 │   │
 │   └── M2/
-│       └── MuJoCo/
-│           ├── README.md
-│           ├── 01_environment_and_assets.md
-│           ├── 01_environment_and_assets_zh.md
-│           ├── 02_geom_body_site.md
-│           ├── 02_geom_body_site_zh.md
-│           ├── 03_joint.md
-│           └── 03_joint_zh.md
+│       ├── MuJoCo/
+│       │   ├── 01_environment_and_assets.md
+│       │   ├── 01_environment_and_assets_zh.md
+│       │   ├── 02_geom_body_site.md
+│       │   ├── 02_geom_body_site_zh.md
+│       │   ├── 03_joint.md
+│       │   └── 03_joint_zh.md
+│       │
+│       └── RobotKnowledgeStudy_MuJoCo/
+│           ├── 01_table_cube.md
+│           ├── 01_table_cube_zh.md
+│           ├── 02_arm_joint_targets.md
+│           └── 02_arm_joint_targets_zh.md
 │
 ├── experiments/
 │   ├── M1/
@@ -253,14 +374,21 @@ robot-learning-practice/
 │   │   └── robot_geometry_report_zh.md
 │   │
 │   └── M2/
-│       └── MuJoCo/
+│       ├── MuJoCo/
+│       │   ├── README.md
+│       │   ├── review_model.xml
+│       │   ├── review_model_report.md
+│       │   ├── review_model_report_zh.md
+│       │   ├── pendulum.xml
+│       │   ├── pendulum_report.md
+│       │   └── pendulum_report_zh.md
+│       │
+│       └── RobotKnowledgeStudy_MuJoCo/
 │           ├── README.md
-│           ├── review_model.xml
-│           ├── review_model_report.md
-│           ├── review_model_report_zh.md
-│           ├── pendulum.xml
-│           ├── pendulum_report.md
-│           └── pendulum_report_zh.md
+│           ├── sim_t01_table_cube_report.md
+│           ├── sim_t01_table_cube_report_zh.md
+│           ├── sim_t02_arm_joint_targets_report.md
+│           └── sim_t02_arm_joint_targets_report_zh.md
 │
 ├── tests/
 ├── examples/
@@ -335,6 +463,10 @@ Completed M2 work so far includes:
 - A basic review simulation model
 - A hinge-joint pendulum experiment
 - English and Chinese documentation for notes and experiments
+
+The `Robot_knowledge_study` M2 material has been completed, including both SIM-T01 and SIM-T02.
+
+The Albusgive-based MuJoCo learning stream is still in progress and will continue to be expanded with additional modeling and simulation topics.
 
 M2 is still in progress and will continue to expand as more MuJoCo and robotics concepts are introduced.
 

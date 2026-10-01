@@ -80,160 +80,272 @@ Topics include:
 
 ## M2 - MuJoCo Simulation
 
-M2 focuses on robot simulation with MuJoCo and MJCF.
+M2 contains MuJoCo learning materials from two different upstream sources.
 
-The goal of this stage is to gradually connect simulation with core robotics concepts such as rigid-body modeling, joints, contact, friction, actuators, sensors, kinematics, dynamics, and control.
+To keep the learning process clear and traceable, notes from the two sources are organized separately.
 
-### Environment and Assets
+---
+
+### Source A - Albusgive MuJoCo Learning
+
+Source repository:
+
+https://github.com/Albusgive/mujoco_learning.git
+
+This part focuses mainly on MJCF modeling fundamentals.
+
+#### Environment and Assets
 
 - [English](M2/MuJoCo/01_environment_and_assets.md)
 - [中文](M2/MuJoCo/01_environment_and_assets_zh.md)
 
 Topics include:
 
-- MuJoCo XML / MJCF root structure
+- MuJoCo XML / MJCF structure
 - compiler settings
-- simulation timestep
+- simulation options
 - gravity
-- numerical integrators
-- constraint solvers
-- solver iterations and tolerance
+- timestep
+- integrators and solvers
 - visual configuration
-- lighting and RGBA colors
-- `asset`
+- assets
 - textures
 - materials
 - meshes
-- height fields
 - skyboxes
-- built-in and external resources
 
-### Geom, Body and Site
+#### Geom, Body and Site
 
 - [English](M2/MuJoCo/02_geom_body_site.md)
 - [中文](M2/MuJoCo/02_geom_body_site_zh.md)
 
 Topics include:
 
-- `geom`
+- geom
 - geometry types
-- `size`
-- `pos`
-- `rgba`
-- materials
-- mass and density
-- friction
-- `condim`
-- collision filtering with `contype` and `conaffinity`
-- `fromto`
-- `worldbody`
-- rigid-body hierarchy
-- parent-child coordinate relationships
+- body hierarchy
 - relative coordinate frames
 - multiple geoms inside one body
-- `site` markers
+- site markers
+- friction
+- collision filtering
+- mass and density
 
-### Joint
+#### Joint
 
 - [English](M2/MuJoCo/03_joint.md)
 - [中文](M2/MuJoCo/03_joint_zh.md)
 
 Topics include:
 
-- role of joints in MuJoCo
-- relationship between parent body, joint, and child body
-- `free`, `ball`, `slide`, and `hinge` joints
-- joint position
+- joint types
+- hinge joints
 - joint axis
 - joint range
-- joint limits
 - damping
 - stiffness
-- joint friction loss
+- friction loss
 - armature
-- reference position
-- hinge-joint pendulum example
-- torque caused by gravity
-- relationship between joint motion and rigid-body mechanics
+- simple pendulum modeling
 
-### Current M2 Understanding
+---
 
-The main MuJoCo structure studied so far can be summarized as:
+### Source B - Robot Knowledge Study
 
-```text
-<mujoco>
-│
-├── compiler
-│   └── how MuJoCo interprets model settings
-│
-├── option
-│   └── how the physics simulation runs
-│
-├── visual
-│   └── how the simulation is rendered
-│
-├── asset
-│   └── reusable simulation resources
-│
-└── worldbody
-    └── physical simulation world
-        │
-        └── body
-            ├── joint
-            ├── geom
-            ├── site
-            └── child body
-```
+Source repository:
 
-A useful conceptual relationship is:
+https://github.com/noBug01/Robot_knowledge_study
+
+Version used:
 
 ```text
-body
-→ rigid body + local coordinate frame
-
-joint
-→ defines how a body can move relative to its parent
-
-geom
-→ defines physical geometry and contact shape
-
-site
-→ defines an auxiliary reference marker
+v0.3.0
 ```
 
-M2 has also started connecting MuJoCo configuration with physical concepts such as:
+This part extends MuJoCo learning from XML modeling into Python-driven simulation, state observation, and basic robot control.
 
-- gravity
-- mass
-- friction
-- damping
-- rigid-body hierarchy
-- relative coordinate frames
-- torque
-- constrained motion
+#### SIM-T01 - Table and Falling Cube
 
-### Source Repository
+- [English](M2/RobotKnowledgeStudy_MuJoCo/01_table_cube.md)
+- [中文](M2/RobotKnowledgeStudy_MuJoCo/01_table_cube_zh.md)
 
-The MuJoCo learning materials in M2 are based on:
+Topics include:
 
-https://github.com/Albusgive/mujoco_learning.git
+- loading MJCF with Python
+- `MjModel`
+- `MjData`
+- `mj_step`
+- `mj_forward`
+- `qpos`
+- `qvel`
+- contact observation
+- `data.ncon`
+- CSV output
+- numerical prediction and verification
+- Viewer
+- automated testing
 
-The original repository and teaching materials belong to their respective author(s).
+Core workflow:
 
-These notes record my own summaries, explanations, experiments, and understanding based on the learning process.
+```text
+XML scene
+↓
+MjModel
+↓
+MjData
+↓
+mj_step
+↓
+state changes
+↓
+observation
+↓
+numerical / visual verification
+```
 
-M2 is currently in progress.
+#### SIM-T02 - Arm Joint Targets
 
-Future topics will include:
+- [English](M2/RobotKnowledgeStudy_MuJoCo/02_arm_joint_targets.md)
+- [中文](M2/RobotKnowledgeStudy_MuJoCo/02_arm_joint_targets_zh.md)
 
-- friction
-- more detailed contact modeling
-- actuators
-- sensors
-- robot kinematics
-- robot dynamics
-- control
-- more advanced MuJoCo simulation
+Topics include:
+
+- parent-child body hierarchy
+- default classes
+- mesh assets
+- multiple geoms inside one body
+- seven-joint robot arm
+- position actuators
+- `data.ctrl`
+- target vs actual joint position
+- `qpos`
+- `qvel`
+- joint sensors
+- end-effector site
+- end-effector position and orientation
+- waypoint motion
+- interpolation
+- Viewer-based controlled motion
+
+Core control chain:
+
+```text
+WAYPOINTS
+↓
+interpolation
+↓
+data.ctrl
+↓
+position actuator
+↓
+joint motion
+↓
+qpos / qvel
+↓
+sensor feedback
+↓
+end-effector pose
+```
+
+---
+
+### M2 Learning Progression
+
+The two source streams cover different parts of the MuJoCo learning process.
+
+```text
+Albusgive source
+↓
+MJCF structure
+↓
+geom / body / site
+↓
+joint modeling
+↓
+basic physical modeling
+
+Robot Knowledge Study source
+↓
+Python simulation
+↓
+state observation
+↓
+actuator control
+↓
+sensor feedback
+↓
+end-effector observation
+```
+
+Together, the current M2 learning progression is:
+
+```text
+MJCF modeling
+↓
+physical simulation
+↓
+Python-driven simulation
+↓
+state observation
+↓
+active joint control
+↓
+sensor feedback
+```
+
+---
+
+### Current M2 Status
+
+M2 is still in progress because it contains material from two different upstream sources.
+
+#### Robot Knowledge Study
+
+The currently available M2 material from `Robot_knowledge_study` has been completed.
+
+Completed topics include:
+
+- SIM-T01 table and falling cube
+- Python-based MuJoCo simulation
+- `MjModel` and `MjData`
+- `mj_step` and `mj_forward`
+- state observation with `qpos` and `qvel`
+- contact observation
+- CSV output
+- automated testing
+- SIM-T02 arm joint targets
+- position actuators
+- `data.ctrl`
+- waypoint-based joint control
+- sensor feedback
+- end-effector position and orientation
+- Python-controlled Viewer simulation
+
+#### Albusgive MuJoCo Learning
+
+The MuJoCo learning material based on the Albusgive source is still in progress.
+
+Completed topics so far include:
+
+- environment and assets
+- geom, body, and site
+- joint modeling
+- pendulum simulation
+
+More topics from this source will continue to be added as the learning progresses.
+
+Therefore:
+
+```text
+Robot Knowledge Study
+→ completed
+
+Albusgive MuJoCo Learning
+→ in progress
+
+Overall M2
+→ in progress
+```
 
 ## Purpose
 
