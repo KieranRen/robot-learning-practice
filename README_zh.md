@@ -184,44 +184,160 @@ Robot Geometry：    54 项测试通过
 Full repository:    107 项测试通过
 ```
 
-### M2 MuJoCo 仿真
+### M2 - MuJoCo 仿真
 
-M2 主要用于建立 MuJoCo 和 MJCF 的实际机器人仿真能力。
+M2 的 MuJoCo 学习内容来自两个不同的上游仓库。
 
-目前学习内容包括：
+为了保持学习来源清晰、内容可追踪，这两条学习线会分开整理，因为它们关注的内容不同，学习进度也彼此独立。
+
+#### 来源 A - Albusgive MuJoCo Learning
+
+来源仓库：
+
+https://github.com/Albusgive/mujoco_learning.git
+
+这一条学习线主要集中在 MJCF 建模基础。
+
+目前已经完成的内容包括：
 
 - MuJoCo XML / MJCF 结构
 - 仿真参数配置
-- `timestep`、重力、积分器和求解器
-- 视觉设置
-- Asset、Texture、Material、Mesh 与 Skybox
-- 使用 `geom` 定义几何体
-- `body` 层级结构与相对坐标系
-- `site` 标记点
-- Joint 类型与受约束的刚体运动
-- `hinge`、`slide`、`ball` 与 `free` joint
-- Joint 的位置、轴、范围、阻尼、刚度、摩擦损失与 armature
-- 基础接触与摩擦概念
-- 简单 MuJoCo 仿真实验
+- Environment 与 Asset
+- Texture、Material、Mesh 与 Skybox
+- `geom`
+- `body`
+- `site`
+- body 层级结构
+- 相对坐标系
+- friction 与 collision 设置
+- joint 类型
+- hinge joint
+- joint axis 与 range
+- damping
+- stiffness
+- frictionloss
+- armature
+- 简单单摆仿真
 
 学习笔记：
 
-- [环境配置与资源](notes/M2/MuJoCo/01_environment_and_assets_zh.md)
-- [English - Environment and Assets](notes/M2/MuJoCo/01_environment_and_assets.md)
-- [Geom、Body 与 Site](notes/M2/MuJoCo/02_geom_body_site_zh.md)
-- [English - Geom, Body and Site](notes/M2/MuJoCo/02_geom_body_site.md)
-- [Joint 关节](notes/M2/MuJoCo/03_joint_zh.md)
-- [English - Joint](notes/M2/MuJoCo/03_joint.md)
+- [Environment and Assets](notes/M2/MuJoCo/01_environment_and_assets.md)
+- [中文 - 环境配置与资源](notes/M2/MuJoCo/01_environment_and_assets_zh.md)
+- [Geom, Body and Site](notes/M2/MuJoCo/02_geom_body_site.md)
+- [中文 - Geom、Body 与 Site](notes/M2/MuJoCo/02_geom_body_site_zh.md)
+- [Joint](notes/M2/MuJoCo/03_joint.md)
+- [中文 - Joint 关节](notes/M2/MuJoCo/03_joint_zh.md)
 
-实验证明：
+实验：
 
-- [MuJoCo 实验总览](experiments/M2/MuJoCo/README.md)
-- [Review Model](experiments/M2/MuJoCo/review_model.xml)
-- [Review Model 中文报告](experiments/M2/MuJoCo/review_model_report_zh.md)
-- [Review Model English Report](experiments/M2/MuJoCo/review_model_report.md)
-- [Pendulum](experiments/M2/MuJoCo/pendulum.xml)
-- [Pendulum 中文报告](experiments/M2/MuJoCo/pendulum_report_zh.md)
-- [Pendulum English Report](experiments/M2/MuJoCo/pendulum_report.md)
+- [MuJoCo Experiments Overview](experiments/M2/MuJoCo/README.md)
+- [Review Model Report](experiments/M2/MuJoCo/review_model_report.md)
+- [中文 - Review Model Report](experiments/M2/MuJoCo/review_model_report_zh.md)
+- [Pendulum Report](experiments/M2/MuJoCo/pendulum_report.md)
+- [中文 - Pendulum Report](experiments/M2/MuJoCo/pendulum_report_zh.md)
+
+这一条学习线目前仍在继续。
+
+---
+
+#### 来源 B - Robot Knowledge Study
+
+来源仓库：
+
+https://github.com/noBug01/Robot_knowledge_study
+
+使用版本：
+
+```text
+v0.3.0
+```
+
+这一条学习线把 MuJoCo 学习从 XML 建模进一步扩展到 Python 驱动仿真、状态读取、执行器控制与传感器反馈。
+
+已经完成的内容包括：
+
+- SIM-T01 桌面与自由下落方块
+- 使用 Python 加载 MJCF
+- `MjModel`
+- `MjData`
+- `mj_step`
+- `mj_forward`
+- `qpos`
+- `qvel`
+- 接触状态观察
+- `data.ncon`
+- CSV 输出
+- 数值预测与验证
+- 使用 `pytest` 自动测试
+- MuJoCo Viewer
+- SIM-T02 机械臂关节角目标控制
+- 父 body / 子 body 层级结构
+- default 参数模板
+- mesh asset
+- position actuator
+- `data.ctrl`
+- target 与 actual joint state
+- waypoint 插值
+- joint sensor
+- 末端位置
+- 末端姿态
+- Python 控制下的 Viewer 仿真
+
+学习笔记：
+
+- [SIM-T01 - Table and Falling Cube](notes/M2/RobotKnowledgeStudy_MuJoCo/01_table_cube.md)
+- [中文 - SIM-T01 桌面与自由下落方块](notes/M2/RobotKnowledgeStudy_MuJoCo/01_table_cube_zh.md)
+- [SIM-T02 - Arm Joint Targets](notes/M2/RobotKnowledgeStudy_MuJoCo/02_arm_joint_targets.md)
+- [中文 - SIM-T02 机械臂关节角目标控制](notes/M2/RobotKnowledgeStudy_MuJoCo/02_arm_joint_targets_zh.md)
+
+实验：
+
+- [Robot Knowledge Study MuJoCo Experiments](experiments/M2/RobotKnowledgeStudy_MuJoCo/README.md)
+- [SIM-T01 Experiment Report](experiments/M2/RobotKnowledgeStudy_MuJoCo/sim_t01_table_cube_report.md)
+- [中文 - SIM-T01 实验报告](experiments/M2/RobotKnowledgeStudy_MuJoCo/sim_t01_table_cube_report_zh.md)
+- [SIM-T02 Experiment Report](experiments/M2/RobotKnowledgeStudy_MuJoCo/sim_t02_arm_joint_targets_report.md)
+- [中文 - SIM-T02 实验报告](experiments/M2/RobotKnowledgeStudy_MuJoCo/sim_t02_arm_joint_targets_report_zh.md)
+
+目前 `Robot_knowledge_study` 提供的 M2 内容已经全部完成。
+
+---
+
+#### M2 学习进展
+
+目前两条学习线共同形成了下面这条学习路径：
+
+```text
+MJCF 建模
+↓
+geom / body / site
+↓
+joint 建模
+↓
+基础物理仿真
+↓
+Python 驱动仿真
+↓
+状态读取
+↓
+actuator 控制
+↓
+sensor feedback
+↓
+end-effector observation
+```
+
+当前状态：
+
+```text
+Robot Knowledge Study
+→ 已完成
+
+Albusgive MuJoCo Learning
+→ 进行中
+
+M2 整体
+→ 进行中
+```
 
 ## 仓库结构
 
@@ -239,14 +355,19 @@ robot-learning-practice/
 │   │   └── modern_robotics_reading_zh.md
 │   │
 │   └── M2/
-│       └── MuJoCo/
-│           ├── README.md
-│           ├── 01_environment_and_assets.md
-│           ├── 01_environment_and_assets_zh.md
-│           ├── 02_geom_body_site.md
-│           ├── 02_geom_body_site_zh.md
-│           ├── 03_joint.md
-│           └── 03_joint_zh.md
+│       ├── MuJoCo/
+│       │   ├── 01_environment_and_assets.md
+│       │   ├── 01_environment_and_assets_zh.md
+│       │   ├── 02_geom_body_site.md
+│       │   ├── 02_geom_body_site_zh.md
+│       │   ├── 03_joint.md
+│       │   └── 03_joint_zh.md
+│       │
+│       └── RobotKnowledgeStudy_MuJoCo/
+│           ├── 01_table_cube.md
+│           ├── 01_table_cube_zh.md
+│           ├── 02_arm_joint_targets.md
+│           └── 02_arm_joint_targets_zh.md
 │
 ├── experiments/
 │   ├── M1/
@@ -258,14 +379,21 @@ robot-learning-practice/
 │   │   └── robot_geometry_report_zh.md
 │   │
 │   └── M2/
-│       └── MuJoCo/
+│       ├── MuJoCo/
+│       │   ├── README.md
+│       │   ├── review_model.xml
+│       │   ├── review_model_report.md
+│       │   ├── review_model_report_zh.md
+│       │   ├── pendulum.xml
+│       │   ├── pendulum_report.md
+│       │   └── pendulum_report_zh.md
+│       │
+│       └── RobotKnowledgeStudy_MuJoCo/
 │           ├── README.md
-│           ├── review_model.xml
-│           ├── review_model_report.md
-│           ├── review_model_report_zh.md
-│           ├── pendulum.xml
-│           ├── pendulum_report.md
-│           └── pendulum_report_zh.md
+│           ├── sim_t01_table_cube_report.md
+│           ├── sim_t01_table_cube_report_zh.md
+│           ├── sim_t02_arm_joint_targets_report.md
+│           └── sim_t02_arm_joint_targets_report_zh.md
 │
 ├── tests/
 ├── examples/
@@ -342,8 +470,6 @@ python -m pytest
 - 一个基于 hinge joint 的单摆实验
 - Notes 与 Experiments 的中英文双语文档
 
-M2 仍在进行中。
-
 后续会随着 MuJoCo 和机器人学内容的深入，继续加入：
 
 - Actuator
@@ -353,6 +479,10 @@ M2 仍在进行中。
 - Robot dynamics
 - Control
 - More advanced simulation experiments
+
+`Robot_knowledge_study` 来源的 M2 内容已经完成，包括 SIM-T01 和 SIM-T02 两个场景。
+
+基于 Albusgive 来源的 MuJoCo 学习仍在继续，后续会继续加入更多建模与仿真相关内容。
 
 ## 后续方向
 

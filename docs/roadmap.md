@@ -63,6 +63,250 @@ Related records:
 
 ---
 
+## M2 - MuJoCo Simulation
+
+**Status: In Progress**
+
+M2 focuses on MuJoCo modeling, simulation, Python-driven control, state observation, and basic robot interaction.
+
+The learning material currently comes from two different upstream sources. These source streams are tracked separately because they focus on different parts of MuJoCo learning and are progressing independently.
+
+### Source A - Albusgive MuJoCo Learning
+
+Source repository:
+
+https://github.com/Albusgive/mujoco_learning.git
+
+**Status: In Progress**
+
+Main goals:
+
+- understand MuJoCo XML / MJCF structure
+- understand simulation configuration
+- learn assets, textures, materials, and meshes
+- understand `geom`, `body`, and `site`
+- understand body hierarchy and relative coordinate frames
+- learn joint types and joint parameters
+- build and verify simple articulated models
+- gradually expand into further MuJoCo modeling and simulation topics
+
+Completed so far:
+
+- environment and assets
+- simulation settings
+- visual configuration
+- mesh and material resources
+- `geom`
+- `body`
+- `site`
+- body hierarchy
+- relative coordinate relationships
+- mass, density, friction, and collision properties
+- joint types
+- hinge joints
+- joint axis and range
+- damping
+- stiffness
+- friction loss
+- armature
+- simple pendulum modeling
+- pendulum simulation and verification
+
+Current state:
+
+```text
+Environment and Assets
+→ Completed
+
+Geom, Body and Site
+→ Completed
+
+Joint
+→ Completed
+
+Pendulum Experiment
+→ Completed
+
+Further MuJoCo topics
+→ In Progress
+```
+
+Related records:
+
+- [M2 Learning Notes](../notes/README.md)
+- [MuJoCo Experiments](../experiments/M2/MuJoCo/)
+
+---
+
+### Source B - Robot Knowledge Study
+
+Source repository:
+
+https://github.com/noBug01/Robot_knowledge_study
+
+Version used:
+
+```text
+v0.3.0
+```
+
+**Status: Completed**
+
+This source introduced Python-driven MuJoCo simulation and basic robot control through two scenes.
+
+#### SIM-T01 - Table and Falling Cube
+
+Main topics:
+
+- loading MJCF with Python
+- `MjModel`
+- `MjData`
+- `mj_step`
+- `mj_forward`
+- `qpos`
+- `qvel`
+- contact observation
+- `data.ncon`
+- CSV output
+- numerical prediction and verification
+- automated testing with `pytest`
+- MuJoCo Viewer
+- Python-controlled Viewer
+
+Core workflow:
+
+```text
+XML
+↓
+MjModel
+↓
+MjData
+↓
+mj_step
+↓
+qpos / qvel / contact update
+↓
+observation
+↓
+numerical and visual verification
+```
+
+#### SIM-T02 - Arm Joint Targets
+
+Main topics:
+
+- hierarchical robot bodies
+- parent-child body relationships
+- default parameter classes
+- mesh assets
+- visual and collision geometry
+- multiple geoms inside one body
+- seven-joint robot arm
+- position actuators
+- `data.ctrl`
+- target vs actual joint state
+- waypoint interpolation
+- `qpos`
+- `qvel`
+- joint sensors
+- end-effector site
+- end-effector position and orientation
+- sensor feedback
+- Python-controlled robot motion
+- Viewer timing and synchronization
+
+Core control chain:
+
+```text
+WAYPOINTS
+↓
+interpolation
+↓
+data.ctrl
+↓
+position actuator
+↓
+joint motion
+↓
+qpos / qvel
+↓
+sensor feedback
+↓
+end-effector pose
+```
+
+Key outcome:
+
+```text
+target
+≠
+actual state
+```
+
+Python defines the desired control target, while MuJoCo physics determines how the robot actually moves toward that target.
+
+Related records:
+
+- [Robot Knowledge Study Notes](../notes/M2/RobotKnowledgeStudy_MuJoCo/)
+- [Robot Knowledge Study Experiments](../experiments/M2/RobotKnowledgeStudy_MuJoCo/)
+
+---
+
+### M2 Learning Progression
+
+The current M2 progression is:
+
+```text
+MJCF modeling
+↓
+geom / body / site
+↓
+joint modeling
+↓
+basic physical simulation
+↓
+Python-driven simulation
+↓
+state observation
+↓
+actuator control
+↓
+sensor feedback
+↓
+end-effector observation
+```
+
+Current status:
+
+```text
+Robot Knowledge Study
+→ Completed
+
+Albusgive MuJoCo Learning
+→ In Progress
+
+Overall M2
+→ In Progress
+```
+
+---
+
+## Next Stage
+
+The next stage will be selected after more of the current MuJoCo learning stream is completed.
+
+Possible future directions include:
+
+- robot kinematics
+- control
+- trajectory planning
+- perception
+- ROS 2
+- more advanced simulation
+- integration of simulation with robotics software tools
+
+The exact sequence may be adjusted according to future projects, research needs, and the remaining MuJoCo learning material.
+
 ## Next Stage
 
 The next robotics module has not yet been fixed.

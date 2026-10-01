@@ -341,6 +341,7 @@ Kevin M. Lynch, Frank C. Park, *Modern Robotics: Mechanics, Planning, and Contro
 ```text
 Section 3.2.1 — Rotation Matrices
 Section 3.3.1 — Homogeneous Transformation Matrices
+```
 
 # M1 当前成果汇总
 
@@ -402,6 +403,278 @@ Full repository: 107 tests passed
 这里的 76 仅指上述 M1 两部分当前实际执行的测试数量，不代表整个仓库未来所有测试的固定总数。
 
 ---
+
+## M2 - MuJoCo 仿真
+
+状态：**进行中**
+
+M2 当前包含两个不同上游来源的 MuJoCo 学习内容。为了保持学习来源和进度清晰，两条学习线分开记录。
+
+---
+
+### 来源 A - Albusgive MuJoCo Learning
+
+来源仓库：
+
+https://github.com/Albusgive/mujoco_learning.git
+
+状态：**进行中**
+
+目前已完成：
+
+- MuJoCo 环境配置
+- MJCF 基本结构
+- compiler 设置
+- simulation option
+- timestep 与 gravity
+- visual 配置
+- asset 系统
+- texture
+- material
+- mesh
+- skybox
+- `geom`
+- 几何体类型
+- mass 与 density
+- friction
+- collision 相关属性
+- `body`
+- 父子 body 层级
+- 相对坐标系
+- `site`
+- joint 类型
+- hinge joint
+- joint axis
+- joint range
+- damping
+- stiffness
+- frictionloss
+- armature
+- 简单单摆建模
+- 单摆仿真与验证
+
+当前进度：
+
+```text
+Environment and Assets
+→ 已完成
+
+Geom, Body and Site
+→ 已完成
+
+Joint
+→ 已完成
+
+Pendulum Experiment
+→ 已完成
+
+后续 MuJoCo 内容
+→ 进行中
+```
+
+### 来源 B - Robot Knowledge Study
+
+来源仓库：
+
+https://github.com/noBug01/Robot_knowledge_study
+
+使用版本：
+
+```text
+v0.3.0
+```
+
+状态：**已完成**
+
+当前该来源的 M2 内容一共包含两个场景：
+
+```text
+SIM-T01
+→ 桌面与自由下落方块
+
+SIM-T02
+→ 机械臂关节角目标控制
+```
+
+#### SIM-T01 - 桌面与自由下落方块
+
+已完成：
+
+- M2 独立 MuJoCo 环境
+- Python 3.10 环境检查
+- MuJoCo 3.9.0 版本检查
+- 场景 XML 阅读
+- floor、table、cube、camera、light 结构
+- free joint 行为
+- 方块与桌面初始间隙计算
+- `MjModel`
+- `MjData`
+- `mj_forward`
+- `mj_step`
+- `qpos`
+- `qvel`
+- `data.ncon`
+- 第 0 步状态记录
+- 两步连续性检查
+- 200 步完整仿真
+- CSV 输出
+- contact observation
+- 最终方块高度预测
+- 100 步个人预测与验证
+- `pytest` 自动测试
+- 独立 MuJoCo Viewer
+- Python 控制 Viewer
+- Viewer 调试功能
+
+关键结果：
+
+```text
+方块初始中心高度：
+1.05 m
+
+预测稳定中心高度：
+0.80 m
+
+实际稳定中心高度：
+≈ 0.7999 m
+```
+
+核心流程：
+
+```text
+XML
+↓
+MjModel
+↓
+MjData
+↓
+mj_step
+↓
+qpos / qvel / contact 更新
+↓
+状态读取
+↓
+数值与视觉验证
+```
+
+#### SIM-T02 - 机械臂关节角目标控制
+
+已完成：
+
+- 多 XML 文件场景结构
+- XML `<include>`
+- robot mesh asset
+- visual mesh 与 collision mesh
+- `<default>` 参数模板
+- 机器人 body 层级结构
+- 父 body / 子 body / 更深层 body
+- 一个 body 下多个 geom
+- 左臂 7 个 joint
+- 右臂结构
+- joint `axis`
+- joint `range`
+- position actuator
+- actuator `ctrlrange`
+- `data.ctrl`
+- target 与 actual joint position
+- `qpos`
+- `qvel`
+- `left_tool` site
+- `jointpos` sensor
+- `jointvel` sensor
+- `framepos` sensor
+- `framequat` sensor
+- contact exclusion
+- waypoint joint target
+- 线性插值
+- 使用 `qpos` 初始化姿态
+- 使用 `data.ctrl` 进行正常控制
+- 基于 `mj_step` 的机械臂运动
+- sensor sampling
+- `mj_forward` 刷新 sensor
+- 末端位置读取
+- 末端姿态读取
+- target 与 actual 对比
+- Viewer 中观察机械臂运动
+- Viewer timing
+- Python 控制程序整体流程理解
+
+运动时间线验证：
+
+```text
+0–5 s
+→ 保持初始姿态
+
+5–9 s
+→ Waypoint A → B
+
+9–13 s
+→ Waypoint B → C
+
+13–17 s
+→ Waypoint C → A
+
+17–17.5 s
+→ 最终保持
+```
+
+总仿真时间：
+
+```text
+17.5 s
+```
+
+在：
+
+```text
+timestep = 0.001 s
+```
+
+条件下，对应约：
+
+```text
+17500 个 physics step
+```
+
+核心控制链：
+
+```text
+WAYPOINTS
+↓
+插值
+↓
+data.ctrl
+↓
+position actuator
+↓
+joint motion
+↓
+qpos / qvel
+↓
+sensor feedback
+↓
+end-effector pose
+```
+
+最重要的区别：
+
+```text
+target
+≠
+actual state
+```
+
+其中：
+
+```text
+data.ctrl
+→ 目标 actuator 输入
+
+qpos
+→ 实际 joint position
+```
+
+这一来源的 M2 内容已经全部完成。
 
 # 学习方法
 
