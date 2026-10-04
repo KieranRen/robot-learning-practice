@@ -39,29 +39,36 @@ This upstream repository is treated as the reference source for topics such as:
 
 ### M2 - MuJoCo Simulation
 
-M2 MuJoCo learning materials are based on:
+M2 MuJoCo learning materials are based on two upstream sources:
 
 - [MuJoCo Learning](https://github.com/Albusgive/mujoco_learning.git)
+- [Robot Knowledge Study](https://github.com/noBug01/Robot_knowledge_study)
 
-This upstream repository is used as the reference source for topics such as:
+The Albusgive source is used as the main reference for MJCF modeling and MuJoCo feature learning, including topics such as:
 
 - MuJoCo XML / MJCF structure
-- Simulation configuration
-- Visual settings
-- Assets and materials
-- Geometries
-- Body hierarchy
-- Sites
-- Basic simulation experiments
+- simulation configuration
+- visual settings
+- assets and materials
+- geometries
+- body hierarchy
+- sites
+- joints
+- contact and friction
+- actuator models
+- lighting
+- repeated model construction with `replicate`
+
+The Robot Knowledge Study source extends this learning into Python-driven simulation, state observation, actuator control, sensor feedback, and robot-arm motion.
 
 This repository does not aim to duplicate either upstream source. Instead, it records my own learning process, including:
 
-- Personal notes and summaries
-- Independent implementations
-- Simulation experiments
-- Automated tests
-- Reports and validation
-- Corrections and refinements
+- personal notes and summaries
+- independent implementations
+- simulation experiments
+- automated tests
+- reports and validation
+- corrections and refinements
 
 Whenever a specific learning task depends on a particular upstream version, the corresponding source or commit may be recorded in the relevant progress or experiment documentation.
 
@@ -69,7 +76,7 @@ I am sincerely grateful to the authors and contributors of the upstream reposito
 
 Their contributions have been extremely helpful throughout my learning process and have given me a valuable foundation for studying robotics in a structured and practical way.
 
-Without their sharing, this repository cannot be built in this currrent way.
+Without their sharing, this repository could not be built in its current form.
 
 ## Current Progress
 
@@ -77,7 +84,7 @@ Without their sharing, this repository cannot be built in this currrent way.
 |---|---|---|---|---|
 | M0 | Environment setup and Git workflow | Completed | - | [Environment Reports](experiments/environment_reports/) |
 | M1 | Python, NumPy, robot geometry, rigid transformations, testing, capability tasks, and Modern Robotics reading | Completed | [M1 Notes](notes/M1/) | [M1 Experiments](experiments/M1/) |
-| M2 | MuJoCo simulation and MJCF modeling | In Progress | [M2 MuJoCo Notes](notes/M2/MuJoCo/) | [M2 MuJoCo Experiments](experiments/M2/MuJoCo/) |
+| M2 | MuJoCo simulation, MJCF modeling, contact, actuators, scene construction, and Python-driven control | In Progress | [M2 Notes](notes/README.md) | [M2 Experiments](experiments/M2/) |
 
 ### M1 Robot Math and Geometry
 
@@ -191,7 +198,7 @@ Source repository:
 
 https://github.com/Albusgive/mujoco_learning.git
 
-This learning stream focuses mainly on MJCF modeling fundamentals.
+This learning stream focuses mainly on MJCF modeling fundamentals, physical interaction, actuator models, and scene construction.
 
 Completed topics so far include:
 
@@ -213,6 +220,50 @@ Completed topics so far include:
 - friction loss
 - armature
 - simple pendulum simulation
+- sliding friction
+- torsional friction
+- rolling friction
+- `friction="a b c"`
+- `condim`
+- elliptic friction cones
+- pyramidal friction cones
+- friction constraint dimensions
+- contact `priority`
+- contact parameter selection
+- `impratio`
+- actuator fundamentals
+- `general`
+- `motor`
+- `position`
+- `velocity`
+- `intvelocity`
+- `damper`
+- `cylinder`
+- `data.ctrl`
+- `ctrlrange`
+- `forcerange`
+- `actrange`
+- `gear`
+- `kp`
+- `kv`
+- `timeconst`
+- `inheritrange`
+- target position vs actual joint state
+- controllable damping
+- basic pneumatic / hydraulic actuator concepts
+- `light`
+- directional and local lighting
+- ambient, diffuse, and specular lighting
+- light tracking and targeting
+- `replicate`
+- `count`
+- `offset`
+- `euler`
+- `sep`
+- linear replication
+- circular replication
+- nested replication
+- repeated body structures
 
 Notes:
 
@@ -222,6 +273,12 @@ Notes:
 - [中文 - Geom、Body 与 Site](notes/M2/MuJoCo/02_geom_body_site_zh.md)
 - [Joint](notes/M2/MuJoCo/03_joint.md)
 - [中文 - Joint 关节](notes/M2/MuJoCo/03_joint_zh.md)
+- [Friction](notes/M2/MuJoCo/04_friction.md)
+- [中文 - Friction 摩擦](notes/M2/MuJoCo/04_friction_zh.md)
+- [Actuator](notes/M2/MuJoCo/05_actuator.md)
+- [中文 - Actuator 执行器](notes/M2/MuJoCo/05_actuator_zh.md)
+- [Light and Replicate](notes/M2/MuJoCo/06_light_and_replicate.md)
+- [中文 - Light 与 Replicate](notes/M2/MuJoCo/06_light_and_replicate_zh.md)
 
 Experiments:
 
@@ -302,13 +359,21 @@ The currently available M2 material from this source has been completed.
 The two source streams currently form the following progression:
 
 ```text
-MJCF modeling
+Albusgive source
+↓
+MJCF structure
 ↓
 geom / body / site
 ↓
 joint modeling
 ↓
-basic physical simulation
+contact and friction
+↓
+actuator models
+↓
+light and repeated scene construction
+
+Robot Knowledge Study source
 ↓
 Python-driven simulation
 ↓
@@ -319,6 +384,30 @@ actuator control
 sensor feedback
 ↓
 end-effector observation
+```
+
+Together, the current M2 learning progression is:
+
+```text
+MJCF modeling
+↓
+rigid-body structure
+↓
+joint motion
+↓
+contact and friction
+↓
+actuation
+↓
+scene construction
+↓
+Python-driven simulation
+↓
+state observation
+↓
+active joint control
+↓
+sensor feedback
 ```
 
 Current status:
@@ -356,7 +445,13 @@ robot-learning-practice/
 │       │   ├── 02_geom_body_site.md
 │       │   ├── 02_geom_body_site_zh.md
 │       │   ├── 03_joint.md
-│       │   └── 03_joint_zh.md
+│       │   ├── 03_joint_zh.md
+│       │   ├── 04_friction.md
+│       │   ├── 04_friction_zh.md
+│       │   ├── 05_actuator.md
+│       │   ├── 05_actuator_zh.md
+│       │   ├── 06_light_and_replicate.md
+│       │   └── 06_light_and_replicate_zh.md
 │       │
 │       └── RobotKnowledgeStudy_MuJoCo/
 │           ├── 01_table_cube.md
@@ -431,8 +526,9 @@ conda activate robot_manipulation_learning
 python -m pytest
 ```
 
-Runnable examples are stored in examples/, while automated checks are stored in tests/.
-Where relevant, experiment outputs and environment verification records are stored under experiments/.
+Runnable examples are stored in `examples/`, while automated checks are stored in `tests/`.
+
+Where relevant, experiment outputs and environment verification records are stored under `experiments/`.
 
 ## Documentation
 
@@ -447,28 +543,48 @@ The current focus is M2: MuJoCo simulation.
 
 At this stage, I am working on:
 
-- Understanding MuJoCo XML / MJCF structure
-- Building simple simulation environments
-- Learning how `worldbody`, `body`, `geom`, and `site` work together
-- Understanding parent-child body relationships and relative coordinates
-- Practicing basic geometry, materials, gravity, contact, and friction
-- Creating simple MuJoCo experiments from scratch
-- Connecting simulation concepts with robotics foundations such as kinematics, dynamics, joints, actuators, sensors, and control
+- understanding MuJoCo XML / MJCF structure
+- building simple simulation environments
+- learning how `worldbody`, `body`, `geom`, `site`, and `joint` work together
+- understanding parent-child body relationships and relative coordinate frames
+- studying contact and friction behavior
+- understanding sliding, torsional, and rolling friction
+- learning how `condim`, friction cones, and contact priority affect simulation
+- learning how actuators drive joints and other model elements
+- comparing motor, position, velocity, and integrated-velocity control
+- understanding actuator limits such as `ctrlrange`, `forcerange`, and `actrange`
+- studying controllable damping and basic cylinder actuator models
+- learning scene-lighting configuration
+- using `replicate` to create repeated model structures efficiently
+- creating simple MuJoCo experiments from scratch
+- connecting simulation concepts with robotics foundations such as kinematics, dynamics, joints, actuators, sensors, and control
 
 Completed M2 work so far includes:
 
-- Environment and asset configuration notes
-- Geom, body, and site notes
-- Joint notes
-- A basic review simulation model
-- A hinge-joint pendulum experiment
-- English and Chinese documentation for notes and experiments
+- environment and asset configuration notes
+- geom, body, and site notes
+- joint notes
+- friction notes
+- actuator notes
+- light and replicate notes
+- a basic review simulation model
+- a hinge-joint pendulum experiment
+- friction comparison analysis
+- actuator example analysis
+- English and Chinese documentation for the current MuJoCo notes and experiments
+- SIM-T01 table and falling cube
+- SIM-T02 robot-arm joint target control
+- Python-driven MuJoCo simulation
+- state observation with `qpos` and `qvel`
+- actuator control with `data.ctrl`
+- sensor feedback
+- end-effector position and orientation observation
 
-The `Robot_knowledge_study` M2 material has been completed, including both SIM-T01 and SIM-T02.
+The `Robot_knowledge_study` M2 material currently available in version `v0.3.0` has been completed, including both SIM-T01 and SIM-T02.
 
 The Albusgive-based MuJoCo learning stream is still in progress and will continue to be expanded with additional modeling and simulation topics.
 
-M2 is still in progress and will continue to expand as more MuJoCo and robotics concepts are introduced.
+Therefore, overall M2 remains in progress.
 
 ## Future Directions
 

@@ -92,7 +92,7 @@ Source repository:
 
 https://github.com/Albusgive/mujoco_learning.git
 
-This part focuses mainly on MJCF modeling fundamentals.
+This part focuses mainly on MJCF modeling fundamentals, physical interaction, actuator models, and scene construction.
 
 #### Environment and Assets
 
@@ -147,6 +147,107 @@ Topics include:
 - friction loss
 - armature
 - simple pendulum modeling
+
+#### Friction
+
+- [English](M2/MuJoCo/04_friction.md)
+- [中文](M2/MuJoCo/04_friction_zh.md)
+
+Topics include:
+
+- sliding friction
+- torsional friction
+- rolling friction
+- `friction="a b c"`
+- `condim`
+- `cone="elliptic"`
+- `cone="pyramidal"`
+- friction constraint dimensions
+- internal friction expansion
+- `priority`
+- contact parameter selection
+- `impratio`
+- box, sphere, and slope comparison experiments
+
+#### Actuator
+
+- [English](M2/MuJoCo/05_actuator.md)
+- [中文](M2/MuJoCo/05_actuator_zh.md)
+
+Topics include:
+
+- actuator fundamentals
+- `general`
+- `motor`
+- `position`
+- `velocity`
+- `intvelocity`
+- `damper`
+- `cylinder`
+- `data.ctrl`
+- `ctrlrange`
+- `forcerange`
+- `actrange`
+- `gear`
+- `kp`
+- `kv`
+- `timeconst`
+- `inheritrange`
+- target position vs actual joint state
+- force / torque control
+- velocity control
+- integrated velocity control
+- controllable damping
+- pneumatic / hydraulic cylinder concepts
+
+Core actuator chain:
+
+```text
+data.ctrl
+↓
+actuator
+↓
+joint / tendon / site
+↓
+body motion
+```
+
+#### Light and Replicate
+
+- [English](M2/MuJoCo/06_light_and_replicate.md)
+- [中文](M2/MuJoCo/06_light_and_replicate_zh.md)
+
+Topics include:
+
+- light position and direction
+- directional lights
+- ambient lighting
+- diffuse lighting
+- specular highlights
+- shadows
+- attenuation
+- spotlight parameters
+- light tracking modes
+- `replicate`
+- `count`
+- `offset`
+- `euler`
+- `sep`
+- linear patterns
+- circular patterns
+- nested replication
+- repeated body structures
+- automatic naming of replicated elements
+
+Core distinction:
+
+```text
+light
+→ visualization / rendering
+
+replicate
+→ repeated model construction
+```
 
 ---
 
@@ -262,7 +363,11 @@ geom / body / site
 ↓
 joint modeling
 ↓
-basic physical modeling
+contact and friction
+↓
+actuator models
+↓
+light and repeated scene construction
 
 Robot Knowledge Study source
 ↓
@@ -282,7 +387,15 @@ Together, the current M2 learning progression is:
 ```text
 MJCF modeling
 ↓
-physical simulation
+rigid-body structure
+↓
+joint motion
+↓
+contact and friction
+↓
+actuation
+↓
+scene construction
 ↓
 Python-driven simulation
 ↓
@@ -331,6 +444,22 @@ Completed topics so far include:
 - geom, body, and site
 - joint modeling
 - pendulum simulation
+- friction
+- `condim`
+- elliptic and pyramidal friction cones
+- contact priority
+- actuator fundamentals
+- motor actuator
+- position actuator
+- velocity actuator
+- integrated velocity actuator
+- damper actuator
+- cylinder actuator
+- actuator limits and control parameters
+- light
+- replicate
+- linear and circular replication
+- nested replication
 
 More topics from this source will continue to be added as the learning progresses.
 

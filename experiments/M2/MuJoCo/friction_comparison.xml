@@ -1,0 +1,242 @@
+<mujoco model="friction_comparison">
+
+    <compiler angle="radian" autolimits="true"/>
+
+    <option
+        timestep="0.002"
+        gravity="0 0 -9.81"
+        integrator="implicitfast"
+        cone="elliptic"
+        impratio="1"/>
+
+    <visual>
+        <global realtime="1"/>
+        <quality shadowsize="2048"/>
+        <headlight ambient="0.3 0.3 0.3"
+                   diffuse="0.7 0.7 0.7"
+                   specular="0.2 0.2 0.2"/>
+    </visual>
+
+    <asset>
+        <texture
+            name="floor_texture"
+            type="2d"
+            builtin="checker"
+            rgb1="0.2 0.3 0.4"
+            rgb2="0.1 0.2 0.3"
+            width="512"
+            height="512"/>
+
+        <material
+            name="floor_material"
+            texture="floor_texture"
+            texrepeat="5 5"
+            reflectance="0.1"/>
+    </asset>
+
+    <worldbody>
+
+        <!-- ===================================================== -->
+        <!-- Floor                                                 -->
+        <!-- Lower priority so moving objects define contact setup -->
+        <!-- ===================================================== -->
+
+        <geom
+            name="floor"
+            type="plane"
+            size="6 6 0.1"
+            material="floor_material"
+            friction="1 0.005 0.0001"
+            condim="3"
+            priority="-1"/>
+
+        <light
+            directional="true"
+            pos="0 0 6"
+            dir="0 0 -1"
+            diffuse="0.8 0.8 0.8"
+            specular="0.2 0.2 0.2"/>
+
+
+        <!-- ===================================================== -->
+        <!-- Experiment 1                                         -->
+        <!-- Box: condim = 1 vs condim = 3                        -->
+        <!-- ===================================================== -->
+
+        <body name="box_condim1" pos="-1.2 1.5 0.15">
+            <freejoint/>
+
+            <geom
+                name="box_geom_condim1"
+                type="box"
+                size="0.15 0.15 0.15"
+                mass="1"
+                rgba="0.8 0.3 0.3 1"
+                friction="1 0.005 0.0001"
+                condim="1"
+                priority="0"/>
+        </body>
+
+        <body name="box_condim3" pos="-0.6 1.5 0.15">
+            <freejoint/>
+
+            <geom
+                name="box_geom_condim3"
+                type="box"
+                size="0.15 0.15 0.15"
+                mass="1"
+                rgba="0.3 0.8 0.3 1"
+                friction="1 0.005 0.0001"
+                condim="3"
+                priority="0"/>
+        </body>
+
+
+        <!-- ===================================================== -->
+        <!-- Experiment 2                                         -->
+        <!-- Sphere: condim = 3 vs condim = 6                     -->
+        <!-- ===================================================== -->
+
+        <body name="sphere_condim3" pos="0.4 1.5 0.18">
+            <freejoint/>
+
+            <geom
+                name="sphere_geom_condim3"
+                type="sphere"
+                size="0.18"
+                mass="1"
+                rgba="0.3 0.5 0.9 1"
+                friction="1 0.01 0.01"
+                condim="3"
+                priority="0"/>
+        </body>
+
+        <body name="sphere_condim6" pos="1.0 1.5 0.18">
+            <freejoint/>
+
+            <geom
+                name="sphere_geom_condim6"
+                type="sphere"
+                size="0.18"
+                mass="1"
+                rgba="0.9 0.7 0.2 1"
+                friction="1 0.01 0.05"
+                condim="6"
+                priority="0"/>
+        </body>
+
+
+        <!-- ===================================================== -->
+        <!-- Slope A                                              -->
+        <!-- Used for cylinder condim comparison                  -->
+        <!-- ===================================================== -->
+
+        <body name="slope_cylinder" pos="-1.0 -0.6 0.35"
+              euler="0 -0.25 0">
+
+            <geom
+                name="slope_cylinder_geom"
+                type="box"
+                size="1.2 0.45 0.05"
+                rgba="0.45 0.45 0.45 1"
+                friction="1 0.005 0.0001"
+                condim="3"
+                priority="-1"/>
+        </body>
+
+
+        <!-- Cylinder with normal contact only -->
+
+        <body name="cylinder_condim1"
+              pos="-1.65 -0.45 0.78"
+              euler="1.5708 0 0">
+            <freejoint/>
+
+            <geom
+                name="cylinder_geom_condim1"
+                type="cylinder"
+                size="0.12 0.15"
+                mass="1"
+                rgba="0.8 0.3 0.8 1"
+                friction="1 0.005 0.0001"
+                condim="1"
+                priority="0"/>
+        </body>
+
+
+        <!-- Cylinder with sliding friction -->
+
+        <body name="cylinder_condim3"
+              pos="-1.25 -0.75 0.68"
+              euler="1.5708 0 0">
+            <freejoint/>
+
+            <geom
+                name="cylinder_geom_condim3"
+                type="cylinder"
+                size="0.12 0.15"
+                mass="1"
+                rgba="0.2 0.8 0.8 1"
+                friction="1 0.005 0.0001"
+                condim="3"
+                priority="0"/>
+        </body>
+
+
+        <!-- ===================================================== -->
+        <!-- Slope B                                              -->
+        <!-- Used for sphere rolling-friction comparison          -->
+        <!-- ===================================================== -->
+
+        <body name="slope_sphere" pos="1.4 -0.6 0.35"
+              euler="0 -0.25 0">
+
+            <geom
+                name="slope_sphere_geom"
+                type="box"
+                size="1.2 0.45 0.05"
+                rgba="0.45 0.45 0.45 1"
+                friction="1 0.01 0.001"
+                condim="6"
+                priority="-1"/>
+        </body>
+
+
+        <!-- Sphere with torsional friction but no rolling friction mode -->
+
+        <body name="sphere_slope_condim4"
+              pos="0.75 -0.45 0.82">
+            <freejoint/>
+
+            <geom
+                name="sphere_slope_geom_condim4"
+                type="sphere"
+                size="0.14"
+                mass="1"
+                rgba="0.9 0.4 0.2 1"
+                friction="1 0.01 0.05"
+                condim="4"
+                priority="0"/>
+        </body>
+
+
+        <!-- Sphere with rolling friction enabled -->
+
+        <body name="sphere_slope_condim6"
+              pos="1.15 -0.75 0.72">
+            <freejoint/>
+
+            <geom
+                name="sphere_slope_geom_condim6"
+                type="sphere"
+                size="0.14"
+                mass="1"
+                rgba="0.3 0.9 0.4 1"
+                friction="1 0.01 0.05"
+                condim="6"
+                priority="0"/>
+        </body>
+
+    </worldbody>
+
+</mujoco>

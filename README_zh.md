@@ -40,11 +40,12 @@ M1 的学习内容主要基于：
 
 ### M2 - MuJoCo 仿真
 
-M2 中的 MuJoCo 学习内容主要基于：
+M2 中的 MuJoCo 学习内容主要基于两个上游来源：
 
 - [MuJoCo Learning](https://github.com/Albusgive/mujoco_learning.git)
+- [Robot Knowledge Study](https://github.com/noBug01/Robot_knowledge_study)
 
-这个上游仓库主要作为以下内容的参考来源：
+Albusgive 来源主要用于学习 MJCF 建模与 MuJoCo 本身的各种功能，包括：
 
 - MuJoCo XML / MJCF 结构
 - 仿真环境配置
@@ -53,7 +54,20 @@ M2 中的 MuJoCo 学习内容主要基于：
 - Geom 几何体
 - Body 层级结构
 - Site 标记点
-- 基础仿真实验
+- Joint 关节
+- Contact 与 Friction
+- Actuator 执行器
+- Light 光照
+- 使用 `replicate` 创建重复结构
+
+Robot Knowledge Study 来源则进一步把这些内容扩展到：
+
+- Python 驱动 MuJoCo 仿真
+- 状态读取
+- 执行器控制
+- Sensor feedback
+- 机械臂运动
+- 末端位姿观察
 
 本仓库并不是对这些上游仓库内容的直接复制，而是用于记录我自己的学习过程，包括：
 
@@ -78,7 +92,7 @@ M2 中的 MuJoCo 学习内容主要基于：
 |---|---|---|---|---|
 | M0 | 环境配置与 Git 工作流 | 已完成 | - | [环境报告](experiments/environment_reports/) |
 | M1 | Python、NumPy、机器人几何、刚体变换、测试、能力任务与 Modern Robotics 阅读 | 已完成 | [M1 笔记](notes/M1/) | [M1 实验](experiments/M1/) |
-| M2 | MuJoCo 仿真与 MJCF 建模 | 进行中 | [M2 MuJoCo 笔记](notes/M2/MuJoCo/) | [M2 MuJoCo 实验](experiments/M2/MuJoCo/) |
+| M2 | MuJoCo 仿真、MJCF 建模、接触、执行器、场景构建与 Python 控制 | 进行中 | [M2 学习笔记](notes/README.md) | [M2 实验](experiments/M2/) |
 
 ### M1 当前成果
 
@@ -196,7 +210,7 @@ M2 的 MuJoCo 学习内容来自两个不同的上游仓库。
 
 https://github.com/Albusgive/mujoco_learning.git
 
-这一条学习线主要集中在 MJCF 建模基础。
+这一条学习线主要集中在 MJCF 建模基础、物理接触、执行器模型与场景构建。
 
 目前已经完成的内容包括：
 
@@ -218,6 +232,51 @@ https://github.com/Albusgive/mujoco_learning.git
 - frictionloss
 - armature
 - 简单单摆仿真
+- sliding friction
+- torsional friction
+- rolling friction
+- `friction="a b c"`
+- `condim`
+- elliptic friction cone
+- pyramidal friction cone
+- friction constraint dimensions
+- contact `priority`
+- contact 参数选择
+- `impratio`
+- actuator 基础
+- `general`
+- `motor`
+- `position`
+- `velocity`
+- `intvelocity`
+- `damper`
+- `cylinder`
+- `data.ctrl`
+- `ctrlrange`
+- `forcerange`
+- `actrange`
+- `gear`
+- `kp`
+- `kv`
+- `timeconst`
+- `inheritrange`
+- target position 与 actual joint state
+- 可控阻尼
+- 气缸 / 液压缸 actuator 基础概念
+- `light`
+- directional light
+- ambient / diffuse / specular
+- shadow
+- light tracking 与 targeting
+- `replicate`
+- `count`
+- `offset`
+- `euler`
+- `sep`
+- linear replication
+- circular replication
+- nested replication
+- repeated body structures
 
 学习笔记：
 
@@ -227,6 +286,12 @@ https://github.com/Albusgive/mujoco_learning.git
 - [中文 - Geom、Body 与 Site](notes/M2/MuJoCo/02_geom_body_site_zh.md)
 - [Joint](notes/M2/MuJoCo/03_joint.md)
 - [中文 - Joint 关节](notes/M2/MuJoCo/03_joint_zh.md)
+- [Friction](notes/M2/MuJoCo/04_friction.md)
+- [中文 - Friction 摩擦](notes/M2/MuJoCo/04_friction_zh.md)
+- [Actuator](notes/M2/MuJoCo/05_actuator.md)
+- [中文 - Actuator 执行器](notes/M2/MuJoCo/05_actuator_zh.md)
+- [Light and Replicate](notes/M2/MuJoCo/06_light_and_replicate.md)
+- [中文 - Light 与 Replicate](notes/M2/MuJoCo/06_light_and_replicate_zh.md)
 
 实验：
 
@@ -304,16 +369,24 @@ v0.3.0
 
 #### M2 学习进展
 
-目前两条学习线共同形成了下面这条学习路径：
+目前两条学习线分别形成：
 
 ```text
-MJCF 建模
+Albusgive source
+↓
+MJCF 结构
 ↓
 geom / body / site
 ↓
 joint 建模
 ↓
-基础物理仿真
+contact 与 friction
+↓
+actuator 模型
+↓
+light 与 repeated scene construction
+
+Robot Knowledge Study source
 ↓
 Python 驱动仿真
 ↓
@@ -324,6 +397,30 @@ actuator 控制
 sensor feedback
 ↓
 end-effector observation
+```
+
+综合起来，目前 M2 的学习路径是：
+
+```text
+MJCF 建模
+↓
+刚体结构
+↓
+joint 运动
+↓
+contact 与 friction
+↓
+actuation
+↓
+scene construction
+↓
+Python 驱动仿真
+↓
+状态读取
+↓
+主动 joint 控制
+↓
+sensor feedback
 ```
 
 当前状态：
@@ -361,7 +458,13 @@ robot-learning-practice/
 │       │   ├── 02_geom_body_site.md
 │       │   ├── 02_geom_body_site_zh.md
 │       │   ├── 03_joint.md
-│       │   └── 03_joint_zh.md
+│       │   ├── 03_joint_zh.md
+│       │   ├── 04_friction.md
+│       │   ├── 04_friction_zh.md
+│       │   ├── 05_actuator.md
+│       │   ├── 05_actuator_zh.md
+│       │   ├── 06_light_and_replicate.md
+│       │   └── 06_light_and_replicate_zh.md
 │       │
 │       └── RobotKnowledgeStudy_MuJoCo/
 │           ├── 01_table_cube.md
@@ -455,9 +558,17 @@ python -m pytest
 
 - 理解 MuJoCo XML / MJCF 的基本结构
 - 搭建简单的仿真环境
-- 理解 `worldbody`、`body`、`geom` 与 `site` 之间的关系
+- 理解 `worldbody`、`body`、`geom`、`site` 与 `joint` 之间的关系
 - 理解父子 body 的层级关系与相对坐标
-- 练习基础几何体、材质、重力、接触与摩擦
+- 学习 contact 与 friction 的工作方式
+- 理解 sliding、torsional 与 rolling friction
+- 理解 `condim`、friction cone 与 contact priority 对仿真的影响
+- 学习 actuator 如何驱动 joint 与其他模型元素
+- 对比 motor、position、velocity 与 integrated velocity control
+- 理解 `ctrlrange`、`forcerange` 与 `actrange`
+- 学习 damper 与 cylinder actuator 的基本物理意义
+- 学习 MuJoCo 场景中的 light 配置
+- 使用 `replicate` 高效创建重复模型结构
 - 从零开始创建简单的 MuJoCo 仿真实验
 - 将仿真知识逐步与机器人学中的运动学、动力学、关节、执行器、传感器和控制联系起来
 
@@ -466,23 +577,27 @@ python -m pytest
 - 环境配置与 Asset 资源相关笔记
 - Geom、Body 与 Site 相关笔记
 - Joint 关节相关笔记
+- Friction 摩擦相关笔记
+- Actuator 执行器相关笔记
+- Light 与 Replicate 相关笔记
 - 一个基础综合复习仿真模型
 - 一个基于 hinge joint 的单摆实验
-- Notes 与 Experiments 的中英文双语文档
+- friction 对照实验分析
+- actuator 示例分析
+- 当前 MuJoCo Notes 与 Experiments 的中英文双语文档
+- SIM-T01 桌面与自由下落方块
+- SIM-T02 机械臂关节角目标控制
+- Python 驱动 MuJoCo 仿真
+- 使用 `qpos` 与 `qvel` 读取状态
+- 使用 `data.ctrl` 进行 actuator control
+- sensor feedback
+- end-effector position 与 orientation 观察
 
-后续会随着 MuJoCo 和机器人学内容的深入，继续加入：
-
-- Actuator
-- Sensor
-- Contact
-- Robot kinematics
-- Robot dynamics
-- Control
-- More advanced simulation experiments
-
-`Robot_knowledge_study` 来源的 M2 内容已经完成，包括 SIM-T01 和 SIM-T02 两个场景。
+`Robot_knowledge_study` 来源当前版本 `v0.3.0` 中提供的 M2 内容已经完成，包括 SIM-T01 和 SIM-T02 两个场景。
 
 基于 Albusgive 来源的 MuJoCo 学习仍在继续，后续会继续加入更多建模与仿真相关内容。
+
+因此，M2 整体仍处于进行中。
 
 ## 后续方向
 
@@ -513,5 +628,4 @@ python -m pytest
 
 持续重复的小进步，最终会变成真正的能力。
 
-而今天觉得困难的东西，终有一天会成为我解决更高级，更复杂问题时最普通的基础。
-
+而今天觉得困难的东西，终有一天会成为我解决更高级、更复杂问题时最普通的基础。
