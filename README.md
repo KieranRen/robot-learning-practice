@@ -58,6 +58,8 @@ The Albusgive source is used as the main reference for MJCF modeling and MuJoCo 
 - actuator models
 - lighting
 - repeated model construction with `replicate`
+- tendon transmission and joint coupling
+- sensor modeling and observation
 
 The Robot Knowledge Study source extends this learning into Python-driven simulation, state observation, actuator control, sensor feedback, and robot-arm motion.
 
@@ -84,7 +86,7 @@ Without their sharing, this repository could not be built in its current form.
 |---|---|---|---|---|
 | M0 | Environment setup and Git workflow | Completed | - | [Environment Reports](experiments/environment_reports/) |
 | M1 | Python, NumPy, robot geometry, rigid transformations, testing, capability tasks, and Modern Robotics reading | Completed | [M1 Notes](notes/M1/) | [M1 Experiments](experiments/M1/) |
-| M2 | MuJoCo simulation, MJCF modeling, contact, actuators, scene construction, and Python-driven control | In Progress | [M2 Notes](notes/README.md) | [M2 Experiments](experiments/M2/) |
+| M2 | MuJoCo simulation, MJCF modeling, contact, actuators, tendons, sensors, scene construction, and Python-driven control | In Progress | [M2 Notes](notes/README.md) | [M2 Experiments](experiments/M2/) |
 
 ### M1 Robot Math and Geometry
 
@@ -198,7 +200,7 @@ Source repository:
 
 https://github.com/Albusgive/mujoco_learning.git
 
-This learning stream focuses mainly on MJCF modeling fundamentals, physical interaction, actuator models, and scene construction.
+This learning stream focuses mainly on MJCF modeling fundamentals, physical interaction, actuator models, tendon transmission, sensing, and scene construction.
 
 Completed topics so far include:
 
@@ -264,6 +266,37 @@ Completed topics so far include:
 - circular replication
 - nested replication
 - repeated body structures
+- tendon fundamentals
+- `spatial` tendon
+- `fixed` tendon
+- tendon routing through sites
+- tendon `coef`
+- tendon `springlength`
+- tendon `stiffness`
+- tendon `damping`
+- tendon-based actuation
+- muscle actuator on tendons
+- Mecanum fixed-tendon transmission
+- camera fundamentals
+- IMU-style sensing
+- `framequat`
+- `accelerometer`
+- `gyro`
+- `jointpos`
+- `jointvel`
+- `rangefinder`
+- `force`
+- `torque`
+- `ballquat`
+- `ballangvel`
+- `framepos`
+- `framelinvel`
+- `frameangvel`
+- `framelinacc`
+- `frameangacc`
+- relative frame sensing
+- subtree sensing
+- `data.sensordata`
 
 Notes:
 
@@ -279,6 +312,10 @@ Notes:
 - [中文 - Actuator 执行器](notes/M2/MuJoCo/05_actuator_zh.md)
 - [Light and Replicate](notes/M2/MuJoCo/06_light_and_replicate.md)
 - [中文 - Light 与 Replicate](notes/M2/MuJoCo/06_light_and_replicate_zh.md)
+- [Tendon](notes/M2/MuJoCo/07_tendon.md)
+- [中文 - Tendon 肌腱 / 传动结构](notes/M2/MuJoCo/07_tendon_zh.md)
+- [Sensor](notes/M2/MuJoCo/08_sensor.md)
+- [中文 - Sensor 传感器](notes/M2/MuJoCo/08_sensor_zh.md)
 
 Experiments:
 
@@ -287,6 +324,14 @@ Experiments:
 - [中文 - Review Model Report](experiments/M2/MuJoCo/review_model_report_zh.md)
 - [Pendulum Report](experiments/M2/MuJoCo/pendulum_report.md)
 - [中文 - Pendulum Report](experiments/M2/MuJoCo/pendulum_report_zh.md)
+- [Friction Comparison Report](experiments/M2/MuJoCo/friction_comparison_report.md)
+- [中文 - Friction Comparison Report](experiments/M2/MuJoCo/friction_comparison_report_zh.md)
+- [Actuator Demo Report](experiments/M2/MuJoCo/actuator_demo_report.md)
+- [中文 - Actuator Demo Report](experiments/M2/MuJoCo/actuator_demo_report_zh.md)
+- [Tendon Example Analysis](experiments/M2/MuJoCo/tendon_examples_report.md)
+- [中文 - Tendon 示例分析](experiments/M2/MuJoCo/tendon_examples_report_zh.md)
+- [Sensor Example Analysis](experiments/M2/MuJoCo/sensor_example_report.md)
+- [中文 - Sensor 综合示例分析](experiments/M2/MuJoCo/sensor_example_report_zh.md)
 
 This learning stream is still in progress.
 
@@ -372,6 +417,10 @@ contact and friction
 actuator models
 ↓
 light and repeated scene construction
+↓
+tendon transmission
+↓
+sensor modeling and observation
 
 Robot Knowledge Study source
 ↓
@@ -400,6 +449,10 @@ contact and friction
 actuation
 ↓
 scene construction
+↓
+tendon transmission
+↓
+sensor modeling
 ↓
 Python-driven simulation
 ↓
@@ -451,7 +504,11 @@ robot-learning-practice/
 │       │   ├── 05_actuator.md
 │       │   ├── 05_actuator_zh.md
 │       │   ├── 06_light_and_replicate.md
-│       │   └── 06_light_and_replicate_zh.md
+│       │   ├── 06_light_and_replicate_zh.md
+│       │   ├── 07_tendon.md
+│       │   ├── 07_tendon_zh.md
+│       │   ├── 08_sensor.md
+│       │   └── 08_sensor_zh.md
 │       │
 │       └── RobotKnowledgeStudy_MuJoCo/
 │           ├── 01_table_cube.md
@@ -476,7 +533,17 @@ robot-learning-practice/
 │       │   ├── review_model_report_zh.md
 │       │   ├── pendulum.xml
 │       │   ├── pendulum_report.md
-│       │   └── pendulum_report_zh.md
+│       │   ├── pendulum_report_zh.md
+│       │   ├── friction_comparison.xml
+│       │   ├── friction_comparison_report.md
+│       │   ├── friction_comparison_report_zh.md
+│       │   ├── actuator_demo.xml
+│       │   ├── actuator_demo_report.md
+│       │   ├── actuator_demo_report_zh.md
+│       │   ├── tendon_examples_report.md
+│       │   ├── tendon_examples_report_zh.md
+│       │   ├── sensor_example_report.md
+│       │   └── sensor_example_report_zh.md
 │       │
 │       └── RobotKnowledgeStudy_MuJoCo/
 │           ├── README.md
@@ -556,8 +623,14 @@ At this stage, I am working on:
 - studying controllable damping and basic cylinder actuator models
 - learning scene-lighting configuration
 - using `replicate` to create repeated model structures efficiently
+- understanding `spatial` and `fixed` tendon transmission
+- studying tendon routing through sites and joint coupling with `coef`
+- learning tendon-driven actuation and muscle actuator concepts
+- studying camera and IMU-style sensing
+- learning joint, ball-joint, frame, subtree, rangefinder, force, and torque sensors
+- understanding how sensor outputs are stored in `data.sensordata`
 - creating simple MuJoCo experiments from scratch
-- connecting simulation concepts with robotics foundations such as kinematics, dynamics, joints, actuators, sensors, and control
+- connecting simulation concepts with robotics foundations such as kinematics, dynamics, joints, actuators, transmissions, sensors, and control
 
 Completed M2 work so far includes:
 
@@ -567,10 +640,14 @@ Completed M2 work so far includes:
 - friction notes
 - actuator notes
 - light and replicate notes
+- tendon notes
+- sensor notes
 - a basic review simulation model
 - a hinge-joint pendulum experiment
 - friction comparison analysis
 - actuator example analysis
+- tendon example analysis covering fixed and spatial tendon transmission
+- sensor example analysis covering IMU, joint, frame, force/torque, and ball-joint sensing
 - English and Chinese documentation for the current MuJoCo notes and experiments
 - SIM-T01 table and falling cube
 - SIM-T02 robot-arm joint target control
@@ -579,6 +656,21 @@ Completed M2 work so far includes:
 - actuator control with `data.ctrl`
 - sensor feedback
 - end-effector position and orientation observation
+
+Recent Albusgive MuJoCo learning has extended the M2 simulation work into transmission and sensing:
+
+- `spatial` and `fixed` tendon structures
+- tendon routing through sites
+- joint coupling with `coef`
+- muscle-driven tendon actuation
+- Mecanum virtual motion coordinates
+- IMU-style sensing with `framequat`, `accelerometer`, and `gyro`
+- joint and ball-joint sensors
+- rangefinder sensing
+- force and torque sensing
+- global and relative frame sensors
+- subtree sensing
+- sensor output through `data.sensordata`
 
 The `Robot_knowledge_study` M2 material currently available in version `v0.3.0` has been completed, including both SIM-T01 and SIM-T02.
 
