@@ -1,144 +1,166 @@
-# 机器人学习实践
+# Robot Learning Practice
 
 [English](README.md) | [中文](README_zh.md)
 
-这是一个用于长期记录机器人学习、代码实现、实验验证与技术成长的结构化仓库。
+一个结构化、可复现的机器人学习记录，包含学习笔记、代码实现、实验、验证以及持续的技术积累。
 
 ## 关于本仓库
 
-本仓库用于记录我从数学与编程基础开始，逐步学习机器人相关知识的全过程。
+这个仓库记录我长期学习机器人的过程。
 
-每个学习模块尽量包含：
+学习从数学、编程和机器人基础开始，并逐步扩展到更完整、更复杂的机器人系统。
+
+每一个学习模块都会尽可能包含：
 
 - 理论笔记
 - 独立实现
 - 自动化测试
-- 实验记录
+- 实验
 - 可复现结果
-- 对错误、修正与理解过程的总结
+- 对错误与修正过程的记录
 
-目标不仅是完成教程，而是持续记录我真正理解、实现、验证和改进了什么。
+目标不仅仅是完成教程，而是建立一个清晰的长期记录，展示：
+
+```text
+我理解了什么
+我实现了什么
+我验证了什么
+我在哪里犯过错误
+我又是如何改进的
+```
+
+---
 
 ## 学习来源
 
-本仓库使用的主要学习资料来自多个不同的上游仓库。
+本仓库使用多个上游仓库作为主要学习材料来源。
 
-### M1 - 机器人数学与几何基础
+### M1 - Robot Math and Geometry
 
-M1 的学习内容主要基于：
+M1 的主要学习来源是：
 
 - [Robot Knowledge Study](https://github.com/noBug01/Robot_knowledge_study.git)
 
-这个上游仓库主要作为以下内容的参考来源：
+这个上游仓库主要作为以下内容的学习参考：
 
 - Python 与 NumPy 基础
-- 机器人几何
-- 刚体变换
-- 几何实现
-- Modern Robotics 阅读
-- 相关机器人数学基础
+- Robot Geometry
+- Rigid Transformations
+- Geometry Implementation
+- Modern Robotics 阅读及相关数学基础
 
-### M2 - MuJoCo 仿真
+---
 
-M2 中的 MuJoCo 学习内容主要基于两个上游来源：
+### M2 - MuJoCo Simulation
+
+M2 的 MuJoCo 学习目前来自两个不同的上游来源：
 
 - [MuJoCo Learning](https://github.com/Albusgive/mujoco_learning.git)
 - [Robot Knowledge Study](https://github.com/noBug01/Robot_knowledge_study)
 
-Albusgive 来源主要用于学习 MJCF 建模与 MuJoCo 本身的各种功能，包括：
+其中，Albusgive 来源主要用于系统学习 MJCF 建模与 MuJoCo 功能，包括：
 
 - MuJoCo XML / MJCF 结构
-- 仿真环境配置
-- 视觉设置
-- Asset 与 Material
-- Geom 几何体
-- Body 层级结构
-- Site 标记点
-- Joint 关节
-- Contact 与 Friction
-- Actuator 执行器
-- Light 光照
-- 使用 `replicate` 创建重复结构
+- simulation configuration
+- visual settings
+- assets 与 materials
+- geometries
+- body hierarchy
+- sites
+- joints
+- contact 与 friction
+- actuator models
+- lighting
+- 使用 `replicate` 构建重复模型结构
+- tendon transmission 与 joint coupling
+- sensor modeling 与 observation
 
-Robot Knowledge Study 来源则进一步把这些内容扩展到：
+Robot Knowledge Study 来源则进一步把 MuJoCo 学习扩展到：
 
-- Python 驱动 MuJoCo 仿真
-- 状态读取
-- 执行器控制
-- Sensor feedback
-- 机械臂运动
-- 末端位姿观察
+- Python 驱动仿真
+- state observation
+- actuator control
+- sensor feedback
+- robot-arm motion
 
-本仓库并不是对这些上游仓库内容的直接复制，而是用于记录我自己的学习过程，包括：
+本仓库并不是为了复制这些上游仓库。
+
+这里记录的是我自己的学习过程，包括：
 
 - 个人学习笔记与总结
 - 独立实现
-- 仿真实验
-- 自动化测试
-- 实验报告与验证
-- 错误修正与持续完善
+- simulation experiments
+- automated tests
+- reports 与 validation
+- corrections 与 refinements
 
-当某个具体学习任务依赖特定上游版本时，对应的来源或 commit 信息会记录在相关进度或实验文档中。
+当某个学习任务依赖特定版本或 commit 时，会在对应的 progress 或 experiment 文档中记录其来源信息。
 
-非常感谢这些上游仓库的作者和贡献者愿意公开分享他们的知识、代码与学习资料。
+非常感谢这些上游仓库作者与贡献者无私分享知识、代码与学习材料。
 
-这些内容在我的学习过程中提供了非常有价值的帮助，也为我以更加系统、更加实践性的方式学习机器人相关内容打下了重要基础。
+这些内容为我系统学习机器人提供了非常重要的基础。
 
-如果没有他们的无私分享，本仓库也不会以当前这种方式建立起来。
+如果没有这些作者的分享，这个仓库也无法以现在的形式建立起来。
+
+---
 
 ## 当前进度
 
-| 模块 | 主题 | 状态 | 学习笔记 | 实验证明 |
+| Module | Topic | Status | Learning Notes | Experiment Evidence |
 |---|---|---|---|---|
-| M0 | 环境配置与 Git 工作流 | 已完成 | - | [环境报告](experiments/environment_reports/) |
-| M1 | Python、NumPy、机器人几何、刚体变换、测试、能力任务与 Modern Robotics 阅读 | 已完成 | [M1 笔记](notes/M1/) | [M1 实验](experiments/M1/) |
-| M2 | MuJoCo 仿真、MJCF 建模、接触、执行器、场景构建与 Python 控制 | 进行中 | [M2 学习笔记](notes/README.md) | [M2 实验](experiments/M2/) |
+| M0 | 环境配置与 Git 工作流 | Completed | - | [Environment Reports](experiments/environment_reports/) |
+| M1 | Python、NumPy、机器人几何、刚体变换、测试、能力任务与 Modern Robotics 阅读 | Completed | [M1 Notes](notes/M1/) | [M1 Experiments](experiments/M1/) |
+| M2 | MuJoCo 仿真、MJCF 建模、接触、执行器、tendon、sensor、场景构建与 Python 控制 | In Progress | [M2 Notes](notes/README.md) | [M2 Experiments](experiments/M2/) |
 
-### M1 当前成果
+---
 
-M1 目前已经完成三个主要学习部分。
+# M1 - Robot Math and Geometry
 
-#### Python 与 NumPy 基础
+M1 目前包含三个已经完成的主要学习模块。
 
-包括：
+## Python 与 NumPy 基础
 
-- 数组 shape、维度与数据类型
-- 索引与切片
-- view 与 copy
+学习内容包括：
+
+- array shape、dimensions 与 data types
+- indexing 与 slicing
+- views 与 copies
 - broadcasting
-- 向量与矩阵运算
-- 浮点误差检查
-- 使用 `pytest` 进行自动测试
+- vector 与 matrix operations
+- floating-point numerical checks
+- 使用 `pytest` 进行 automated testing
 
 学习笔记：
 
 - [English](notes/m1/python_numpy.md)
 - [中文](notes/m1/python_numpy_zh.md)
 
-实验证据：
+实验记录：
 
 - [English](experiments/m1/numeric_basics_report.md)
 - [中文](experiments/m1/numeric_basics_report_zh.md)
 
-#### 机器人几何与刚体变换
+---
 
-包括：
+## Robot Geometry 与 Rigid Transforms
 
-- 坐标系
-- 旋转矩阵
-- 刚体变换
-- 齐次坐标
-- 多级变换组合
-- 逆变换
-- 往返验证
-- 坐标系可视化
+学习内容包括：
+
+- coordinate frames
+- rotation matrices
+- rigid-body transformations
+- homogeneous coordinates
+- transform composition
+- inverse transforms
+- round-trip validation
+- coordinate-frame visualization
 
 学习笔记：
 
 - [English](notes/m1/robot_geometry.md)
 - [中文](notes/m1/robot_geometry_zh.md)
 
-实验证据：
+实验记录：
 
 - [English](experiments/m1/robot_geometry_report.md)
 - [中文](experiments/m1/robot_geometry_report_zh.md)
@@ -147,103 +169,122 @@ M1 目前已经完成三个主要学习部分。
 
 - [`outputs/m1/frames.svg`](outputs/m1/frames.svg)
 
-### 几何实现
+---
 
-前面的数学概念已经进一步对应到可复用的 NumPy 实现，并通过明确的输入约定和验证逻辑提高可靠性。
+## Geometry Implementation
 
-已学习内容：
+前面的数学概念进一步被整理成可重复使用的 NumPy 实现，并加入明确的输入验证和接口约束。
+
+主要包括：
 
 - `rotation_z`
 - `make_transform`
 - `inverse_transform`
 - `transform_points`
-- 有限数值输入检查
-- 严格的数组 shape 检查
-- proper rotation matrix 合法性验证
-- 浮点数容差
-- 坐标变换组合顺序
-- 往返一致性检查
-- 数值示例与坐标系示例的程序结构
+- finite numeric input validation
+- strict array shape validation
+- proper rotation matrix validation
+- floating-point tolerance
+- transform composition order
+- round-trip consistency checks
+- numerical 与 coordinate-frame examples 的结构
 
 学习笔记：
 
 - [English](notes/m1/geometry_implementation.md)
 - [中文](notes/m1/geometry_implementation_zh.md)
 
-### 教材阅读
+---
 
-已完成 M1 指定范围的 *Modern Robotics: Mechanics, Planning, and Control* 阅读：
+## 教材阅读
+
+M1 阶段完成了 *Modern Robotics: Mechanics, Planning, and Control* 中当前规划的阅读内容：
 
 - Section 3.2.1 — Rotation Matrices
 - Section 3.3.1 — Homogeneous Transformation Matrices
 
-主要核对并补充：
+主要强化和新增理解包括：
 
-- `SO(3)` 与 proper rotation
-- `SE(3)` 齐次刚体变换
-- 坐标系下标消去规则
-- 变换组合与逆变换
-- fixed-frame 与 body-frame 的左乘 / 右乘更新
+- `SO(3)` 与 proper rotations
+- `SE(3)` rigid transformations
+- frame-subscript cancellation
+- transform composition 与 inversion
+- fixed-frame 与 body-frame transform updates
 
 阅读笔记：
 
 - [English](notes/m1/modern_robotics_reading.md)
 - [中文](notes/m1/modern_robotics_reading_zh.md)
 
-当前自动化验证结果：
+当前 automated verification：
 
 ```text
-Python / NumPy：    22 项测试通过
-Robot Geometry：    54 项测试通过
-Full repository:    107 项测试通过
+Python / NumPy:    22 tests passed
+Robot Geometry:    54 tests passed
+Full repository:   107 tests passed
 ```
 
-### M2 - MuJoCo 仿真
+---
 
-M2 的 MuJoCo 学习内容来自两个不同的上游仓库。
+# M2 - MuJoCo Simulation
 
-为了保持学习来源清晰、内容可追踪，这两条学习线会分开整理，因为它们关注的内容不同，学习进度也彼此独立。
+M2 目前包含两个不同来源的 MuJoCo 学习流。
 
-#### 来源 A - Albusgive MuJoCo Learning
+这两个来源会持续保持分开，因为它们关注的重点不同，并且学习进度也是独立推进的。
+
+---
+
+## Source A - Albusgive MuJoCo Learning
 
 来源仓库：
 
+```text
 https://github.com/Albusgive/mujoco_learning.git
+```
 
-这一条学习线主要集中在 MJCF 建模基础、物理接触、执行器模型与场景构建。
+这一学习流目前主要用于学习：
 
-目前已经完成的内容包括：
+```text
+MJCF modeling fundamentals
+physical interaction
+actuator models
+tendon transmission
+sensor modeling
+scene construction
+```
 
-- MuJoCo XML / MJCF 结构
-- 仿真参数配置
-- Environment 与 Asset
-- Texture、Material、Mesh 与 Skybox
+当前已经学习的内容包括：
+
+- MuJoCo XML / MJCF structure
+- simulation configuration
+- environment and assets
+- textures、materials、meshes 与 skyboxes
 - `geom`
 - `body`
 - `site`
-- body 层级结构
-- 相对坐标系
-- friction 与 collision 设置
-- joint 类型
-- hinge joint
+- body hierarchy
+- relative coordinate frames
+- friction 与 collision settings
+- joint types
+- hinge joints
 - joint axis 与 range
 - damping
 - stiffness
-- frictionloss
+- friction loss
 - armature
-- 简单单摆仿真
+- simple pendulum simulation
 - sliding friction
 - torsional friction
 - rolling friction
 - `friction="a b c"`
 - `condim`
-- elliptic friction cone
-- pyramidal friction cone
+- elliptic friction cones
+- pyramidal friction cones
 - friction constraint dimensions
 - contact `priority`
-- contact 参数选择
+- contact parameter selection
 - `impratio`
-- actuator 基础
+- actuator fundamentals
 - `general`
 - `motor`
 - `position`
@@ -261,12 +302,11 @@ https://github.com/Albusgive/mujoco_learning.git
 - `timeconst`
 - `inheritrange`
 - target position 与 actual joint state
-- 可控阻尼
-- 气缸 / 液压缸 actuator 基础概念
+- controllable damping
+- basic pneumatic / hydraulic actuator concepts
 - `light`
-- directional light
-- ambient / diffuse / specular
-- shadow
+- directional 与 local lighting
+- ambient、diffuse 与 specular lighting
 - light tracking 与 targeting
 - `replicate`
 - `count`
@@ -277,8 +317,41 @@ https://github.com/Albusgive/mujoco_learning.git
 - circular replication
 - nested replication
 - repeated body structures
+- tendon fundamentals
+- `spatial` tendon
+- `fixed` tendon
+- tendon routing through sites
+- tendon `coef`
+- tendon `springlength`
+- tendon `stiffness`
+- tendon `damping`
+- tendon-based actuation
+- muscle actuator on tendons
+- Mecanum fixed-tendon transmission
+- camera fundamentals
+- IMU-style sensing
+- `framequat`
+- `accelerometer`
+- `gyro`
+- `jointpos`
+- `jointvel`
+- `rangefinder`
+- `force`
+- `torque`
+- `ballquat`
+- `ballangvel`
+- `framepos`
+- `framelinvel`
+- `frameangvel`
+- `framelinacc`
+- `frameangacc`
+- relative frame sensing
+- subtree sensing
+- `data.sensordata`
 
-学习笔记：
+---
+
+## Source A 学习笔记
 
 - [Environment and Assets](notes/M2/MuJoCo/01_environment_and_assets.md)
 - [中文 - 环境配置与资源](notes/M2/MuJoCo/01_environment_and_assets_zh.md)
@@ -292,36 +365,63 @@ https://github.com/Albusgive/mujoco_learning.git
 - [中文 - Actuator 执行器](notes/M2/MuJoCo/05_actuator_zh.md)
 - [Light and Replicate](notes/M2/MuJoCo/06_light_and_replicate.md)
 - [中文 - Light 与 Replicate](notes/M2/MuJoCo/06_light_and_replicate_zh.md)
+- [Tendon](notes/M2/MuJoCo/07_tendon.md)
+- [中文 - Tendon 肌腱 / 传动结构](notes/M2/MuJoCo/07_tendon_zh.md)
+- [Sensor](notes/M2/MuJoCo/08_sensor.md)
+- [中文 - Sensor 传感器](notes/M2/MuJoCo/08_sensor_zh.md)
 
-实验：
+---
+
+## Source A 实验与示例分析
 
 - [MuJoCo Experiments Overview](experiments/M2/MuJoCo/README.md)
 - [Review Model Report](experiments/M2/MuJoCo/review_model_report.md)
 - [中文 - Review Model Report](experiments/M2/MuJoCo/review_model_report_zh.md)
 - [Pendulum Report](experiments/M2/MuJoCo/pendulum_report.md)
 - [中文 - Pendulum Report](experiments/M2/MuJoCo/pendulum_report_zh.md)
+- [Friction Comparison Report](experiments/M2/MuJoCo/friction_comparison_report.md)
+- [中文 - Friction Comparison Report](experiments/M2/MuJoCo/friction_comparison_report_zh.md)
+- [Actuator Demo Report](experiments/M2/MuJoCo/actuator_demo_report.md)
+- [中文 - Actuator Demo Report](experiments/M2/MuJoCo/actuator_demo_report_zh.md)
+- [Tendon Example Analysis](experiments/M2/MuJoCo/tendon_examples_report.md)
+- [中文 - Tendon 示例分析](experiments/M2/MuJoCo/tendon_examples_report_zh.md)
+- [Sensor Example Analysis](experiments/M2/MuJoCo/sensor_example_report.md)
+- [中文 - Sensor 综合示例分析](experiments/M2/MuJoCo/sensor_example_report_zh.md)
 
-这一条学习线目前仍在继续。
+这一学习流当前仍然：
+
+```text
+In Progress
+```
 
 ---
 
-#### 来源 B - Robot Knowledge Study
+# Source B - Robot Knowledge Study
 
 来源仓库：
 
+```text
 https://github.com/noBug01/Robot_knowledge_study
+```
 
-使用版本：
+学习版本：
 
 ```text
 v0.3.0
 ```
 
-这一条学习线把 MuJoCo 学习从 XML 建模进一步扩展到 Python 驱动仿真、状态读取、执行器控制与传感器反馈。
+这一学习流将 MuJoCo 学习从 XML 建模进一步扩展到：
 
-已经完成的内容包括：
+```text
+Python-driven simulation
+state observation
+actuator control
+sensor feedback
+```
 
-- SIM-T01 桌面与自由下落方块
+当前已经完成：
+
+- SIM-T01 table and falling cube
 - 使用 Python 加载 MJCF
 - `MjModel`
 - `MjData`
@@ -329,33 +429,37 @@ v0.3.0
 - `mj_forward`
 - `qpos`
 - `qvel`
-- 接触状态观察
+- contact observation
 - `data.ncon`
-- CSV 输出
-- 数值预测与验证
-- 使用 `pytest` 自动测试
+- CSV output
+- numerical prediction 与 verification
+- 使用 `pytest` 进行 automated testing
 - MuJoCo Viewer
-- SIM-T02 机械臂关节角目标控制
-- 父 body / 子 body 层级结构
-- default 参数模板
-- mesh asset
-- position actuator
+- SIM-T02 arm joint targets
+- parent-child robot body hierarchy
+- default classes
+- mesh assets
+- position actuators
 - `data.ctrl`
 - target 与 actual joint state
-- waypoint 插值
-- joint sensor
-- 末端位置
-- 末端姿态
-- Python 控制下的 Viewer 仿真
+- waypoint interpolation
+- joint sensors
+- end-effector position
+- end-effector orientation
+- Python-controlled Viewer simulation
 
-学习笔记：
+---
+
+## Source B 学习笔记
 
 - [SIM-T01 - Table and Falling Cube](notes/M2/RobotKnowledgeStudy_MuJoCo/01_table_cube.md)
 - [中文 - SIM-T01 桌面与自由下落方块](notes/M2/RobotKnowledgeStudy_MuJoCo/01_table_cube_zh.md)
 - [SIM-T02 - Arm Joint Targets](notes/M2/RobotKnowledgeStudy_MuJoCo/02_arm_joint_targets.md)
 - [中文 - SIM-T02 机械臂关节角目标控制](notes/M2/RobotKnowledgeStudy_MuJoCo/02_arm_joint_targets_zh.md)
 
-实验：
+---
+
+## Source B 实验记录
 
 - [Robot Knowledge Study MuJoCo Experiments](experiments/M2/RobotKnowledgeStudy_MuJoCo/README.md)
 - [SIM-T01 Experiment Report](experiments/M2/RobotKnowledgeStudy_MuJoCo/sim_t01_table_cube_report.md)
@@ -363,62 +467,70 @@ v0.3.0
 - [SIM-T02 Experiment Report](experiments/M2/RobotKnowledgeStudy_MuJoCo/sim_t02_arm_joint_targets_report.md)
 - [中文 - SIM-T02 实验报告](experiments/M2/RobotKnowledgeStudy_MuJoCo/sim_t02_arm_joint_targets_report_zh.md)
 
-目前 `Robot_knowledge_study` 提供的 M2 内容已经全部完成。
+当前 `v0.3.0` 中可用的 M2 内容已经完成。
 
 ---
 
-#### M2 学习进展
+# M2 学习进展结构
 
-目前两条学习线分别形成：
+目前两个来源分别形成了以下学习路径：
 
 ```text
 Albusgive source
 ↓
-MJCF 结构
+MJCF structure
 ↓
 geom / body / site
 ↓
-joint 建模
+joint modeling
 ↓
-contact 与 friction
+contact and friction
 ↓
-actuator 模型
+actuator models
 ↓
-light 与 repeated scene construction
+light and repeated scene construction
+↓
+tendon transmission
+↓
+sensor modeling and observation
 
 Robot Knowledge Study source
 ↓
-Python 驱动仿真
+Python-driven simulation
 ↓
-状态读取
+state observation
 ↓
-actuator 控制
+actuator control
 ↓
 sensor feedback
 ↓
 end-effector observation
 ```
 
-综合起来，目前 M2 的学习路径是：
+综合来看，目前 M2 的学习路径已经逐渐形成：
 
 ```text
-MJCF 建模
+MJCF modeling
 ↓
-刚体结构
+rigid-body structure
 ↓
-joint 运动
+joint motion
 ↓
-contact 与 friction
+contact and friction
 ↓
 actuation
 ↓
 scene construction
 ↓
-Python 驱动仿真
+tendon transmission
 ↓
-状态读取
+sensor modeling
 ↓
-主动 joint 控制
+Python-driven simulation
+↓
+state observation
+↓
+active joint control
 ↓
 sensor feedback
 ```
@@ -427,16 +539,18 @@ sensor feedback
 
 ```text
 Robot Knowledge Study
-→ 已完成
+→ Completed
 
 Albusgive MuJoCo Learning
-→ 进行中
+→ In Progress
 
-M2 整体
-→ 进行中
+Overall M2
+→ In Progress
 ```
 
-## 仓库结构
+---
+
+# 仓库结构
 
 ```text
 robot-learning-practice/
@@ -464,7 +578,11 @@ robot-learning-practice/
 │       │   ├── 05_actuator.md
 │       │   ├── 05_actuator_zh.md
 │       │   ├── 06_light_and_replicate.md
-│       │   └── 06_light_and_replicate_zh.md
+│       │   ├── 06_light_and_replicate_zh.md
+│       │   ├── 07_tendon.md
+│       │   ├── 07_tendon_zh.md
+│       │   ├── 08_sensor.md
+│       │   └── 08_sensor_zh.md
 │       │
 │       └── RobotKnowledgeStudy_MuJoCo/
 │           ├── 01_table_cube.md
@@ -489,7 +607,17 @@ robot-learning-practice/
 │       │   ├── review_model_report_zh.md
 │       │   ├── pendulum.xml
 │       │   ├── pendulum_report.md
-│       │   └── pendulum_report_zh.md
+│       │   ├── pendulum_report_zh.md
+│       │   ├── friction_comparison.xml
+│       │   ├── friction_comparison_report.md
+│       │   ├── friction_comparison_report_zh.md
+│       │   ├── actuator_demo.xml
+│       │   ├── actuator_demo_report.md
+│       │   ├── actuator_demo_report_zh.md
+│       │   ├── tendon_examples_report.md
+│       │   ├── tendon_examples_report_zh.md
+│       │   ├── sensor_example_report.md
+│       │   └── sensor_example_report_zh.md
 │       │
 │       └── RobotKnowledgeStudy_MuJoCo/
 │           ├── README.md
@@ -507,31 +635,63 @@ robot-learning-practice/
 └── README_zh.md
 ```
 
-仓库整体按照“学习笔记”和“实验验证”分开组织，同时保持两者之间的对应关系。
+整个仓库会尽量保持：
 
-- `notes/`：存放结构化学习笔记与知识总结
-- `experiments/`：存放实际实现、仿真文件与实验报告
-- `tests/`：存放自动化测试与验证
-- `examples/`：存放可运行示例
-- `docs/`：存放工作流与项目文档
-- `progress/`：记录阶段进度与学习里程碑
+```text
+Notes
+→ 学习总结与概念理解
 
-## 学习方式
+Experiments
+→ 实际实现、模型、实验与验证
 
-我的学习流程主要分为四步：
+Tests
+→ 自动化验证
 
-1. 理解背后的数学与核心概念。
-2. 尝试独立重新实现。
+Examples
+→ 可运行示例
+
+Docs
+→ 工作流与项目文档
+
+Progress
+→ 学习里程碑记录
+```
+
+---
+
+# 学习方法
+
+当前学习流程主要分为四步：
+
+1. 理解背后的数学和概念。
+2. 尽可能独立重新实现。
 3. 使用测试与数值检查验证实现。
-4. 记录推理过程、错误、修正和结果，方便未来复习。
+4. 记录推理过程、错误、修正与最终结果。
 
-希望每个学习主题都尽量做到可复现、可解释，并能够进一步用于后续项目。
+这个流程的目的，是让每一个学习主题都尽可能做到：
 
-## 可复现环境
+```text
+可复现
+可解释
+可验证
+可长期回顾
+```
 
-项目使用 `environment.yml` 定义 Conda 环境。
+而不是只完成一次教程后就结束。
 
-典型使用方式：
+---
+
+# 可复现性
+
+项目使用：
+
+```text
+environment.yml
+```
+
+定义 Conda 环境。
+
+典型配置：
 
 ```bash
 conda env create -f environment.yml
@@ -539,93 +699,175 @@ conda activate robot_manipulation_learning
 python -m pytest
 ```
 
-可运行示例存放在 `examples/`，自动化测试存放在 `tests/`。
+可运行示例存放在：
 
-实验输出与环境验证记录会按需要保存在 `experiments/`。
+```text
+examples/
+```
 
-## 文档入口
+自动化测试存放在：
 
-- [学习笔记](notes/README.md)
-- [学习路线图](docs/roadmap.md)
-- [详细工作流](docs/workflow.md)
-- [学习进度记录](progress.md)
+```text
+tests/
+```
 
-## 当前重点
+相关实验输出与环境验证记录存放在：
 
-目前的学习重点是 M2：MuJoCo 仿真。
+```text
+experiments/
+```
 
-这一阶段正在进行的内容包括：
+---
 
-- 理解 MuJoCo XML / MJCF 的基本结构
-- 搭建简单的仿真环境
-- 理解 `worldbody`、`body`、`geom`、`site` 与 `joint` 之间的关系
-- 理解父子 body 的层级关系与相对坐标
-- 学习 contact 与 friction 的工作方式
+# 文档导航
+
+- [Learning Notes](notes/README.md)
+- [Learning Roadmap](docs/roadmap.md)
+- [Detailed Workflow](docs/workflow.md)
+- [Progress Record](progress.md)
+
+---
+
+# 当前重点
+
+目前主要学习重点是：
+
+```text
+M2 - MuJoCo Simulation
+```
+
+当前正在学习和强化：
+
+- 理解 MuJoCo XML / MJCF structure
+- 构建简单 simulation environment
+- 理解 `worldbody`、`body`、`geom`、`site` 和 `joint` 如何配合
+- 理解 parent-child body hierarchy 与 relative coordinate frames
+- 学习 contact 与 friction behaviour
 - 理解 sliding、torsional 与 rolling friction
-- 理解 `condim`、friction cone 与 contact priority 对仿真的影响
-- 学习 actuator 如何驱动 joint 与其他模型元素
-- 对比 motor、position、velocity 与 integrated velocity control
+- 学习 `condim`、friction cone 与 contact priority
+- 理解 actuator 如何驱动 joint 和其他模型元素
+- 对比 motor、position、velocity 和 integrated-velocity control
 - 理解 `ctrlrange`、`forcerange` 与 `actrange`
-- 学习 damper 与 cylinder actuator 的基本物理意义
-- 学习 MuJoCo 场景中的 light 配置
+- 学习 controllable damping 与 basic cylinder actuator
+- 学习 scene lighting
 - 使用 `replicate` 高效创建重复模型结构
-- 从零开始创建简单的 MuJoCo 仿真实验
-- 将仿真知识逐步与机器人学中的运动学、动力学、关节、执行器、传感器和控制联系起来
+- 理解 `spatial` 与 `fixed` tendon
+- 学习 site-based tendon routing
+- 理解 joint coupling 与 `coef`
+- 学习 tendon-driven actuation
+- 学习 muscle actuator 基础概念
+- 学习 camera 与 IMU-style sensing
+- 学习 joint、ball-joint、frame、subtree、rangefinder、force 和 torque sensor
+- 理解 sensor output 如何存储在 `data.sensordata`
+- 从零构建简单 MuJoCo experiments
+- 将 simulation concepts 与 kinematics、dynamics、joint、actuator、transmission、sensor 和 control 联系起来
 
-目前已经完成的 M2 内容包括：
+---
 
-- 环境配置与 Asset 资源相关笔记
-- Geom、Body 与 Site 相关笔记
-- Joint 关节相关笔记
-- Friction 摩擦相关笔记
-- Actuator 执行器相关笔记
-- Light 与 Replicate 相关笔记
-- 一个基础综合复习仿真模型
-- 一个基于 hinge joint 的单摆实验
-- friction 对照实验分析
-- actuator 示例分析
-- 当前 MuJoCo Notes 与 Experiments 的中英文双语文档
-- SIM-T01 桌面与自由下落方块
-- SIM-T02 机械臂关节角目标控制
-- Python 驱动 MuJoCo 仿真
-- 使用 `qpos` 与 `qvel` 读取状态
+# 当前已经完成的 M2 工作
+
+包括：
+
+- environment and asset configuration notes
+- geom、body 与 site notes
+- joint notes
+- friction notes
+- actuator notes
+- light 与 replicate notes
+- tendon notes
+- sensor notes
+- basic review simulation model
+- hinge-joint pendulum experiment
+- friction comparison analysis
+- actuator example analysis
+- fixed 与 spatial tendon example analysis
+- IMU、joint、frame、force/torque、ball-joint sensor example analysis
+- 当前 MuJoCo notes 与 experiments 的中英双语文档
+- SIM-T01 table and falling cube
+- SIM-T02 robot-arm joint target control
+- Python-driven MuJoCo simulation
+- 使用 `qpos` 与 `qvel` 进行 state observation
 - 使用 `data.ctrl` 进行 actuator control
 - sensor feedback
-- end-effector position 与 orientation 观察
+- end-effector position 与 orientation observation
 
-`Robot_knowledge_study` 来源当前版本 `v0.3.0` 中提供的 M2 内容已经完成，包括 SIM-T01 和 SIM-T02 两个场景。
+最近 Albusgive MuJoCo 学习进一步扩展到了：
 
-基于 Albusgive 来源的 MuJoCo 学习仍在继续，后续会继续加入更多建模与仿真相关内容。
+```text
+transmission
++
+sensing
+```
 
-因此，M2 整体仍处于进行中。
+具体包括：
 
-## 后续方向
+- `spatial` 与 `fixed` tendon
+- site-based tendon routing
+- 使用 `coef` 进行 joint coupling
+- muscle-driven tendon actuation
+- Mecanum virtual motion coordinates
+- 使用 `framequat`、`accelerometer` 与 `gyro` 构建 IMU-style sensing
+- joint 与 ball-joint sensors
+- rangefinder sensing
+- force 与 torque sensing
+- global 与 relative frame sensors
+- subtree sensing
+- sensor output through `data.sensordata`
 
-计划逐步学习和扩展：
+当前：
 
-- 机器人运动学
-- 控制系统
+```text
+Robot Knowledge Study v0.3.0 M2
+→ SIM-T01 与 SIM-T02 已完成
+
+Albusgive MuJoCo Learning
+→ 仍在继续
+
+Overall M2
+→ 仍然是 In Progress
+```
+
+---
+
+# 未来方向
+
+之后计划继续学习：
+
+- robot kinematics
+- control systems
 - ROS 2
-- 机器人感知
+- perception
 - SLAM
-- 机器人操作与抓取
-- 仿真
-- 更完整的综合机器人项目
+- manipulation
+- simulation
+- larger integrated robotics projects
 
-随着仓库逐渐成熟，部分学习模块也会进一步发展成具有独立文档、测试和示例的完整小项目。
+随着仓库不断扩展，一些学习模块可能会进一步发展成：
 
-## 写给自己的话
+```text
+更完整的独立项目
++
+更完整的 documentation
++
+tests
++
+examples
+```
 
-我现在仍然只是刚刚开启对机器人的探索之路。
+---
 
-以后一定还会遇到看不懂的概念、跑不通的代码、失败的实验，以及花很久都解决不了的问题。这些都不是我应该停下来的理由，而本来就是学习机器人这件事的一部分。
+# 写给自己的话
 
-我的目标不是“看起来很厉害”，而是真正变得有能力。
+我现在仍然只是刚刚开始这段学习过程。以后一定还会遇到很多看不懂的概念，写不出来的代码，运行失败的实验，花很久才能解决的问题。
 
-我不需要被过去的自己定义。曾经的犹豫、错误、错过的机会，或者起步得比别人慢，都不能决定我以后会成为怎样的人。真正重要的是现在的我选择做什么、现在开始积累什么，以及从这一刻起是否继续向前。
+这些都是学习机器人过程的一部分，而不是应该停下来的理由。
 
-所以继续学数学，继续写代码，继续验证自己的假设，继续提出更好的问题，也继续一点一点把东西做出来。
+我的目标不是看起来很厉害，而是真正变得有能力。
 
-持续重复的小进步，最终会变成真正的能力。
+我不需要被过去的自己定义。以前的犹豫、错误、错过的机会，或者比别人更慢的起点，都不能决定以后能做到什么。
 
-而今天觉得困难的东西，终有一天会成为我解决更高级、更复杂问题时最普通的基础。
+真正重要的是，我现在选择做什么，我现在学习什么，以及我是否愿意继续向前。
+
+所以我会继续学习数学，继续写代码，继续做实验，继续提出更好的问题，也继续一点一点构建真正属于自己的能力。
+
+终有一天，现在觉得困难的东西，会成为以后解决更困难、更复杂问题时必要的基础。

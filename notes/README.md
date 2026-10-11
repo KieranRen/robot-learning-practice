@@ -1,442 +1,713 @@
-# Learning Notes
+# Notes
 
-This directory contains my structured learning notes for robotics, numerical computing, and related engineering topics.
+This directory contains structured learning notes produced throughout my Robot Learning roadmap.
 
-The notes are not intended to reproduce source materials. Instead, they record my own understanding, derivations, mistakes, corrections, and summaries after completing each learning module.
+The notes are organized by learning module and source so that concepts from different upstream repositories remain clearly separated.
 
-## M1 — Robot Math Foundations
-
-### Python and NumPy
-
-- [English](m1/python_numpy.md)
-- [中文](m1/python_numpy_zh.md)
-
-Topics include:
-
-- Python functions and modules
-- NumPy arrays
-- `shape`, `ndim`, and `dtype`
-- indexing and slicing
-- views and copies
-- broadcasting
-- vector length
-- `*` versus `@`
-- physical units
-- floating-point error
-- automated testing with `pytest`
-
-### Robot Geometry
-
-- [English](m1/robot_geometry.md)
-- [中文](m1/robot_geometry_zh.md)
-
-Topics include:
-
-- coordinate frames
-- point representations
-- rotation matrices
-- right-hand rule
-- orthogonality and determinant checks
-- rigid-body transformations
-- homogeneous coordinates
-- transform composition
-- inverse transforms
-- numerical and geometric validation
-
-### Geometry Implementation
-
-- [English](m1/geometry_implementation.md)
-- [中文](m1/geometry_implementation_zh.md)
-
-Topics include:
-
-- `rotation_z`
-- `make_transform`
-- `inverse_transform`
-- `transform_points`
-- finite numeric input validation
-- strict array shape validation
-- proper rotation matrix checks
-- floating-point tolerance
-- `translate_points`
-- coordinate-frame example structure
-- transform composition order
-- round-trip verification
-
-### Modern Robotics Reading
-
-- [English](m1/modern_robotics_reading.md)
-- [中文](m1/modern_robotics_reading_zh.md)
-
-Topics include:
-
-- `SO(3)` and proper rotations
-- rotation-matrix properties
-- frame-subscript conventions
-- `SE(3)` and homogeneous transformations
-- rigid-transform inverse
-- transform composition
-- fixed-frame versus body-frame updates
-
-## M2 - MuJoCo Simulation
-
-M2 contains MuJoCo learning materials from two different upstream sources.
-
-To keep the learning process clear and traceable, notes from the two sources are organized separately.
+The purpose of these notes is not only to record what was learned, but also to document the reasoning, interpretation, implementation ideas, and technical understanding developed during the learning process.
 
 ---
 
-### Source A - Albusgive MuJoCo Learning
+# M1 - Robotics Foundations
 
-Source repository:
+M1 focuses on the mathematical and programming foundations required for later robotics learning.
 
-https://github.com/Albusgive/mujoco_learning.git
+The main topics include:
 
-This part focuses mainly on MJCF modeling fundamentals, physical interaction, actuator models, and scene construction.
+- Python fundamentals
+- NumPy
+- vectors
+- coordinate systems
+- rigid transformations
+- homogeneous transformation matrices
+- point transformation
+- robot geometry
+- basic implementation and testing
 
-#### Environment and Assets
+M1 notes are stored in the corresponding M1 directory.
 
-- [English](M2/MuJoCo/01_environment_and_assets.md)
-- [中文](M2/MuJoCo/01_environment_and_assets_zh.md)
-
-Topics include:
-
-- MuJoCo XML / MJCF structure
-- compiler settings
-- simulation options
-- gravity
-- timestep
-- integrators and solvers
-- visual configuration
-- assets
-- textures
-- materials
-- meshes
-- skyboxes
-
-#### Geom, Body and Site
-
-- [English](M2/MuJoCo/02_geom_body_site.md)
-- [中文](M2/MuJoCo/02_geom_body_site_zh.md)
-
-Topics include:
-
-- geom
-- geometry types
-- body hierarchy
-- relative coordinate frames
-- multiple geoms inside one body
-- site markers
-- friction
-- collision filtering
-- mass and density
-
-#### Joint
-
-- [English](M2/MuJoCo/03_joint.md)
-- [中文](M2/MuJoCo/03_joint_zh.md)
-
-Topics include:
-
-- joint types
-- hinge joints
-- joint axis
-- joint range
-- damping
-- stiffness
-- friction loss
-- armature
-- simple pendulum modeling
-
-#### Friction
-
-- [English](M2/MuJoCo/04_friction.md)
-- [中文](M2/MuJoCo/04_friction_zh.md)
-
-Topics include:
-
-- sliding friction
-- torsional friction
-- rolling friction
-- `friction="a b c"`
-- `condim`
-- `cone="elliptic"`
-- `cone="pyramidal"`
-- friction constraint dimensions
-- internal friction expansion
-- `priority`
-- contact parameter selection
-- `impratio`
-- box, sphere, and slope comparison experiments
-
-#### Actuator
-
-- [English](M2/MuJoCo/05_actuator.md)
-- [中文](M2/MuJoCo/05_actuator_zh.md)
-
-Topics include:
-
-- actuator fundamentals
-- `general`
-- `motor`
-- `position`
-- `velocity`
-- `intvelocity`
-- `damper`
-- `cylinder`
-- `data.ctrl`
-- `ctrlrange`
-- `forcerange`
-- `actrange`
-- `gear`
-- `kp`
-- `kv`
-- `timeconst`
-- `inheritrange`
-- target position vs actual joint state
-- force / torque control
-- velocity control
-- integrated velocity control
-- controllable damping
-- pneumatic / hydraulic cylinder concepts
-
-Core actuator chain:
+M1 also introduced the basic workflow used throughout this repository:
 
 ```text
-data.ctrl
+learn
+↓
+understand
+↓
+implement
+↓
+test
+↓
+document
+```
+
+---
+
+# M2 - MuJoCo and Robot Simulation
+
+M2 focuses on robot simulation and MuJoCo.
+
+Unlike M1, M2 currently uses two different upstream learning sources.
+
+These two sources are intentionally kept separate.
+
+```text
+M2
+├── MuJoCo
+│   └── Albusgive/mujoco_learning
+│
+└── RobotKnowledgeStudy_MuJoCo
+    └── noBug01/Robot_knowledge_study
+```
+
+This separation is important because the two sources have different structures, learning objectives, examples, and development workflows.
+
+---
+
+# Source A - Albusgive MuJoCo Learning
+
+Directory:
+
+```text
+notes/M2/MuJoCo/
+```
+
+Upstream source:
+
+```text
+https://github.com/Albusgive/mujoco_learning
+```
+
+This source focuses on learning MuJoCo concepts progressively through MJCF structure, model elements, contact, actuation, transmission, sensing, and simulation examples.
+
+Current status:
+
+```text
+In Progress
+```
+
+---
+
+## 01. Environment and Assets
+
+Files:
+
+```text
+M2/MuJoCo/01_environment_and_assets.md
+M2/MuJoCo/01_environment_and_assets_zh.md
+```
+
+Main topics:
+
+```text
+MuJoCo environment
+MJCF structure
+compiler
+option
+visual
+asset
+mesh
+texture
+material
+hfield
+skybox
+simulation configuration
+rendering configuration
+```
+
+Important concepts include:
+
+```text
+timestep
+gravity
+integrator
+solver
+iterations
+tolerance
+density
+viscosity
+wind
+```
+
+and visual parameters such as:
+
+```text
+realtime
+shadowsize
+headlight
+lighting
+RGBA
+fog
+```
+
+---
+
+## 02. Geom, Body and Site
+
+Files:
+
+```text
+M2/MuJoCo/02_geom_body_site.md
+M2/MuJoCo/02_geom_body_site_zh.md
+```
+
+Main topics:
+
+```text
+geom
+body
+site
+body hierarchy
+relative coordinates
+multiple geoms in one body
+mass
+density
+friction
+fromto
+material
+RGBA
+```
+
+Important understanding:
+
+```text
+body
+→ rigid body
+
+geom
+→ shape belonging to a body
+
+site
+→ reference / marker / attachment location
+```
+
+Nested body coordinates are relative to their parent body.
+
+---
+
+## 03. Joint
+
+Files:
+
+```text
+M2/MuJoCo/03_joint.md
+M2/MuJoCo/03_joint_zh.md
+```
+
+Main topics:
+
+```text
+free joint
+ball joint
+slide joint
+hinge joint
+joint axis
+joint range
+damping
+stiffness
+frictionloss
+armature
+ref
+```
+
+Core relationship:
+
+```text
+body
+→ rigid body
+
+joint
+→ defines allowed relative motion
+
+geom
+→ defines shape
+```
+
+A simple pendulum example was also analysed to connect:
+
+```text
+gravity
+↓
+center-of-mass offset
+↓
+torque
+↓
+rotational motion
+```
+
+---
+
+## 04. Friction
+
+Files:
+
+```text
+M2/MuJoCo/04_friction.md
+M2/MuJoCo/04_friction_zh.md
+```
+
+Main topics:
+
+```text
+sliding friction
+torsional friction
+rolling friction
+friction parameter structure
+condim
+contact dimensions
+friction cones
+priority
+impratio
+```
+
+MuJoCo friction uses three main values:
+
+```text
+friction="sliding torsional rolling"
+```
+
+Conceptually expanded internally as:
+
+```text
+sliding
+sliding
+torsional
+rolling
+rolling
+```
+
+Important `condim` values:
+
+```text
+condim = 1
+→ normal force only
+
+condim = 3
+→ normal + sliding friction
+
+condim = 4
+→ normal + sliding + torsional friction
+
+condim = 6
+→ normal + sliding + torsional + rolling friction
+```
+
+Both elliptic and pyramidal friction cones were studied.
+
+---
+
+## 05. Actuator
+
+Files:
+
+```text
+M2/MuJoCo/05_actuator.md
+M2/MuJoCo/05_actuator_zh.md
+```
+
+Main topics:
+
+```text
+general actuator
+motor actuator
+position actuator
+velocity actuator
+intvelocity actuator
+damper actuator
+cylinder actuator
+muscle actuator
+```
+
+Important parameters include:
+
+```text
+ctrlrange
+forcerange
+actrange
+gear
+kp
+kv
+timeconst
+gainprm
+biasprm
+```
+
+Core control chain:
+
+```text
+Python data.ctrl
 ↓
 actuator
 ↓
 joint / tendon / site
 ↓
-body motion
+robot motion
 ```
 
-#### Light and Replicate
+Important distinctions:
 
-- [English](M2/MuJoCo/06_light_and_replicate.md)
-- [中文](M2/MuJoCo/06_light_and_replicate_zh.md)
+```text
+motor
+→ how much force / torque to apply
 
-Topics include:
+position
+→ where the joint should go
 
-- light position and direction
-- directional lights
-- ambient lighting
-- diffuse lighting
-- specular highlights
-- shadows
-- attenuation
-- spotlight parameters
-- light tracking modes
-- `replicate`
-- `count`
-- `offset`
-- `euler`
-- `sep`
-- linear patterns
-- circular patterns
-- nested replication
-- repeated body structures
-- automatic naming of replicated elements
+velocity
+→ how fast the joint should move
 
-Core distinction:
+intvelocity
+→ velocity-like command integrated into an internal position target
+```
+
+---
+
+## 06. Light and Replicate
+
+Files:
+
+```text
+M2/MuJoCo/06_light_and_replicate.md
+M2/MuJoCo/06_light_and_replicate_zh.md
+```
+
+### Light
+
+Main topics:
+
+```text
+pos
+dir
+directional
+castshadow
+active
+ambient
+diffuse
+specular
+attenuation
+cutoff
+exponent
+mode
+target
+```
+
+Conceptually:
 
 ```text
 light
-→ visualization / rendering
+→ controls scene illumination
+```
 
+### Replicate
+
+Main topics:
+
+```text
+count
+offset
+euler
+sep
+nested replicate
+linear repetition
+circular repetition
+```
+
+Conceptually:
+
+```text
 replicate
-→ repeated model construction
+→ repeatedly creates model structures
+```
+
+It can be used for structures such as:
+
+```text
+roller arrays
+sensor arrays
+repeated geometry
+multidimensional patterns
 ```
 
 ---
 
-### Source B - Robot Knowledge Study
+## 07. Tendon
 
-Source repository:
-
-https://github.com/noBug01/Robot_knowledge_study
-
-Version used:
+Files:
 
 ```text
-v0.3.0
+M2/MuJoCo/07_tendon.md
+M2/MuJoCo/07_tendon_zh.md
 ```
 
-This part extends MuJoCo learning from XML modeling into Python-driven simulation, state observation, and basic robot control.
-
-#### SIM-T01 - Table and Falling Cube
-
-- [English](M2/RobotKnowledgeStudy_MuJoCo/01_table_cube.md)
-- [中文](M2/RobotKnowledgeStudy_MuJoCo/01_table_cube_zh.md)
-
-Topics include:
-
-- loading MJCF with Python
-- `MjModel`
-- `MjData`
-- `mj_step`
-- `mj_forward`
-- `qpos`
-- `qvel`
-- contact observation
-- `data.ncon`
-- CSV output
-- numerical prediction and verification
-- Viewer
-- automated testing
-
-Core workflow:
+Main topics:
 
 ```text
-XML scene
-↓
-MjModel
-↓
-MjData
-↓
-mj_step
-↓
-state changes
-↓
-observation
-↓
-numerical / visual verification
+tendon fundamentals
+spatial tendon
+fixed tendon
+site routing
+joint coupling
+coef
+range
+frictionloss
+width
+springlength
+stiffness
+damping
+muscle actuator
 ```
 
-#### SIM-T02 - Arm Joint Targets
-
-- [English](M2/RobotKnowledgeStudy_MuJoCo/02_arm_joint_targets.md)
-- [中文](M2/RobotKnowledgeStudy_MuJoCo/02_arm_joint_targets_zh.md)
-
-Topics include:
-
-- parent-child body hierarchy
-- default classes
-- mesh assets
-- multiple geoms inside one body
-- seven-joint robot arm
-- position actuators
-- `data.ctrl`
-- target vs actual joint position
-- `qpos`
-- `qvel`
-- joint sensors
-- end-effector site
-- end-effector position and orientation
-- waypoint motion
-- interpolation
-- Viewer-based controlled motion
-
-Core control chain:
+The two main tendon types are:
 
 ```text
-WAYPOINTS
+spatial
+→ geometric path through sites
+
+fixed
+→ mathematical combination of joint coordinates
+```
+
+### Spatial Tendon
+
+A spatial tendon follows a path through sites:
+
+```text
+site
 ↓
-interpolation
+site
 ↓
-data.ctrl
+site
+```
+
+Body motion changes site positions, which changes tendon geometry and tendon length.
+
+Important parameters include:
+
+```text
+springlength
+stiffness
+damping
+width
+```
+
+A muscle actuator can drive a spatial tendon:
+
+```text
+control
 ↓
-position actuator
+muscle actuator
+↓
+spatial tendon
+↓
+sites
+↓
+bodies
 ↓
 joint motion
+```
+
+### Fixed Tendon
+
+A fixed tendon combines joint coordinates using coefficients:
+
+```text
+T
+=
+coef1 × q1
++
+coef2 × q2
++
+...
+```
+
+The studied Mecanum example combines four wheel joints into:
+
+```text
+forward
+transverse
+rotate
+```
+
+virtual control coordinates.
+
+Core relationship:
+
+```text
+physical joints
 ↓
-qpos / qvel
+fixed tendon
 ↓
-sensor feedback
-↓
-end-effector pose
+virtual motion coordinate
 ```
 
 ---
 
-### M2 Learning Progression
+## 08. Sensor
 
-The two source streams cover different parts of the MuJoCo learning process.
+Files:
 
 ```text
-Albusgive source
-↓
-MJCF structure
-↓
-geom / body / site
-↓
-joint modeling
-↓
-contact and friction
-↓
-actuator models
-↓
-light and repeated scene construction
-
-Robot Knowledge Study source
-↓
-Python simulation
-↓
-state observation
-↓
-actuator control
-↓
-sensor feedback
-↓
-end-effector observation
+M2/MuJoCo/08_sensor.md
+M2/MuJoCo/08_sensor_zh.md
 ```
 
-Together, the current M2 learning progression is:
+Main topics:
 
 ```text
-MJCF modeling
+camera
+IMU
+framequat
+accelerometer
+gyro
+jointpos
+jointvel
+rangefinder
+force
+torque
+ballquat
+ballangvel
+framepos
+framelinvel
+frameangvel
+framelinacc
+frameangacc
+subtree sensors
+data.sensordata
+```
+
+### IMU-Style Sensing
+
+MuJoCo can construct IMU-like measurements using:
+
+```text
+framequat
++
+accelerometer
++
+gyro
+```
+
+which provides:
+
+```text
+orientation
++
+acceleration
++
+angular velocity
+```
+
+A `site` is commonly used as the sensor mounting location and coordinate frame.
+
+### Joint Sensors
+
+For hinge or slide joints:
+
+```text
+jointpos
+→ joint position
+
+jointvel
+→ joint velocity
+```
+
+For ball joints:
+
+```text
+ballquat
+→ orientation quaternion
+
+ballangvel
+→ angular velocity
+```
+
+### Rangefinder
+
+A rangefinder uses a site to define:
+
+```text
+ray origin
++
+ray direction
+```
+
+Conceptually:
+
+```text
+site
 ↓
-rigid-body structure
+ray casting
 ↓
-joint motion
+geom intersection
 ↓
-contact and friction
+distance
+```
+
+Multiple rangefinders can be arranged into a LiDAR-like sensor array.
+
+### Force and Torque
+
+```text
+force
+→ Fx Fy Fz
+
+torque
+→ Tx Ty Tz
+```
+
+Together they provide six-axis force/torque information.
+
+### Frame Sensors
+
+Frame sensors include:
+
+```text
+framepos
+framequat
+framelinvel
+frameangvel
+framelinacc
+frameangacc
+```
+
+They can measure either global or relative frame state.
+
+Important logic:
+
+```text
+objtype + objname
+→ what is being observed
+
+reftype + refname
+→ relative to which frame
+```
+
+### Sensor Data
+
+Sensor values are stored in:
+
+```python
+data.sensordata
+```
+
+The basic workflow is:
+
+```text
+XML defines sensors
 ↓
-actuation
+simulation runs
 ↓
-scene construction
+sensor values update
 ↓
-Python-driven simulation
+data.sensordata
 ↓
-state observation
+Python
 ↓
-active joint control
-↓
-sensor feedback
+display / save / analyse / control
 ```
 
 ---
 
-### Current M2 Status
-
-M2 is still in progress because it contains material from two different upstream sources.
-
-#### Robot Knowledge Study
-
-The currently available M2 material from `Robot_knowledge_study` has been completed.
-
-Completed topics include:
-
-- SIM-T01 table and falling cube
-- Python-based MuJoCo simulation
-- `MjModel` and `MjData`
-- `mj_step` and `mj_forward`
-- state observation with `qpos` and `qvel`
-- contact observation
-- CSV output
-- automated testing
-- SIM-T02 arm joint targets
-- position actuators
-- `data.ctrl`
-- waypoint-based joint control
-- sensor feedback
-- end-effector position and orientation
-- Python-controlled Viewer simulation
-
-#### Albusgive MuJoCo Learning
-
-The MuJoCo learning material based on the Albusgive source is still in progress.
+# Albusgive MuJoCo Learning Progress
 
 Completed topics so far include:
 
@@ -460,23 +731,176 @@ Completed topics so far include:
 - replicate
 - linear and circular replication
 - nested replication
+- tendon fundamentals
+- spatial tendon
+- fixed tendon
+- tendon routing with sites
+- joint coupling with `coef`
+- muscle-driven tendon actuation
+- Mecanum fixed-tendon transmission
+- camera fundamentals
+- IMU-style sensing
+- joint position and velocity sensors
+- rangefinder
+- force and torque sensors
+- ball-joint sensing
+- frame sensors
+- relative frame sensing
+- subtree sensing
+- `data.sensordata`
 
 More topics from this source will continue to be added as the learning progresses.
 
-Therefore:
+---
+
+# Source B - Robot Knowledge Study MuJoCo
+
+Directory:
+
+```text
+notes/M2/RobotKnowledgeStudy_MuJoCo/
+```
+
+Upstream source:
+
+```text
+https://github.com/noBug01/Robot_knowledge_study
+```
+
+Version studied:
+
+```text
+v0.3.0
+```
+
+Current M2 material from this source has been completed.
+
+---
+
+## 01. Table and Falling Cube
+
+Files:
+
+```text
+M2/RobotKnowledgeStudy_MuJoCo/01_table_cube.md
+M2/RobotKnowledgeStudy_MuJoCo/01_table_cube_zh.md
+```
+
+Main topics:
+
+```text
+MJCF model loading
+MjModel
+MjData
+mj_forward
+mj_step
+qpos
+qvel
+contact detection
+data.ncon
+CSV output
+numerical prediction
+simulation verification
+Viewer
+camera operation
+automated testing
+```
+
+Core workflow:
+
+```text
+XML
+↓
+MjModel
+↓
+MjData
+↓
+mj_step
+↓
+state changes
+↓
+observation
+↓
+verification
+```
+
+The falling-cube example connected physical prediction with numerical simulation.
+
+---
+
+## 02. Arm Joint Targets
+
+Files:
+
+```text
+M2/RobotKnowledgeStudy_MuJoCo/02_arm_joint_targets.md
+M2/RobotKnowledgeStudy_MuJoCo/02_arm_joint_targets_zh.md
+```
+
+Main topics:
+
+```text
+robot XML structure
+default blocks
+assets
+mesh
+body hierarchy
+joint definitions
+actuator
+sensor
+contact
+joint targets
+waypoints
+interpolation
+data.ctrl
+qpos
+qvel
+sensor feedback
+tool-frame state
+```
+
+The model includes two robot arms, with the left arm actively controlled.
+
+The main control idea is:
+
+```text
+target waypoint
+↓
+interpolation
+↓
+data.ctrl
+↓
+position actuators
+↓
+joint motion
+↓
+sensor / qpos feedback
+```
+
+This source also introduced practical Python-based simulation control in addition to MJCF model reading.
+
+---
+
+# M2 Source Status
+
+The two M2 sources currently have different progress states:
 
 ```text
 Robot Knowledge Study
-→ completed
+→ Completed
 
 Albusgive MuJoCo Learning
-→ in progress
+→ In Progress
 
 Overall M2
-→ in progress
+→ In Progress
 ```
 
-## Purpose
+This distinction is intentionally preserved because completing one source does not mean the entire M2 module is complete.
+
+---
+
+# Purpose
 
 These notes serve three goals:
 
@@ -484,4 +908,19 @@ These notes serve three goals:
 2. Document the reasoning behind the implementations in this repository.
 3. Provide evidence of continuous and structured technical learning.
 
-Runnable implementations are stored in `examples/`, while automated checks are stored in `tests/`.
+The notes are designed to record not only:
+
+```text
+what was learned
+```
+
+but also:
+
+```text
+why it works
+how different concepts connect
+how the ideas are implemented
+how they relate to robot simulation and control
+```
+
+As the Robot Learning roadmap progresses, new notes and learning sources will continue to be added while keeping each source clearly separated.
