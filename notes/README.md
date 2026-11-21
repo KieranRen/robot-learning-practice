@@ -924,3 +924,9 @@ how they relate to robot simulation and control
 ```
 
 As the Robot Learning roadmap progresses, new notes and learning sources will continue to be added while keeping each source clearly separated.
+
+## ROS 2 Interfaces
+
+Readings and worked examples from 20–21 November 2026 on Topic, Service, Action, and nested messages, using a dual-arm driver as the case study.
+
+[English](ROS2/interfaces.md) | [中文](ROS2/interfaces_zh.md)
