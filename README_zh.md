@@ -111,6 +111,7 @@ Robot Knowledge Study 来源则进一步把 MuJoCo 学习扩展到：
 | M0 | 环境配置与 Git 工作流 | Completed | - | [Environment Reports](experiments/environment_reports/) |
 | M1 | Python、NumPy、机器人几何、刚体变换、测试、能力任务与 Modern Robotics 阅读 | Completed | [M1 Notes](notes/M1/) | [M1 Experiments](experiments/M1/) |
 | M2 | MuJoCo 仿真、MJCF 建模、接触、执行器、tendon、sensor、场景构建与 Python 控制 | In Progress | [M2 Notes](notes/README.md) | [M2 Experiments](experiments/M2/) |
+| ROS 2 | Topic、Service、Action 与双臂驱动接口 | 已整理笔记 | [中文](notes/ROS2/interfaces_zh.md) / [English](notes/ROS2/interfaces.md) | — |
 
 ---
 
@@ -469,6 +470,22 @@ sensor feedback
 
 当前 `v0.3.0` 中可用的 M2 内容已经完成。
 
+# ROS 2 通信接口
+
+我结合 ROS 2 官方文档和天机双臂驱动的接口定义，学习了上层程序如何发送控制请求、下发运动目标，以及读取机器人的实际状态。
+
+- **Service**：建立连接、配置运动参数、选择控制模式，以及向夹爪发送单次命令。
+- **Action**：提交一次单臂运动或工具标定任务，读取进度和结果。关节位置运动以实际到位并停稳为完成条件，关节阻抗运动则以平衡目标更新并提交完成为条件。
+- **Topic**：发布连续的双臂目标，同时订阅反馈 Topic，读取实际关节角、末端位姿与夹爪状态。
+- **消息定义与控制约定**：阅读 `.msg`、`.srv` 和 `.action`，理解嵌套消息、反馈有效性、QoS、坐标系与单位。
+
+笔记用两个流程串起这些接口：单臂定点运动通过 Action 提交一次目标，双臂连续控制通过目标 Topic 逐帧发送目标。两种流程都可以订阅同一条反馈 Topic，查看机器人实际状态。
+
+- [中文学习笔记](notes/ROS2/interfaces_zh.md)
+- [English study notes](notes/ROS2/interfaces.md)
+
+当前已完成接口阅读和案例推演，实机验证待开展。
+
 ---
 
 # M2 学习进展结构
@@ -555,40 +572,16 @@ Overall M2
 ```text
 robot-learning-practice/
 ├── notes/
-│   ├── M1/
-│   │   ├── python_numpy.md
-│   │   ├── python_numpy_zh.md
-│   │   ├── robot_geometry.md
-│   │   ├── robot_geometry_zh.md
-│   │   ├── geometry_implementation.md
-│   │   ├── geometry_implementation_zh.md
-│   │   ├── modern_robotics_reading.md
-│   │   └── modern_robotics_reading_zh.md
-│   │
-│   └── M2/
-│       ├── MuJoCo/
-│       │   ├── 01_environment_and_assets.md
-│       │   ├── 01_environment_and_assets_zh.md
-│       │   ├── 02_geom_body_site.md
-│       │   ├── 02_geom_body_site_zh.md
-│       │   ├── 03_joint.md
-│       │   ├── 03_joint_zh.md
-│       │   ├── 04_friction.md
-│       │   ├── 04_friction_zh.md
-│       │   ├── 05_actuator.md
-│       │   ├── 05_actuator_zh.md
-│       │   ├── 06_light_and_replicate.md
-│       │   ├── 06_light_and_replicate_zh.md
-│       │   ├── 07_tendon.md
-│       │   ├── 07_tendon_zh.md
-│       │   ├── 08_sensor.md
-│       │   └── 08_sensor_zh.md
-│       │
-│       └── RobotKnowledgeStudy_MuJoCo/
-│           ├── 01_table_cube.md
-│           ├── 01_table_cube_zh.md
-│           ├── 02_arm_joint_targets.md
-│           └── 02_arm_joint_targets_zh.md
+│   ├── README.md
+│   ├── m1/
+│   ├── M2/
+│   │   ├── MuJoCo/
+│   │   └── RobotKnowledgeStudy_MuJoCo/
+│   └── ROS2/
+│       ├── README.md
+│       ├── interfaces.md
+│       └── interfaces_zh.md
+│
 │
 ├── experiments/
 │   ├── M1/
@@ -725,16 +718,13 @@ experiments/
 - [Learning Roadmap](docs/roadmap.md)
 - [Detailed Workflow](docs/workflow.md)
 - [Progress Record](progress.md)
+- [ROS 2 学习笔记](notes/ROS2/README.md)
 
 ---
 
 # 当前重点
 
-目前主要学习重点是：
-
-```text
-M2 - MuJoCo Simulation
-```
+目前主要学习重点是：M2 MuJoCo 仿真和 ROS 2 通信接口。MuJoCo 部分继续学习建模、执行器和传感器。ROS 2 部分已用天机双臂案例梳理了连接、选模、发送目标和读取实测状态的流程。
 
 当前正在学习和强化：
 

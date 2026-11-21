@@ -87,6 +87,7 @@ Without their sharing, this repository could not be built in its current form.
 | M0 | Environment setup and Git workflow | Completed | - | [Environment Reports](experiments/environment_reports/) |
 | M1 | Python, NumPy, robot geometry, rigid transformations, testing, capability tasks, and Modern Robotics reading | Completed | [M1 Notes](notes/M1/) | [M1 Experiments](experiments/M1/) |
 | M2 | MuJoCo simulation, MJCF modeling, contact, actuators, tendons, sensors, scene construction, and Python-driven control | In Progress | [M2 Notes](notes/README.md) | [M2 Experiments](experiments/M2/) |
+| ROS 2 | Topics, Services, Actions, and dual-arm driver interfaces | Notes documented | [English](notes/ROS2/interfaces.md) / [中文](notes/ROS2/interfaces_zh.md) | — |
 
 ### M1 Robot Math and Geometry
 
@@ -476,6 +477,25 @@ Overall M2
 → in progress
 ```
 
+### ROS 2 - Communication Interfaces
+
+I used the official ROS 2 documentation and the Tianji dual-arm driver interface definitions to study how a control application sends commands and reads robot state.
+
+Topics covered include:
+
+- ROS 2 nodes and how to read `.msg`, `.srv`, and `.action` definitions
+- Services for connecting to the driver, configuring motion parameters, selecting control modes, and commanding the gripper
+- Actions for single-arm motion and tool dynamics calibration, including how position and impedance moves report completion
+- Target Topics for continuous dual-arm commands and feedback Topics for measured joint angles, tool pose, and gripper state
+- Nested messages, feedback validity, QoS, coordinate frames, and unit conventions
+
+The notes trace two workflows: submitting a single-arm motion goal through an Action and streaming dual-arm targets through a Topic. Both workflows use the same feedback Topic to observe the robot's actual state.
+
+- [ROS 2 interface notes in English](notes/ROS2/interfaces.md)
+- [ROS 2 接口学习笔记](notes/ROS2/interfaces_zh.md)
+
+The case study is based on reading interface definitions and working through examples. Hardware validation is pending.
+
 ## Repository Structure
 
 ```text
@@ -491,30 +511,34 @@ robot-learning-practice/
 │   │   ├── modern_robotics_reading.md
 │   │   └── modern_robotics_reading_zh.md
 │   │
-│   └── M2/
-│       ├── MuJoCo/
-│       │   ├── 01_environment_and_assets.md
-│       │   ├── 01_environment_and_assets_zh.md
-│       │   ├── 02_geom_body_site.md
-│       │   ├── 02_geom_body_site_zh.md
-│       │   ├── 03_joint.md
-│       │   ├── 03_joint_zh.md
-│       │   ├── 04_friction.md
-│       │   ├── 04_friction_zh.md
-│       │   ├── 05_actuator.md
-│       │   ├── 05_actuator_zh.md
-│       │   ├── 06_light_and_replicate.md
-│       │   ├── 06_light_and_replicate_zh.md
-│       │   ├── 07_tendon.md
-│       │   ├── 07_tendon_zh.md
-│       │   ├── 08_sensor.md
-│       │   └── 08_sensor_zh.md
-│       │
-│       └── RobotKnowledgeStudy_MuJoCo/
-│           ├── 01_table_cube.md
-│           ├── 01_table_cube_zh.md
-│           ├── 02_arm_joint_targets.md
-│           └── 02_arm_joint_targets_zh.md
+│   │── M2/
+│   │   ├── MuJoCo/
+│   │   │   ├── 01_environment_and_assets.md
+│   │   │   ├── 01_environment_and_assets_zh.md
+│   │   │   ├── 02_geom_body_site.md
+│   │   │   ├── 02_geom_body_site_zh.md
+│   │   │   ├── 03_joint.md
+│   │   │   ├── 03_joint_zh.md
+│   │   │   ├── 04_friction.md
+│   │   │   ├── 04_friction_zh.md
+│   │   │   ├── 05_actuator.md
+│   │   │   ├── 05_actuator_zh.md
+│   │   │   ├── 06_light_and_replicate.md
+│   │   │   ├── 06_light_and_replicate_zh.md
+│   │   │   ├── 07_tendon.md
+│   │   │   ├── 07_tendon_zh.md
+│   │   │   ├── 08_sensor.md
+│   │   │   └── 08_sensor_zh.md
+│   │   │
+│   │   └── RobotKnowledgeStudy_MuJoCo/
+│   │        ├── 01_table_cube.md
+│   │        ├── 01_table_cube_zh.md
+│   │        ├── 02_arm_joint_targets.md
+│   │        └── 02_arm_joint_targets_zh.md
+│   └── ROS2/
+│       ├── README.md
+│       ├── interfaces.md
+│       └── interfaces_zh.md
 │
 ├── experiments/
 │   ├── M1/
@@ -603,10 +627,11 @@ Where relevant, experiment outputs and environment verification records are stor
 - [Learning Roadmap](docs/roadmap.md)
 - [Detailed Workflow](docs/workflow.md)
 - [Progress Record](progress.md)
+- [ROS 2 Study Notes](notes/ROS2/README.md)
 
 ## Current Focus
 
-The current focus is M2: MuJoCo simulation.
+My current focus includes M2 MuJoCo simulation and ROS 2 communication interfaces. In the ROS 2 case study, I traced how a dual-arm application prepares the driver, sends motion targets, and reads measured joint state.
 
 At this stage, I am working on:
 
@@ -684,7 +709,7 @@ Planned areas include:
 
 - robot kinematics
 - control systems
-- ROS 2
+- ROS 2 programming and interface validation in simulation and on hardware
 - perception
 - SLAM
 - manipulation
