@@ -785,4 +785,12 @@ M1 — Robot Math Foundations 已完成。
 9. Git commit
 10. PR / merge
 
+## ROS2-01｜ROS 2 接口与双臂驱动
+
+- 日期：2026-11-20 至 2026-11-21
+- 来源：ROS 2 官方接口文档和学习时阅读的天机双臂驱动接口资料。
+- 进度：已整理 Topic、Service、Action、嵌套消息、控制模式、状态回读和坐标系的双语笔记。
+- 验证范围：根据接口定义做纸面推演，实机与 ROS 2 运行验证待开展。
+- 笔记：[English](notes/ROS2/interfaces.md) | [中文](notes/ROS2/interfaces_zh.md)
+
 这样可以让仓库长期保持清晰，并成为真正可复查的机器人学习记录。
